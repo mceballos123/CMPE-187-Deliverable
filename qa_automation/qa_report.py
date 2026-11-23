@@ -191,6 +191,39 @@ def overview_table(rows, graded, configs, timings, apps, app_name):
         "wall_clock_min": round(sum(t["wall_secs"] for t in timings) / 60, 1)}]
 
 
+NOT_RUN_REASONS = [
+    ("challenge", "the site showed a human check (verify you are human) to the automated browser"),
+    ("limit", "the site's message limit was reached"),
+    ("login", "the site asked to sign in"),
+    ("nosuchwindow", "the browser window was closed, so nothing could be typed"),
+    ("window already closed", "the browser window was closed, so nothing could be typed"),
+    ("something went wrong", "the site returned an error page"),
+]
+
+
+def not_run_reason(r):
+    text = ("%s %s" % (r.get("error") or "", r.get("answer") or "")).lower()
+    for needle, reason in NOT_RUN_REASONS:
+        if needle in text:
+            return reason
+    return (r.get("error") or r.get("status") or "unknown").splitlines()[0][:80]
+
+
+def not_run_table(rows, configs, apps, app_name):
+    """Executions without a verdict, grouped by app and reason, plus planned ones that never started."""
+    out = []
+    for app in apps:
+        app_rows = [r for r in rows if r["app"] == app]
+        groups = Counter((r["status"], not_run_reason(r)) for r in app_rows if r["final_verdict"] == "NOT RUN")
+        for (status, reason), n in groups.items():  # Counter keeps first-seen order, so the cause comes first
+            out.append({"app": app_name[app], "status": status, "executions": n, "reason": reason})
+        planned = sum(len(c["tests"]) * c["args"]["repeat"] for c in configs if app in c["args"]["apps"])
+        if planned > len(app_rows):
+            out.append({"app": app_name[app], "status": "not started", "executions": planned - len(app_rows),
+                        "reason": "the runner stopped this app before these executions (see the rows above)"})
+    return out
+
+
 def test_app_matrix(graded, data, apps, app_name):
     out = []
     for t in data["tests"]:
@@ -353,6 +386,7 @@ def build(run_dirs, args):
          "defects": [{"app": app_name[r["app"]], "test": r["test_id"], "repeat": r["repeat"],
                       "verdict": r["final_verdict"], "output_class": oracle_of(r).get("output_class"), "why": why(r)}
                      for r in graded if r["final_verdict"] in ("Fail", "Partial Pass")],
+         "not_run": not_run_table(rows, configs, apps, app_name),
          "validation": validation_table(rows),
          "timing": timing_table(graded, apps, app_name),
          "coverage": coverage_table(graded, configs, model, apps),
@@ -456,6 +490,7 @@ def charts(T, rows, apps, app_name, out):
 TITLES = [
     ("run_overview", "Run overview"),
     ("verdict_by_app", "Results per app"),
+    ("not_run", "Executions not run, and why"),
     ("pass_by_test_and_app", "Passes per test case and app (passed / executed)"),
     ("verdict_by_input_class", "Results per input class (3D model: input)"),
     ("verdict_by_context", "Results per context class (3D model: context)"),

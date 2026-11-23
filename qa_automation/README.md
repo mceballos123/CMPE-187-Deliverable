@@ -11,6 +11,33 @@ The scripts follow the 3D test model from Deliverable 2:
 | Input | QA-IC-01 to QA-IC-08, each expanded by augmentation (ORIG, PARA, NOISE, PARAM) | `data/qa_test_data.json` |
 | Output | QA-OC-01 to QA-OC-07, assigned to every answer by the oracle | `qa_oracle.py` |
 
+## Results in this repo
+
+Two real runs of the `3d` plan (36 test cases, 2 repeats), both logged out on free tiers.
+The combined report is `results/run_20261122_201114/report/summary.md`.
+
+| App | Graded | Passed | Run |
+|---|---|---|---|
+| ChatGPT | 45 of 72 | 45 | `results/run_20261122_201114` (Chrome on a Mac) |
+| Claude | 0 of 72 | - | `results/run_20261122_201114` (Chrome on a Mac) |
+| Gemini | 72 of 72 | 70 | `results/run_cloud_gemini_perplexity` (Chrome on a cloud machine) |
+| Perplexity | 72 of 72 | 71 | `results/run_cloud_gemini_perplexity` (Chrome on a cloud machine) |
+| Total | 189 of 288 | 186 (98.4%) | |
+
+Why some executions did not run (also in the report table "Executions not run, and why"):
+
+- **Claude:** claude.ai showed a "verify you are human" check to the Selenium-controlled
+  browser on the very first execution. `results.jsonl` records it as `"status": "blocked",
+  "error": "challenge"`. The scripts never try to get around such checks, so the Chrome window
+  was closed, and the other 71 Claude executions are recorded as errors ("browser window was
+  closed"). None of them has a verdict and none counts in the pass rate. This is a finding in
+  itself: Claude's web app cannot be tested this way without signing in through a normal browser.
+- **ChatGPT:** logged out, ChatGPT allowed 45 executions and then showed "You have reached the
+  anonymous message limit" (screenshot: `results/run_20261122_201114/evidence/chatgpt_message_limit.png`).
+  The runner recognized the message (`"status": "blocked", "error": "limit"`) and stopped ChatGPT
+  cleanly, so 26 executions never started. They can be finished after signing in with
+  `python qa_runner.py --resume results/run_20261122_201114 --apps chatgpt`.
+
 ## Files
 
 | File | What it does |

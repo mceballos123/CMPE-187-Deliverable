@@ -493,6 +493,32 @@
       "why": "gives conflicting results: 255585.6, 255600.0 bps next to 262306 bps"
     }
   ],
+  "not_run": [
+    {
+      "app": "ChatGPT",
+      "status": "blocked",
+      "executions": 1,
+      "reason": "the site's message limit was reached"
+    },
+    {
+      "app": "ChatGPT",
+      "status": "not started",
+      "executions": 26,
+      "reason": "the runner stopped this app before these executions (see the rows above)"
+    },
+    {
+      "app": "Claude",
+      "status": "blocked",
+      "executions": 1,
+      "reason": "the site showed a human check (verify you are human) to the automated browser"
+    },
+    {
+      "app": "Claude",
+      "status": "error",
+      "executions": 71,
+      "reason": "the browser window was closed, so nothing could be typed"
+    }
+  ],
   "validation": [
     {
       "graded_by_oracle": 189,
@@ -663,12 +689,12 @@
     },
     {
       "file": "qa_runner.py",
-      "total_lines": 538,
-      "loc": 447,
+      "total_lines": 544,
+      "loc": 452,
       "functions": 21,
-      "avg_cc": 7.3,
-      "max_cc": 19,
-      "most_complex": "send_and_wait (19)",
+      "avg_cc": 7.4,
+      "max_cc": 20,
+      "most_complex": "cmd_run (20)",
       "role": "script"
     },
     {
@@ -683,9 +709,9 @@
     },
     {
       "file": "qa_report.py",
-      "total_lines": 519,
-      "loc": 444,
-      "functions": 25,
+      "total_lines": 554,
+      "loc": 472,
+      "functions": 27,
       "avg_cc": 8.9,
       "max_cc": 29,
       "most_complex": "charts (29)",
@@ -884,12 +910,12 @@
   "automation_cost": [
     {
       "item": "Development effort (scripts, data, oracle)",
-      "value": "fill in with --dev-hours",
+      "value": "9.5 h",
       "basis": "own time log"
     },
     {
       "item": "Code written",
-      "value": "1818 LOC in 7 scripts + 188 LOC unit tests",
+      "value": "1851 LOC in 7 scripts + 188 LOC unit tests",
       "basis": "measured (non-blank, non-comment, no docstrings)"
     },
     {
@@ -934,7 +960,7 @@
     },
     {
       "item": "Break-even point",
-      "value": "needs --dev-hours",
+      "value": "2.1 runs",
       "basis": "development time / time saved per run"
     },
     {

@@ -1,0 +1,5 @@
+app,status,executions,reason
+ChatGPT,blocked,1,the site's message limit was reached
+ChatGPT,not started,26,the runner stopped this app before these executions (see the rows above)
+Claude,blocked,1,the site showed a human check (verify you are human) to the automated browser
+Claude,error,71,"the browser window was closed, so nothing could be typed"

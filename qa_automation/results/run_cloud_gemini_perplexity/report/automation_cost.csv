@@ -1,6 +1,6 @@
 item,value,basis
-"Development effort (scripts, data, oracle)",fill in with --dev-hours,own time log
-Code written,1818 LOC in 7 scripts + 188 LOC unit tests,"measured (non-blank, non-comment, no docstrings)"
+"Development effort (scripts, data, oracle)",9.5 h,own time log
+Code written,1851 LOC in 7 scripts + 188 LOC unit tests,"measured (non-blank, non-comment, no docstrings)"
 Executions that got an answer,144,measured
 Messages sent to chatbots,240,measured (test prompts + context fillers)
 "Machine time, wall clock",58.5 min,measured (apps in parallel)
@@ -9,5 +9,5 @@ Judge (Ollama) time,0.0 min,"measured, local model"
 Same work done by hand,432 min,"assumption: 3.0 min per execution (type, wait, read, grade, record)"
 Human time with automation,15 min,assumption: 15 min setup per run + 1.5 min per REVIEW item
 Human time saved per run,417 min,manual minus automated
-Break-even point,needs --dev-hours,development time / time saved per run
+Break-even point,1.4 runs,development time / time saved per run
 Money spent,$0.00,"given with --dollars (plans, API)"
