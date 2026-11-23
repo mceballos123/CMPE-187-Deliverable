@@ -1,0 +1,12 @@
+# Browser profiles hold logged-in session cookies - never commit
+chrome_profiles/
+
+# Signal file used by --review mode
+next
+
+# Python
+__pycache__/
+.venv/
+
+# macOS
+.DS_Store

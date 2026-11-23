@@ -1,0 +1,35 @@
+[
+  {
+    "candidate_id": "NLC-04-P1",
+    "source_id": "NLC-04",
+    "test_case": "NLC-04",
+    "augmentation_type": "paraphrase",
+    "prompt": "SNMP functionality has ceased to work after updating the community string",
+    "status": "pending",
+    "note": "",
+    "model": "llama3.2:3b",
+    "generated": "2026-11-22T22:03:51"
+  },
+  {
+    "candidate_id": "NLC-04-T1",
+    "source_id": "NLC-04",
+    "test_case": "NLC-04",
+    "augmentation_type": "heavy-typo",
+    "prompt": "snmp stopt working after i chaned the community sting",
+    "status": "pending",
+    "note": "",
+    "model": "llama3.2:3b",
+    "generated": "2026-11-22T22:03:53"
+  },
+  {
+    "candidate_id": "NLC-04-N1",
+    "source_id": "NLC-04",
+    "test_case": "NLC-04",
+    "augmentation_type": "non-native",
+    "prompt": "snmp stopped working after community string changed",
+    "status": "pending",
+    "note": "",
+    "model": "llama3.2:3b",
+    "generated": "2026-11-22T22:03:55"
+  }
+]
