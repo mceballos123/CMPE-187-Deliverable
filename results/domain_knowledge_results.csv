@@ -1,0 +1,983 @@
+﻿app,test_id,collection_method,prompt,expected,result,reason,judge_model,judge_result,judge_reason,review_applied,evaluation_error,response_sha256,response
+chatgpt,TC-DK-01,selenium,What is SNMP?,Define SNMP as Simple Network Management Protocol and explain that it is used to monitor/manage network devices.,PASS,"The response accurately defines SNMP as Simple Network Management Protocol and explains its purpose in monitoring and managing network devices, meeting the required behavior.",llama3.1:8b,PASS,"The response accurately defines SNMP as Simple Network Management Protocol and explains its purpose in monitoring and managing network devices, meeting the required behavior.",False,,df018f43748585c2cce90ec0b4e5caa117da7da883c2114470d7e7722169dadd,"SNMP (Simple Network Management Protocol) is a standard networking protocol used to monitor, manage, and troubleshoot network devices such as routers, switches, firewalls, servers, printers, and access points.
+It allows network administrators to collect information about devices and, in some cases, remotely change their configurations.
+1. How SNMP works
+SNMP uses three main components:
+ galactis.ai
+SNMP Manager: The central monitoring system (e.g., SolarWinds, PRTG, Zabbix).
+SNMP Agent: Software running on a network device that collects and provides device information.
+MIB (Management Information Base): A database describing the information and parameters that can be monitored on a device.
+For example:
+The SNMP manager sends a request to a network switch.
+The SNMP agent receives the request.
+The agent retrieves information, such as CPU utilization or interface status.
+The agent sends the information back to the manager.
+The monitoring system displays the results.
+2. Common SNMP operations
+Operation
+Purpose
+GET
+Retrieve information from a device
+GET-NEXT
+Retrieve the next available data item
+GET-BULK
+Retrieve multiple data items efficiently
+SET
+Change a device parameter
+TRAP
+Device sends an unsolicited alert
+INFORM
+Sends an alert that requires acknowledgment
+3. SNMP versions
+Version
+Description
+SNMPv1
+Original version; basic functionality
+SNMPv2c
+Improved performance and GET-BULK support; community-string authentication
+SNMPv3
+Adds authentication, encryption, and stronger security
+Recommended
+SNMPv3 is generally preferred because it supports authentication and encryption.
+4. SNMP port numbers
+SNMP primarily uses UDP.
+Port
+Purpose
+UDP 161
+SNMP requests and responses
+UDP 162
+SNMP traps and informs
+5. Real-world example
+Imagine you manage a network with 50 switches.
+Using SNMP, you can monitor:
+CPU and memory utilization.
+Network interface status (up/down).
+Bandwidth utilization.
+Incoming and outgoing traffic.
+Interface errors and dropped packets.
+Device temperature.
+Device uptime.
+For example, if a switch interface goes down, the switch can send an SNMP Trap to your monitoring server, which can generate an alert.
+6. Popular SNMP monitoring tools
+SolarWinds Network Performance Monitor
+.
+PRTG Network Monitor
+.
+Zabbix
+.
+Nagios
+.
+ManageEngine OpManager
+.
+In simple terms: SNMP is like a remote health-monitoring system for network devices. It helps administrators see what's happening across their network without physically accessing every router, switch, or server.
+Interview tip: If someone asks you what SNMP is, explain that it is an application-layer protocol used to monitor and manage network devices, typically using UDP ports 161 and 162.
+ChatGPT is AI and can make mistakes.
+New chat
+Images
+Shopping
+Plugins
+See plans and pricing
+Help
+Deep research
+Settings
+Get responses tailored to you
+Log in to get answers based on saved chats, plus create images and upload files.
+Log in
+Chat with ChatGPT"
+chatgpt,TC-DK-02,selenium,What is the difference between a MIB and an OID?,Explain that a MIB defines/organizes managed objects while an OID uniquely identifies a managed object or instance.,PASS,"The response accurately explains the difference between a MIB and an OID, covering their purposes, formats, and how they work together in the context of SNMP.",llama3.1:8b,PASS,"The response accurately explains the difference between a MIB and an OID, covering their purposes, formats, and how they work together in the context of SNMP.",False,,a1eadb73f507950a3fa088e56f7d54741f5a19e5c3496d2475a347ace483fda7,"In SNMP (Simple Network Management Protocol), MIB and OID are related, but they serve different purposes.
+The simplest way to understand the difference is:
+MIB (Management Information Base): A database or definition file that describes the network information available on a device.
+OID (Object Identifier): A unique numerical identifier used to identify a specific piece of information within that database.
+1. What is a MIB?
+A MIB is a collection of definitions that describe manageable objects on a network device, such as a router, switch, firewall, or server.
+It tells an SNMP monitoring system:
+What information is available.
+What each object represents.
+What data type it contains (integer, string, counter, etc.).
+How the object is structured.
+For example, a MIB might define:
+Device hostname
+Interface status
+Interface bandwidth
+CPU utilization
+Memory utilization
+Think of a MIB as a dictionary that explains what the SNMP data means.
+2. What is an OID?
+An OID is a unique numerical address assigned to an individual managed object in the SNMP hierarchy.
+For example:
+1.3.6.1.2.1.1.5.0
+This OID represents the system name (hostname) of a device.
+Another example:
+1.3.6.1.2.1.1.3.0
+This represents the system uptime.
+An OID tells the SNMP manager exactly which object to query.
+Think of an OID as a specific entry or address in the MIB.
+3. How MIB and OID work together
+ Here's how they work together:
+An SNMP agent runs on a network device.
+The SNMP manager uses an OID to request specific information.
+The SNMP agent identifies the requested object.
+The agent returns the corresponding value.
+The MIB helps the monitoring system interpret the OID and its meaning.
+For example:
+Component
+Example
+MIB
+SNMPv2-MIB
+OID
+1.3.6.1.2.1.1.5.0
+Object name
+sysName
+Description
+System hostname
+Returned value
+Switch-01
+4. Key differences
+Feature
+MIB
+OID
+Meaning
+Management Information Base
+Object Identifier
+Purpose
+Defines managed objects
+Identifies a specific object
+Format
+Usually a text-based definition file
+Numeric hierarchical string
+Scope
+Contains multiple object definitions
+Identifies one object or instance
+Example
+SNMPv2-MIB
+1.3.6.1.2.1.1.5.0
+5. Practical example
+Suppose you want to monitor the hostname of a Cisco switch using an SNMP monitoring tool such as PRTG, SolarWinds, or Zabbix.
+You load the appropriate MIB file.
+The MIB tells the monitoring tool that sysName represents the system hostname.
+The corresponding OID is 1.3.6.1.2.1.1.5.0.
+Your monitoring tool queries that OID.
+The switch responds with something like Core-Switch-01.
+The key takeaway:
+MIB = What the information means.
+OID = Where to find the information.
+You can think of a MIB as a phone book and an OID as a specific phone number in that book.
+ChatGPT is AI and can make mistakes.
+New chat
+Images
+Shopping
+Plugins
+See plans and pricing
+Help
+Deep research
+Settings
+Get responses tailored to you
+Log in to get answers based on saved chats, plus create images and upload files.
+Log in
+Chat with ChatGPT"
+chatgpt,TC-DK-03,selenium,What are the five areas of FCAPS?,"Identify Fault, Configuration, Accounting, Performance, and Security.",PASS,"The response accurately lists the five areas of FCAPS: Fault, Configuration, Accounting, Performance, and Security.",llama3.1:8b,PASS,"The response accurately lists the five areas of FCAPS: Fault, Configuration, Accounting, Performance, and Security.",False,,804840449a8aafdfbdd25283aeeba8f43230e19699b28b00ca2099e62fe34fdd,"FCAPS is a network management framework defined by the ISO. It identifies five key areas of network management:
+F – Fault Management: Detecting, isolating, troubleshooting, and resolving network problems or failures.
+C – Configuration Management: Managing network device configurations, software updates, hardware settings, and changes.
+A – Accounting Management: Tracking and measuring network resource usage, such as bandwidth consumption, to support billing and resource allocation.
+P – Performance Management: Monitoring network performance, including bandwidth, latency, throughput, and availability.
+S – Security Management: Protecting network resources through authentication, authorization, access control, and security monitoring.
+Easy way to remember:
+Fault = Is it broken?
+Configuration = How is it configured?
+Accounting = Who is using it?
+Performance = How well is it working?
+Security = Is it protected?
+ChatGPT is AI and can make mistakes.
+New chat
+Images
+Shopping
+Plugins
+See plans and pricing
+Help
+Deep research
+Settings
+Get responses tailored to you
+Log in to get answers based on saved chats, plus create images and upload files.
+Log in
+Chat with ChatGPT
+Log in or sign up
+You’ll get smarter responses and can upload files, images, and more.
+Continue with Google
+Continue with Apple
+Continue with phone
+OR
+Email address
+Continue"
+chatgpt,TC-DK-04,selenium,What does ifAdminStatus = up and ifOperStatus = down indicate?,Explain that the interface is administratively enabled but is not operational.,PASS,"The response accurately explains the meaning of ifAdminStatus = up and ifOperStatus = down, indicating the interface is administratively enabled but not operational.",llama3.1:8b,PASS,"The response accurately explains the meaning of ifAdminStatus = up and ifOperStatus = down, indicating the interface is administratively enabled but not operational.",False,,3019b7b8ccc257d777fff5ef2f4876a8d8966c46814671e53b82cf13f997924d,"When ifAdminStatus = up and ifOperStatus = down, it means the network interface is administratively enabled but is not operationally working.
+In simple terms:
+ifAdminStatus = up: The interface is enabled (not manually shut down).
+ifOperStatus = down: The interface is not currently functioning or establishing a connection.
+Common reasons
+Physical cable disconnected – Ethernet cable is unplugged or faulty.
+Remote device is down – The device connected to this port is powered off.
+Link negotiation failure – Speed or duplex negotiation issues.
+Hardware failure – Faulty network port, transceiver, or NIC.
+Layer 1 issue – Physical connectivity problems.
+Network configuration issue – VLAN, port configuration, or other settings may prevent connectivity, depending on the technology.
+Example
+Imagine a switch port:
+Parameter
+Value
+Meaning
+ifAdminStatus
+Up (1)
+Port is enabled
+ifOperStatus
+Down (2)
+No operational link
+How to troubleshoot
+Check whether the cable is connected properly.
+Verify that the connected device is powered on.
+Check interface status on both ends.
+Verify speed and duplex settings.
+Check logs for link-down events.
+Inspect the port, SFP, or transceiver if applicable.
+SNMP interpretation: This condition generally indicates that the interface is enabled by configuration but cannot establish an operational link.
+It is commonly described as an administratively up, operationally down state.
+ChatGPT is AI and can make mistakes.
+New chat
+Images
+Shopping
+Plugins
+See plans and pricing
+Help
+Deep research
+Settings
+Get responses tailored to you
+Log in to get answers based on saved chats, plus create images and upload files.
+Log in
+Chat with ChatGPT"
+chatgpt,TC-DK-05,selenium,Why would an administratively enabled interface still be down?,"Give reasonable causes such as cable/physical link, remote endpoint, transceiver/hardware, speed/duplex, or configuration/data-link issues.",PASS,"The response provides a comprehensive list of reasonable causes for an administratively enabled interface to be operationally down, including physical layer problems, remote endpoint issues, transceiver/hardware problems, speed/duplex mismatches, and configuration/data-link issues.",llama3.1:8b,PASS,"The response provides a comprehensive list of reasonable causes for an administratively enabled interface to be operationally down, including physical layer problems, remote endpoint issues, transceiver/hardware problems, speed/duplex mismatches, and configuration/data-link issues.",False,,6aad65582e16ee09e37962b1c63728a1bd41b348549a4a9022d598ec325b7ba4,"An interface can be administratively enabled but still operationally down because administrative status and operational status represent two different things.
+Administrative UP: The interface has been enabled by configuration (for example, no shutdown on Cisco devices).
+Operational DOWN: The interface is not successfully establishing or maintaining a physical or logical connection.
+Common reasons
+Physical layer problem
+Cable disconnected or damaged.
+Faulty SFP/transceiver.
+Remote device powered off.
+Incorrect fiber connection.
+Remote interface is down
+The connected switch/router port is administratively shut down.
+Remote device is unavailable.
+Remote port has a hardware issue.
+Speed or duplex mismatch
+Both ends have incompatible speed or duplex settings.
+Auto-negotiation is failing.
+Protocol or encapsulation issues
+Incorrect encapsulation.
+Keepalive failures.
+Layer 2 protocol problems.
+Port security or error conditions
+Interface placed into an error-disabled state.
+Security violation.
+Hardware or port errors.
+Logical interface dependencies
+VLAN is inactive.
+Port-channel/LAG is down.
+Parent interface or underlying physical link is unavailable.
+How to troubleshoot (Cisco IOS)
+Start with:
+bash
+show ip interface brief
+Then:
+bash
+show interfaces gigabitEthernet 0/1
+Check logs:
+bash
+show logging
+Check for error-disabled ports:
+bash
+show interfaces status
+Understanding interface states
+Administrative state
+Operational state
+Meaning
+Up
+Up
+Interface working
+Up
+Down
+Enabled, but connection/problem exists
+Down
+Down
+Administratively disabled
+Up
+Up (line protocol down)
+Physical link may be working, but Layer 2/3 protocol is not
+Key takeaway: no shutdown only enables the interface administratively. It does not guarantee that the physical link, remote device, or network protocols are functioning.
+If you share the output of show ip interface brief and show interfaces, I can help pinpoint why the interface is down.
+ChatGPT is AI and can make mistakes.
+New chat
+Images
+Shopping
+Plugins
+See plans and pricing
+Help
+Deep research
+Settings
+Get responses tailored to you
+Log in to get answers based on saved chats, plus create images and upload files.
+Log in
+Chat with ChatGPT"
+chatgpt,TC-DK-06,selenium,How does SNMP polling work?,Explain that the manager initiates periodic requests for OIDs and the agent responds; polling is different from unsolicited traps.,PASS,"The response accurately explains how SNMP polling works, including the role of the manager and agent, the use of OIDs, and the difference between polling and unsolicited traps.",llama3.1:8b,PASS,"The response accurately explains how SNMP polling works, including the role of the manager and agent, the use of OIDs, and the difference between polling and unsolicited traps.",False,,4262ab722c3a3d3779f7805d34e8c7d5b4f98c7933ad6fe4d4e77a95d582f5f1,"SNMP polling is a network monitoring technique where a monitoring system periodically asks network devices (routers, switches, firewalls, servers, etc.) for information about their health, performance, and status.
+SNMP stands for Simple Network Management Protocol.
+Think of it as a monitoring server periodically checking in with network devices and asking:
+How much CPU are you using?
+How much memory is available?
+How many bytes have passed through this interface?
+Is an interface up or down?
+Have any errors occurred on a network port?
+Let's break down how it works.
+1. The main components
+ SNMP polling involves three main components:
+Component
+Role
+SNMP Manager
+Monitoring system that sends requests (e.g., SolarWinds, PRTG, Zabbix).
+SNMP Agent
+Software running on the monitored device that responds to requests.
+MIB
+Management Information Base, which defines the information that can be queried.
+The SNMP agent runs on the network device and exposes information that the SNMP manager can retrieve.
+2. How SNMP polling works step by step
+SNMP polling workflow
+1. SNMP Manager
+Monitoring server sends a request
+SNMP GET · UDP 161
+2. SNMP Agent
+Receives request and retrieves requested information
+Reads the requested OID from its management data
+3. Device Management Information
+CPU, memory, interfaces, traffic counters, errors
+SNMP RESPONSE · UDP 162 is not used here; response returns to the manager's source port
+4. SNMP Manager
+Stores, graphs, and analyzes the returned data
+For example:
+Your monitoring server sends an SNMP GET request to a switch.
+It asks for the interface traffic counter.
+The switch's SNMP agent retrieves the counter.
+The agent sends the value back.
+The monitoring server stores the value and updates its dashboard.
+This process repeats at a configured polling interval.
+3. What are OIDs?
+OID stands for Object Identifier.
+Every SNMP metric has a unique identifier that tells the SNMP manager exactly what information it wants.
+For example:
+OID
+Information
+1.3.6.1.2.1.1.3.0
+Device uptime
+1.3.6.1.2.1.1.5.0
+Device hostname
+1.3.6.1.2.1.2.2.1.10
+Interface inbound traffic counter
+1.3.6.1.2.1.2.2.1.16
+Interface outbound traffic counter
+1.3.6.1.2.1.2.2.1.8
+Interface operational status
+An OID is essentially the address of a particular piece of management information.
+4. SNMP polling intervals
+The monitoring system determines how frequently it polls devices.
+For example:
+Polling interval
+What happens
+30 seconds
+Queries device every 30 seconds
+1 minute
+Queries device every minute
+5 minutes
+Queries device every 5 minutes
+15 minutes
+Queries device every 15 minutes
+Suppose you're monitoring a switch's bandwidth.
+The monitoring server collects these values:
+Time
+Inbound traffic counter
+10:00
+1,000,000 bytes
+10:01
+1,600,000 bytes
+10:02
+2,400,000 bytes
+The monitoring system calculates the difference between successive counter readings.
+For example, from 10:00 to 10:01:
+1
+1,600,000−1,000,000=600,000
+That's 600,000 bytes received in one minute.
+To calculate bandwidth in bits per second:
+bps=
+Time in seconds
+Counter Difference×8
+=
+60
+600,000×8
+=80,000 bps
+So the average inbound bandwidth was 80 Kbps.
+5. SNMP GET vs GETNEXT vs GETBULK
+These are different SNMP request types.
+Request
+Purpose
+GET
+Retrieves a specific OID value.
+GETNEXT
+Retrieves the next OID in the MIB tree.
+GETBULK
+Retrieves multiple OID values efficiently.
+SET
+Changes a configurable value on a device.
+RESPONSE
+Device returns the requested information.
+GETBULK is particularly useful because the monitoring system can retrieve many metrics in fewer requests.
+6. SNMP versions
+Version
+Security
+SNMPv1
+Basic community-string authentication; no encryption.
+SNMPv2c
+Improved performance and GETBULK; still no encryption.
+SNMPv3
+Authentication, encryption, and access control.
+SNMPv3 is generally recommended for production environments.
+7. SNMP polling vs SNMP traps
+These are two different ways devices communicate monitoring information.
+SNMP Polling
+The monitoring server asks the device for information periodically.
+Manager → Device
+SNMP Trap
+The device sends an unsolicited notification when an event occurs.
+Device → Manager
+Example:
+Polling: Your monitoring server checks every minute whether a switch interface is operational.
+Trap: The switch immediately sends a notification when that interface goes down.
+SNMP traps typically use UDP port 162, while SNMP requests and responses typically use UDP port 161 on the agent.
+8. Real-world example
+Imagine you have 100 network switches across your organization.
+You configure a monitoring platform such as Zabbix or SolarWinds to poll each switch every five minutes.
+The monitoring platform can collect:
+CPU utilization
+Memory utilization
+Interface bandwidth
+Interface errors and discards
+Device uptime
+Interface operational status
+It stores the collected data in a database and displays it in dashboards.
+If bandwidth suddenly increases or an interface goes down, the monitoring system can generate an alert based on the collected data.
+The key concept: SNMP polling is a request-and-response mechanism. The monitoring server periodically asks network devices for specific metrics, receives their responses, and uses those values to monitor network health and performance.
+If you're learning SNMP for network engineering, the next useful topic is understanding how SNMP polling actually retrieves interface traffic using OIDs and calculates bandwidth in tools like SolarWinds or PRTG.
+ChatGPT is AI and can make mistakes.
+New chat
+Images
+Shopping
+Plugins
+See plans and pricing
+Help
+Deep research
+Settings
+Get responses tailored to you
+Log in to get answers based on saved chats, plus create images and upload files.
+Log in
+Chat with ChatGPT"
+chatgpt,TC-DK-07,selenium,Why is my router not working?,Recognize that the question is ambiguous/incomplete and ask for clarification or additional diagnostic information before identifying one definite cause.,PASS,The response explicitly asks for clarification or additional diagnostic information before attempting to diagnose the issue.,llama3.1:8b,PASS,The response explicitly asks for clarification or additional diagnostic information before attempting to diagnose the issue.,False,,5d1701828f880c4da3f8bc549dd45a4ebdd36fd2cb412d5acedcb5724f083be1,"There are several reasons your router might not be working, but we can narrow it down pretty quickly.
+First, what exactly is happening?
+No internet at all – All devices say they're connected, but nothing loads.
+Wi-Fi isn't showing up – Your network name has disappeared.
+Router has a red or orange light – Something may be wrong with the internet connection.
+Wi-Fi keeps disconnecting – Internet works intermittently.
+Router won't turn on – No lights or power.
+Some devices work, others don't – The problem may be device-specific.
+Try these quick fixes first
+Unplug your router's power cable.
+Wait 30–60 seconds.
+Plug it back in.
+Wait 3–5 minutes for it to reconnect.
+Try connecting your phone or computer again.
+A few questions
+What brand is your router (Netgear, TP-Link, Xfinity, AT&T, etc.)?
+What color are the lights on the router?
+Is your Wi-Fi connected but there's no internet, or can you not connect to Wi-Fi at all?
+Tell me what lights you see on your router, and I'll help you figure out what's wrong step by step.
+ChatGPT is AI and can make mistakes.
+New chat
+Images
+Shopping
+Plugins
+See plans and pricing
+Help
+Deep research
+Settings
+Get responses tailored to you
+Log in to get answers based on saved chats, plus create images and upload files.
+Log in
+Chat with ChatGPT"
+chatgpt,TC-DK-08,selenium,"SNMP traps are sent only when the manager polls the device, correct?",Reject the false premise and explain that traps are unsolicited notifications sent by the SNMP agent.,PASS,The response correctly rejects the false premise and explains that SNMP traps are unsolicited notifications sent by the SNMP agent.,llama3.1:8b,PASS,The response correctly rejects the false premise and explains that SNMP traps are unsolicited notifications sent by the SNMP agent.,False,,ecdd642415e242a55fa5e200fe0b1cc1445ba9d4d7b708b91d38b744af5cb4d0,"No, that's actually incorrect. SNMP traps are sent autonomously by the device (agent) to the SNMP manager without waiting for the manager to poll it.
+There are two main SNMP communication types:
+1. SNMP Polling (Get Requests)
+The SNMP manager initiates communication.
+The manager periodically asks the device for information.
+The device responds with the requested data.
+Example: The manager polls a router every 5 minutes to check CPU utilization.
+2. SNMP Traps
+The device initiates communication.
+The device automatically sends a notification to the SNMP manager when a specific event occurs.
+No polling is required.
+Example: A switch sends a trap immediately when a network interface goes down.
+Quick comparison
+Feature
+SNMP Polling
+SNMP Trap
+Initiated by
+Manager
+Device
+Requires polling?
+Yes
+No
+Communication
+Request/Response
+Notification
+Typical UDP port
+161
+162
+Timing
+Periodic
+Event-driven
+Important: SNMP traps are generally unacknowledged notifications. If the manager doesn't receive a trap, the device typically doesn't retransmit it.
+SNMP also supports Inform requests, which are notifications that require acknowledgment from the manager.
+Remember: Polling = Manager asks. Trap = Device tells.
+ChatGPT is AI and can make mistakes.
+New chat
+Images
+Shopping
+Plugins
+See plans and pricing
+Help
+Deep research
+Settings
+Get responses tailored to you
+Log in to get answers based on saved chats, plus create images and upload files.
+Log in
+You’re using our basic model. Log in or sign up for more intelligence.
+Log in
+Chat with ChatGPT"
+claude,TC-DK-01,manual,What is SNMP?,Define SNMP as Simple Network Management Protocol and explain that it is used to monitor/manage network devices.,PASS,"The response accurately defines SNMP, explains its purpose, and provides a clear overview of its components and operations, meeting all the requirements specified in the expected behavior.",llama3.1:8b,PASS,"The response accurately defines SNMP, explains its purpose, and provides a clear overview of its components and operations, meeting all the requirements specified in the expected behavior.",False,,c967368b367c7e810e2a448428c9c63022274dbb69224117cb41addb78c95515,"SNMP (Simple Network Management Protocol) is a standard protocol for monitoring and managing devices on an IP network, such as routers, switches, servers, printers, and firewalls.
+
+How it works:
+- Manager: a central system (e.g., Nagios, Zabbix, PRTG) that polls devices and collects data.
+- Agent: software running on each managed device that reports its status.
+- MIB (Management Information Base): a hierarchical dictionary of what can be queried on a device. Each variable is identified by an OID (Object Identifier).
+
+Core operations include GET, GETNEXT, GETBULK, SET, TRAP, and INFORM. UDP port 161 is used for queries and port 162 for traps. SNMPv3 adds authentication and encryption."
+claude,TC-DK-02,manual,What is the difference between a MIB and an OID?,Explain that a MIB defines/organizes managed objects while an OID uniquely identifies a managed object or instance.,PASS,"The response accurately explains the difference between a MIB and an OID, stating that a MIB defines and organizes managed objects, while an OID uniquely identifies a managed object or instance. It also provides a clear analogy to help understand the concept.",llama3.1:8b,PASS,"The response accurately explains the difference between a MIB and an OID, stating that a MIB defines and organizes managed objects, while an OID uniquely identifies a managed object or instance. It also provides a clear analogy to help understand the concept.",False,,b4266a8dd6df0c8b4badd1235415a1f7c8e655dcc597c3f12098cf27cbf74406,"An OID is a single address. A MIB is the dictionary that defines a whole set of those addresses and what they mean.
+
+OID (Object Identifier):
+- A dotted numeric path to one specific piece of data.
+- Points to a single node in a global tree.
+
+MIB (Management Information Base):
+- A text file written in SMI/ASN.1 that defines a collection of OIDs.
+- For each OID it gives a human-readable name, data type, access, and description.
+
+An OID is like a street address, and a MIB is the map plus directory explaining what is at each address."
+claude,TC-DK-03,manual,What are the five areas of FCAPS?,"Identify Fault, Configuration, Accounting, Performance, and Security.",PASS,Correctly identifies the five areas of FCAPS and provides a brief explanation of how SNMP supports these areas.,llama3.1:8b,PASS,Correctly identifies the five areas of FCAPS and provides a brief explanation of how SNMP supports these areas.,False,,4bf739c4404dac4bc2255c8fc273fdd0f17cedfe1944efe4756d94a05ad05a7b,"FCAPS is the ISO model for network management. It splits management into five functional areas:
+1. Fault management
+2. Configuration management
+3. Accounting management
+4. Performance management
+5. Security management
+
+SNMP can support these areas through traps, SET operations, counters, and SNMPv3 security."
+claude,TC-DK-04,manual,What does ifAdminStatus = up and ifOperStatus = down indicate?,Explain that the interface is administratively enabled but is not operational.,PASS,"The response accurately explains the difference between ifAdminStatus and ifOperStatus, and provides a clear indication of what the specific combination of 'up' and 'down' statuses means.",llama3.1:8b,PASS,"The response accurately explains the difference between ifAdminStatus and ifOperStatus, and provides a clear indication of what the specific combination of 'up' and 'down' statuses means.",False,,8e30c8008c433b48bea6d8e61d13ec29a9225a8f86d58d2eaf3bb14cd6a157ee,"It means the interface is enabled by configuration but not actually working.
+
+ifAdminStatus is the desired state set by the administrator. ifOperStatus is the actual state of the link.
+
+Admin up / Oper down can indicate a cable problem, a powered-off far-end device, a bad transceiver, a speed/duplex mismatch, Layer 2 problems, or an underlying interface problem."
+claude,TC-DK-05,manual,Why would an administratively enabled interface still be down?,"Give reasonable causes such as cable/physical link, remote endpoint, transceiver/hardware, speed/duplex, or configuration/data-link issues.",PASS,"Lists various causes for an administratively enabled interface to be down, including cable/physical link, remote endpoint, transceiver/hardware, speed/duplex, and configuration/data-link issues.",llama3.1:8b,PASS,"Lists various causes for an administratively enabled interface to be down, including cable/physical link, remote endpoint, transceiver/hardware, speed/duplex, and configuration/data-link issues.",False,,60df7b54e42958cfcae9369f7946dcd9939102547a39661c5cd09ff1088ccbb8,"Because enabled only means the port is allowed to come up. It still needs a working link.
+
+Common causes include:
+- Cable unplugged, damaged, or wrong type
+- Faulty or incompatible SFP/transceiver
+- Far-end device powered off or port shut down
+- Speed or duplex mismatch
+- Wrong encapsulation on WAN links
+- Port security, BPDU guard, UDLD, storm control, or link flapping
+- Logical-interface dependencies such as VLAN, tunnel, or parent-interface problems."
+claude,TC-DK-06,manual,How does SNMP polling work?,Explain that the manager initiates periodic requests for OIDs and the agent responds; polling is different from unsolicited traps.,PASS,"The response accurately describes the SNMP polling process, including the manager's periodic requests for OIDs and the agent's responses, and correctly distinguishes it from unsolicited traps.",llama3.1:8b,PASS,"The response accurately describes the SNMP polling process, including the manager's periodic requests for OIDs and the agent's responses, and correctly distinguishes it from unsolicited traps.",False,,9ff6c2931da53e74db269e94b76b47024fb1185eeb29a3ab0ac7a622175ef6ea,"SNMP polling is a pull model: the manager asks each device for data on a fixed schedule, and the agent answers.
+
+The manager sends GetRequest, GetNext, or GetBulk requests over UDP 161 with the OIDs it wants. The agent checks access, reads the values from the device's MIB, and sends a GetResponse. The manager stores the values, checks thresholds, and repeats this at a configured interval.
+
+Polling is manager initiated. Traps are agent-initiated unsolicited notifications, usually sent to UDP 162."
+claude,TC-DK-07,manual,Why is my router not working?,Recognize that the question is ambiguous/incomplete and ask for clarification or additional diagnostic information before identifying one definite cause.,PASS,"The response explicitly asks for clarification before attempting to diagnose the issue, which is in line with the expected behavior.",llama3.1:8b,PASS,"The response explicitly asks for clarification before attempting to diagnose the issue, which is in line with the expected behavior.",False,,ecad68aaddb597dff3a2275d9b43a5684bd3ed97c85d512a4eb74e8eaa49df4d,"I need a few details to narrow it down, but here is a quick triage.
+
+Check power and status lights, cables, another device, a wired connection, and whether there is an ISP outage. You can also check the router admin page for WAN status.
+
+What is actually happening? Is it no internet on any device, Wi-Fi not showing up, connected but no internet, slow speeds, or something else? What do the router's lights look like?"
+claude,TC-DK-08,manual,"SNMP traps are sent only when the manager polls the device, correct?",Reject the false premise and explain that traps are unsolicited notifications sent by the SNMP agent.,PASS,"The response correctly rejects the false premise and explains that SNMP traps are unsolicited notifications sent by the SNMP agent, not in response to a manager poll.",llama3.1:8b,PASS,"The response correctly rejects the false premise and explains that SNMP traps are unsolicited notifications sent by the SNMP agent, not in response to a manager poll.",False,,0749bd00e7b1327275243b14af6fd3ff34edd82688dc0b9da6c814a0239cd1e0,"No, that is backwards. Traps are unsolicited: the agent sends them on its own as soon as an event happens, with no request from the manager.
+
+Polling: the manager asks, the agent answers over UDP 161.
+Traps: the agent sends an event notification such as link down or reboot over UDP 162.
+
+A standard trap is not acknowledged. An INFORM is also unsolicited, but the manager acknowledges it."
+gemini,TC-DK-01,selenium,What is SNMP?,Define SNMP as Simple Network Management Protocol and explain that it is used to monitor/manage network devices.,PASS,"The response accurately defines SNMP as Simple Network Management Protocol and explains its purpose in monitoring and managing network devices, including its core components, polling and trap mechanisms, and security considerations.",llama3.1:8b,PASS,"The response accurately defines SNMP as Simple Network Management Protocol and explains its purpose in monitoring and managing network devices, including its core components, polling and trap mechanisms, and security considerations.",False,,34ddc9b7a33991ab5921fe6023f6e91f9c38c285873dbd269faa2524f89be7cc,"Simple Network Management Protocol (SNMP) is an Internet-standard application-layer protocol used to monitor, collect telemetry from, and configure network-connected devices—such as routers, switches, firewalls, servers, printers, and UPS units—over IP networks.
+Instead of logging into every device manually, network administrators use a central management system to poll devices for health metrics (like CPU load, memory usage, or interface traffic) or receive alerts when an event occurs.
+Opens in a new window
+Source: Made with Google AI
+SNMP manager, master agent, and MIB flow. Source: Made with Google AI
+Core Components of SNMP
+SNMP Manager (Network Management Station / NMS): The centralized software or platform (such as Zabbix, LibreNMS, PRTG, or SolarWinds) that queries devices, aggregates metrics, sets thresholds, and listens for alerts.
+SNMP Agent: Software running on the managed device (snmpd or built into firmware) that reads local state and responds to requests or sends notifications.
+Management Information Base (MIB): A structured, hierarchical database (organized as a tree of Object Identifiers, or OIDs) that defines what variables a device exposes—such as interface status, byte counters, or temperature—and their data types.
+How SNMP Works: Polling and Traps
+SNMP typically runs over UDP (User Datagram Protocol) because lightweight, connectionless datagrams keep overhead low on busy network gear:
+Polling (Get / GetNext / GetBulk): The manager sends a GET request to a specific OID on the agent (commonly UDP port 161), and the agent replies with the current value. Managers repeat this on a schedule (for example, every 30 or 60 seconds) to build graphs and spot trends.
+Configuration (Set): A manager can send a SET request to modify writable parameters on a device, though many organizations restrict or disable SET for security reasons.
+Notifications (Traps and Informs): Instead of waiting to be polled, an agent can proactively push an alert (commonly UDP port 162) when an important event happens—such as a link going down or a power supply failing. TRAP messages are fire-and-forget; INFORM messages (introduced in SNMPv2c/v3) require an acknowledgment from the manager.
+SNMP Versions: v1, v2c, and v3
+Version Key Capabilities Security Model Practical Status
+SNMPv1 Basic GET, GETNEXT, SET, and TRAP operations; 32-bit counters. Plaintext community strings (e.g., public / private) with no encryption. Legacy; avoid in production.
+SNMPv2c Adds GETBULK for efficient table retrieval, 64-bit counters (Counter64) for high-speed links, and INFORM messages. Still uses plaintext community strings (relies on network segmentation/ACLs). Widely used on internal networks, though lacks built-in crypto.
+SNMPv3 Same operational features as v2c plus user-based security (USM) and view-based access control (VACM). Supports authentication (e.g., SHA-256) and encryption (e.g., AES-128). Recommended standard for modern deployments.
+Security note: Because SNMPv1 and SNMPv2c transmit community strings in cleartext, attackers on a reachable segment can read sensitive topology/device data or abuse write access if misconfigured. Prefer SNMPv3 with authentication and encryption whenever possible.
+(Tip: Signing in to a Google Account lets you save this conversation and revisit your notes later.)
+Where would you like to go next with SNMP?
+Compare SNMP with modern streaming telemetry
+Walk through configuring SNMPv3 securely
+Explain MIBs, OIDs, and snmpwalk examples"
+gemini,TC-DK-02,selenium,What is the difference between a MIB and an OID?,Explain that a MIB defines/organizes managed objects while an OID uniquely identifies a managed object or instance.,PASS,"The response accurately explains the difference between a MIB and an OID, covering their definitions, roles, and how they work together in the context of SNMP.",llama3.1:8b,PASS,"The response accurately explains the difference between a MIB and an OID, covering their definitions, roles, and how they work together in the context of SNMP.",False,,9e4df5826a222a7250c874c7d578b859ccf1fd1955cce55601bb51653f1a1b82,"In SNMP (Simple Network Management Protocol), an OID is the numeric address of a single piece of data, while a MIB is the human-readable schema (dictionary/blueprint) that defines and organizes those OIDs.
+Think of it like a spreadsheet or database:
+OID (Object Identifier) = The exact cell coordinate or primary key for one specific metric (for example, interface description or CPU load).
+MIB (Management Information Base) = The schema document that names the columns, explains what each value means, and specifies its data type (integer, string, counter, etc.).
+Key Differences at a Glance
+Feature OID (Object Identifier) MIB (Management Information Base)
+What it is A dotted sequence of numbers (1.3.6.1...) that uniquely identifies an object or branch in a tree. A text file written in ASN.1 (Abstract Syntax Notation One) defining managed objects, types, access rules, and descriptions.
+Role Address / locator used on the wire by SNMP packets (GET, SET, TRAP). Schema / translation dictionary used by network management tools (NMS) and engineers to interpret OIDs.
+Scope Points to a single node or subtree (e.g., one metric or table). Groups many related OIDs into a logical module (e.g., IF-MIB, TCP-MIB, or a vendor MIB).
+Human readability Low on its own—numbers don't tell you what the metric represents without a MIB. High—includes object names, SYNTAX, MAX-ACCESS, STATUS, and DESCRIPTION fields.
+How They Work Together
+Every OID sits inside a global OID tree (managed by standards bodies like ISO, ITU-T, and IANA):
+Standard branches (such as 1.3.6.1.2.1, or mib-2) hold standardized definitions like IF-MIB (network interfaces).
+Private / enterprise branches (under 1.3.6.1.4.1) give each vendor a unique enterprise number so they can publish proprietary MIBs for their hardware and software.
+When an SNMP manager queries a device:
+The manager sends an SNMP GET request containing the numeric OID (for example, 1.3.6.1.2.1.1.5.0, which corresponds to sysName.0).
+The agent replies with the raw value.
+The management system consults its loaded MIBs to map 1.3.6.1.2.1.1.5.0 to sysName.0, format the data type properly, and display a meaningful label and description to the operator.
+Common Misconceptions
+""A device stores the whole MIB file to answer SNMP queries."" Usually, the device implements the underlying instrumentation for specific OIDs in its SNMP agent, while the NMS (Network Management System) loads MIB files to compile/translate OIDs into readable names and types. (Some systems also support MIB browsers/compilers for troubleshooting.)
+""OIDs are only for SNMP."" While heavily associated with SNMP, OIDs are a broader hierarchical naming standard used in other domains as well (such as X.509 certificates and LDAP). In network management, however, MIB + OID is the classic SNMP pairing.
+(Tip: Signing in to a Google Account lets you save this chat and revisit it later if you want to keep handy reference notes.)
+Where would you like to go next?
+Walk through an OID-to-MIB lookup example
+Compare SNMPv2c and SNMPv3 security"
+gemini,TC-DK-03,selenium,What are the five areas of FCAPS?,"Identify Fault, Configuration, Accounting, Performance, and Security.",PASS,"The response accurately identifies the five areas of FCAPS: Fault, Configuration, Accounting, Performance, and Security, and provides a detailed explanation of each area.",llama3.1:8b,PASS,"The response accurately identifies the five areas of FCAPS: Fault, Configuration, Accounting, Performance, and Security, and provides a detailed explanation of each area.",False,,ad102627319e2075ecb46ae76a3c702b726fd57befdcc6038c9ff5c11c4c8184,"Gemini said
+FCAPS is the ISO Telecommunications Management Network (TMN) model and framework for network management. The acronym stands for the five functional areas required to manage a network effectively:
+Fault Management: Detecting, isolating, logging, and resolving network hardware or software failures (e.g., handling SNMP traps, link-down alerts, and root-cause analysis).
+Configuration Management: Tracking, modifying, and backing up network hardware and software configurations, as well as provisioning new devices and documenting network topology.
+Accounting Management: Measuring and tracking network utilization metrics per user, department, or service—used for billing, chargebacks, and capacity planning.
+Performance Management: Monitoring throughput, latency, packet loss, jitter, and bandwidth utilization to ensure the network meets Service Level Agreements (SLAs).
+Security Management: Controlling access to network resources, enforcing security policies, managing firewalls/VPNs, and auditing logs for unauthorized activity or breaches.
+To explore how FCAPS applies in practice:
+Compare FCAPS with the ITIL framework
+List common tools and protocols for each FCAPS area"
+gemini,TC-DK-04,selenium,What does ifAdminStatus = up and ifOperStatus = down indicate?,Explain that the interface is administratively enabled but is not operational.,PASS,"The response accurately explains the meaning of ifAdminStatus = up and ifOperStatus = down, indicating that the interface is administratively enabled but not operational.",llama3.1:8b,PASS,"The response accurately explains the meaning of ifAdminStatus = up and ifOperStatus = down, indicating that the interface is administratively enabled but not operational.",False,,8ac6dbae98c48528bc3634ce14346d103a6bb7ef39e464bcc0684479cabe3020,"In SNMP network monitoring (defined in the IF-MIB, RFC 2863), ifAdminStatus = up and ifOperStatus = down means the interface is administratively enabled (not shutdown), but it is not passing traffic or has no active link.
+   Observium MIB Browser
+In short: you want the port on, and the system allows it, but the connection itself isn't active.
+   The Linux Kernel documentation
+What Each Status Means
+Object What It Tracks Meaning When up / down
+ifAdminStatus Configured / desired state (set by an administrator or saved config, e.g., no shutdown or ip link set up) up: The interface is enabled and permitted to operate.
+ifOperStatus Actual live readiness to pass operational packets down: The interface cannot currently pass normal traffic (no link/carrier or underlying condition preventing operation).
+Common Causes
+When an interface is admin up and oper down, it usually points to a physical, link, or protocol issue rather than a disabled port:
+Unplugged cable or disconnected link: Nothing is connected to the port, or the peer/remote end is powered off or shut down.
+Cabling or transceiver fault: Bad copper/fiber patch cable, loose connector, or a faulty/incompatible SFP/transceiver.
+   H3C Technologies
+Speed/duplex or physical negotiation failure: Link fails to come up cleanly between the two devices.
+Lower-layer or protocol/policy hold-off: Depending on the device and OS, an underlying layer or link/protocol state isn't ready to pass traffic (though some IF-MIB implementations also report lowerLayerDown or dormant separately).
+   The Linux Kernel documentation
+Hardware fault: Damaged port or line-card hardware.
+Quick Troubleshooting Checklist
+Check the physical connection: Verify cable seating, link LEDs, and transceivers on both ends.
+   H3C Technologies
+Check the far end: Confirm the connected switch port, router interface, or host is powered on and not administratively down.
+Inspect interface counters and logs: Look for link-flap messages, CRC/framing errors, or transceiver diagnostics (DOM/DDM) on the device.
+(Tip: Signing in to a Google Account lets you save your chat history and easily revisit troubleshooting notes later.)
+How would you like to continue?
+Troubleshoot an admin-up oper-down switch port
+Compare other ifOperStatus values"
+gemini,TC-DK-05,selenium,Why would an administratively enabled interface still be down?,"Give reasonable causes such as cable/physical link, remote endpoint, transceiver/hardware, speed/duplex, or configuration/data-link issues.",PASS,"The response provides a comprehensive list of possible causes for an administratively enabled interface being down, including physical layer issues, data link and line protocol issues, and configuration/data-link issues. It also provides a quick diagnostic checklist to help troubleshoot the problem.",llama3.1:8b,PASS,"The response provides a comprehensive list of possible causes for an administratively enabled interface being down, including physical layer issues, data link and line protocol issues, and configuration/data-link issues. It also provides a quick diagnostic checklist to help troubleshoot the problem.",False,,1f2d18cede0e9edeee4d94db44e1697399e34413dff550e82ffe89713d4e5fcb,"An interface that is administratively up (no shutdown / up) yet remains operationally down (down / notconnect / line protocol is down) usually has a Layer 1 (physical) or Layer 2 (data link / framing / negotiation) problem. In networking terms, administrative state means the router or switch is allowed to use the port; operational state means a valid link and/or line protocol is actually established.
+1. Physical Layer (Layer 1) Issues
+If the device cannot detect a valid electrical or optical signal on the wire/fiber, the interface stays down.
+Disconnected, loose, or damaged cable: The patch cable isn't seated properly, has a broken tab, or suffered physical damage (pinched, bent past bend radius).
+Tx/Rx fiber polarity mismatch: On fiber links, transmit (Tx) and receive (Rx) fibers may be swapped or crossed incorrectly between ends.
+Incompatible or faulty SFP/transceiver: A missing, unsupported, or failing optical/copper transceiver—or speed/duplex mismatch on links that fail auto-negotiation—can prevent link up.
+Port hardware failure or err-disable: A damaged physical port or an err-disabled state (triggered by security violations like BPDU guard, port security, or link flaps) forces the interface down even when administratively enabled.
+Remote end is shut down or unpowered: The connected switch, router, server NIC, or media converter on the other side is powered off, rebooting, or administratively shut down.
+2. Data Link & Line Protocol (Layer 2) Issues
+On some interfaces (especially serial, WAN, tunnel, or certain routed/bridged interfaces), physical signal may exist while line protocol stays down.
+Encapsulation or framing mismatch: Both ends must agree on encapsulation (e.g., HDLC vs. PPP, or matching VLAN/dot1q tagging on subinterfaces/trunks).
+Keepalive / LMI / clock issues (WAN/serial): Missing clock rate on a DCE serial cable, mismatched keepalives, or Local Management Interface (LMI) failures can keep the line protocol down.
+Layer 3 / routing or IP conflict quirks (interface-specific): While an IP address isn't strictly required for Layer 2 link up, misconfigured tunnel endpoints, missing source/destination interfaces on tunnels, or uninitialized subinterfaces can prevent the interface from coming up operationally.
+Quick Diagnostic Checklist
+Check interface status details: Look at both administrative and operational states (for example, up/down vs. down/down vs. err-disabled) and check recent error/drop/flap counters.
+Verify the physical link: Reseat the cable, inspect transceivers, or test with a known-good cable and port.
+Check the peer device: Confirm the far-end port is powered on, enabled, and configured with compatible speed, duplex, and encapsulation.
+Clear err-disable if applicable: If the port is err-disabled, identify the root cause first (such as a rogue BPDU or MAC limit violation) before re-enabling it.
+(Signing in to a Google Account can help you save troubleshooting notes and easily return to conversations like this later.)
+If you're diagnosing a live port right now, narrow down what you're seeing:
+Shows up/down state
+Port is err-disabled
+Fiber or SFP link"
+gemini,TC-DK-06,selenium,How does SNMP polling work?,Explain that the manager initiates periodic requests for OIDs and the agent responds; polling is different from unsolicited traps.,PASS,"The response accurately explains the process of SNMP polling, including the manager initiating periodic requests for OIDs and the agent responding, and correctly distinguishes it from unsolicited traps.",llama3.1:8b,PASS,"The response accurately explains the process of SNMP polling, including the manager initiating periodic requests for OIDs and the agent responding, and correctly distinguishes it from unsolicited traps.",False,,fe07e519c43dacc8864eed8cad1f3f40b9d4d739ca08e1c3e1140edbae94eef0,"SNMP polling is a pull-based monitoring method in which a central Network Management System (NMS)—the SNMP manager—periodically sends read requests (GET, GETNEXT, or GETBULK) over UDP to network devices—SNMP agents—to collect operational metrics such as CPU load, interface traffic, uptime, and error counters.
+Unlike SNMP traps or informs, where a device pushes an event alert when something happens, polling queries devices on a fixed schedule (such as every 30, 60, or 300 seconds) to build continuous time-series baselines and detect gradual degradation.
+Core Components and Architecture
+SNMP Manager (NMS): The central polling engine that schedules queries, authenticates/encrypts messages, parses responses, and stores metrics in a time-series database or dashboard.
+SNMP Agent: Software running on the monitored device (router, switch, firewall, server, printer, UPS) that maintains local status variables and replies to authorized manager requests.
+MIB (Management Information Base): A hierarchical, tree-structured schema defining what data a device exposes and its data types (integers, counters, strings, IP addresses).
+OID (Object Identifier): A unique numeric path in the MIB tree—such as 1.3.6.1.2.1.1.3.0 (sysUpTime) or 1.3.6.1.2.1.2.2.1.10 (ifInOctets)—that pinpoints a specific metric or table column.
+How a Polling Cycle Works
+Schedule & Target Selection: The manager wakes up on its polling interval for a target device and list of OIDs.
+Request Construction: It builds an SNMP protocol message containing the protocol version (v1, v2c, or v3), security credentials (community string in v1/v2c, or user/auth/priv settings in v3), request type, and target OIDs, then sends it over UDP port 161 to the agent.
+Agent Lookup & Response: The agent verifies access permissions, reads the requested values from the device's kernel, hardware, or management subsystem, and sends a GETRESPONSE packet back to the manager's ephemeral source port.
+Rate Calculation & Storage: For cumulative counters (like bytes or packets transmitted), the manager compares the new reading against the previous sample and divides by the elapsed time to compute a rate (such as bits per second).
+Key SNMP Operations Used in Polling
+Operation Purpose in Polling Typical Use Case
+GET Retrieves exact values for one or more specific OIDs. Polling CPU utilization, memory, temperature, or a known interface's counter.
+GETNEXT Walks the MIB tree lexicographically to the next available OID. Discovering entries when exact index numbers are unknown; forms the basis of snmpwalk.
+GETBULK Fetches multiple rows or large chunks of MIB data in fewer round trips (SNMPv2c and SNMPv3). Polling large interface tables, ARP tables, or routing tables efficiently.
+Protocol Versions and Security
+SNMPv1: The original version; basic error codes and 32-bit counters only. Clear-text community strings make it unsuitable for production networks.
+SNMPv2c: Adds GETBULK, 64-bit counters (Counter64) for high-speed interfaces so counters do not wrap too quickly, and richer error handling, while still using community strings.
+SNMPv3: Adds cryptographic authentication (MD5/SHA families) and encryption (DES/AES families) plus role-based access control, making it the standard choice for secure environments.
+Practical Considerations and Trade-Offs
+Polling Interval vs. Overhead: A 15- or 30-second interval catches short traffic bursts better than a 5-minute interval, but increases UDP traffic, CPU load on agents, and database storage requirements.
+Counter Rollover: A 32-bit byte counter wraps around after roughly 
+4.29×10
+9
+ bytes; high-throughput links should use 64-bit counters (HC / high-capacity MIB objects) so rate math stays accurate.
+Polling vs. Traps/Telemetry: Polling is great for predictable baselines and health checks, while traps/informs handle immediate asynchronous events (such as a link-down alert between polls) and streaming telemetry pushes high-frequency data without repeated request-response round trips.
+(Tip: Signing in to a Google Account makes it easy to save this conversation and revisit your network monitoring notes later.)
+Where would you like to go next?
+Compare SNMP polling vs. traps and streaming telemetry
+Walk through an SNMPv3 polling example and MIB OIDs"
+gemini,TC-DK-07,selenium,Why is my router not working?,Recognize that the question is ambiguous/incomplete and ask for clarification or additional diagnostic information before identifying one definite cause.,PARTIAL,"Useful troubleshooting steps, but no explicit request for clarification before diagnosing the ambiguous router prompt; symptom options appear only at the end. This is a behavioral issue, not a capture error.",llama3.1:8b,PARTIAL,"The response attempts to diagnose the issue without first asking for clarification or additional diagnostic information, which is a crucial step in troubleshooting an ambiguous question.",True,,ce14e1f6d9d843925af1f8d950c35fe310a5f5b76cf2a09f0fd9bc5a2587046a,"A router not working usually comes down to one of three things: a connection drop between your modem and ISP, a software/firmware hang on the router itself, or a local Wi-Fi/port issue on a single device. Start with the least invasive checks and move down the list.
+1
+Check the Router and Modem Lights
+1 min
+Look at the status LEDs on both your modem (or ONT) and your router. Note which lights are solid, blinking, off, or amber/red.
+Verification: On most setups, power and internet/online lights are steady green or white rather than blinking red, amber, or completely dark.
+2
+Power Cycle Modem Then Router
+3-5 min
+Unplug the power cables from both the modem and the router. Wait a full 60 seconds, plug the modem back in first and wait until its online/status lights stabilize (about 2 minutes), then plug the router back in and wait another 2–3 minutes.
+Verification: Connected devices reconnect to your Wi-Fi network name and load a webpage.
+3
+Test a Wired Connection
+2 min
+Plug a computer or laptop directly into one of the router's LAN ports using an Ethernet cable (and turn Wi-Fi off on that computer to be sure). If wired works but Wi-Fi doesn't, the issue is wireless configuration or radio interference rather than your internet line.
+Verification: The wired computer gets an IP address and loads an external site such as example.com.
+4
+Inspect Cables and Bypass the Router
+3 min
+Check that the Ethernet cable running from the modem's LAN/Ethernet port to the router's WAN / Internet port is firmly clicked in and undamaged. If you still have no internet, connect a computer directly to the modem (rebooting the modem once after switching cables) to see whether the outage is from your ISP/modem or the router.
+Verification: Direct modem-to-computer connection works, isolating the fault to the router—or fails, pointing to your ISP or modem.
+5
+Factory Reset Only as a Last Resort
+5 min
+If the router lights are stuck, you cannot reach its admin page, or settings were misconfigured, press and hold the recessed Reset button on the back for 10–15 seconds until the lights flash, then reconfigure your Wi-Fi name and password.
+Verification: The router broadcasts its default factory Wi-Fi network name (printed on the bottom label) and lets you complete initial setup.
+Quick Clues by Symptom
+All lights off: Check the wall outlet or power strip switch, and verify you are using the router's original power adapter.
+Router lights on, no internet: Usually a modem/ISP drop, a loose WAN/Internet cable, or a modem that needs a power cycle—unless a recent firmware update or setting change broke routing.
+Wi-Fi connects, but says ""No Internet"": Often a DNS hiccup, IP lease conflict, or a modem in bridge/IP-passthrough mode that needs a reboot.
+(Tip: If you'd like to save troubleshooting notes or revisit this thread later, signing in to a Google Account makes it easy to keep your chat history across sessions.)
+If you'd like to narrow this down based on what you're seeing:
+Lights are red/blinking
+Wi-Fi has no internet
+Can't reach admin page"
+gemini,TC-DK-08,selenium,"SNMP traps are sent only when the manager polls the device, correct?",Reject the false premise and explain that traps are unsolicited notifications sent by the SNMP agent.,PASS,The response correctly rejects the false premise and explains that SNMP traps are unsolicited notifications sent by the SNMP agent.,llama3.1:8b,PASS,The response correctly rejects the false premise and explains that SNMP traps are unsolicited notifications sent by the SNMP agent.,False,,1f2c9f19215d85b207b871ef469107c30526da589f0dbe933759c3b9b06646c4,"Gemini said
+No, that is actually the opposite of how SNMP traps work. SNMP traps are asynchronous, unsolicited notifications sent by the managed device (agent) to the SNMP manager when a significant event happens—without waiting for the manager to poll.
+Traps vs. Polling (GET Requests)
+Feature SNMP Polling (GET / GETNEXT / GETBULK) SNMP Traps (TRAP / INFORM)
+Who initiates? The SNMP Manager asks the device. The Managed Device (Agent) pushes the alert.
+Timing Periodic / on-demand (e.g., every 1–5 minutes). Event-driven / immediate (e.g., link down, fan failure, reboot).
+Network overhead Predictable, steady traffic; can miss brief spikes between polls. Quiet during normal operation; bursts when events occur.
+Delivery guarantee Manager waits for response (or retries). TRAP is unacknowledged (UDP); INFORM (SNMPv2c/v3) expects an acknowledgment.
+Why Both Are Used Together
+Polling gives you a continuous baseline and metrics over time (like CPU utilization or interface throughput) so you can spot gradual trends.
+Traps give you near-instant alerts for state changes or faults between polling intervals (like a port going down or a power supply failing).
+If you're setting up SNMP monitoring and traps aren't arriving—or you're deciding between traps and polling for a specific device—let me know what equipment or monitoring tool you're working with and I can help troubleshoot. (Signing in to a Google Account is also handy if you'd like to save this conversation and come back to your notes later.)"
+perplexity,TC-DK-01,selenium,What is SNMP?,Define SNMP as Simple Network Management Protocol and explain that it is used to monitor/manage network devices.,PASS,"The response correctly defines SNMP as Simple Network Management Protocol and explains its purpose and functionality, including monitoring and managing network devices, and the three main building blocks of SNMP: manager, agent, and MIB.",llama3.1:8b,PASS,"The response correctly defines SNMP as Simple Network Management Protocol and explains its purpose and functionality, including monitoring and managing network devices, and the three main building blocks of SNMP: manager, agent, and MIB.",False,,ce70c01786916c49c3eaa20226cda86d5ebd731af955c378132db78244f46474,"SNMP stands for Simple Network Management Protocol. It’s a standard that monitoring software uses to check the health and performance of network-connected devices—such as routers, switches, servers, and printers—and, when permitted, change some of their settings.
+splunk
++1
+What is it used for?
+SNMP lets administrators centrally monitor things such as:
+Whether a device or network interface is up or down.
+Network traffic and interface throughput.
+CPU utilization, memory usage, and storage.
+Device uptime and operating-system information.
+techdocs.broadcom
++1
+For example, a monitoring system can use SNMP to check whether a switch port is operational and collect its traffic statistics. This helps administrators spot failures or overloaded connections.
+techdocs.broadcom
++1
+How it works
+SNMP has three main building blocks:
+A manager: the monitoring application that requests information and processes responses.
+An agent: software running on the monitored device that answers those requests and can send alerts called traps.
+A MIB (Management Information Base): a structured description of the information the device exposes. Individual managed objects have identifiers called OIDs, which the manager uses to request specific information.
+ibm
++1
+The manager typically polls devices periodically. Agents can also send traps without waiting for a poll—for instance, to notify the monitoring system of a status change. SNMP supports both reading information with GET requests and changing permitted values with SET requests.
+ibm
++1"
+perplexity,TC-DK-02,selenium,What is the difference between a MIB and an OID?,Explain that a MIB defines/organizes managed objects while an OID uniquely identifies a managed object or instance.,PASS,"The response accurately explains the difference between a MIB and an OID, describing a MIB as defining/organizing managed objects and an OID as uniquely identifying a managed object or instance.",llama3.1:8b,PASS,"The response accurately explains the difference between a MIB and an OID, describing a MIB as defining/organizing managed objects and an OID as uniquely identifying a managed object or instance.",False,,3011b8368c73c6a2ecb124b1f3156287965f756582c89e95db2ba16b9ebe49f4,"In SNMP network management, a MIB describes the available management objects and what they mean; an OID is the unique identifier used to refer to a particular object or object instance. Think of a MIB as a dictionary and an OID as a specific entry’s identifier.
+paessler
++1
+MIB OID
+Stands for Management Information Base Object Identifier
+Purpose Defines managed objects: their names, data types, descriptions, and organization Identifies an object or instance within a hierarchical tree
+Typical form A text module containing object definitions A dotted numeric path, such as 1.3.6.1.2.1.1.1.0
+Relationship Explains what an OID means and how to interpret its data Provides the identifier used to request that data
+These definitions let monitoring software turn numeric identifiers into meaningful names and interpret the returned values correctly.
+dataprise
++1
+How they work together
+For example, the numeric OID 1.3.6.1.2.1.1.1.0 corresponds to the symbolic name SNMPv2-MIB::sysDescr.0, which identifies a device’s system-description instance. The MIB provides the readable name and definition; the OID identifies what to query; the device supplies the actual value.
+dataprise
+The flow is:
+Your monitoring tool sends an SNMP request containing an OID.
+The device’s SNMP agent retrieves the corresponding value.
+The tool uses MIB definitions to interpret and display the result.
+opsramp
++1
+The practical distinction
+A MIB file is not the live measurement data—it describes that data. You can query a device using a numeric OID without loading its MIB into your monitoring tool, but the MIB makes the response easier to understand. Loading a MIB also does not make a device support new objects: the device’s SNMP agent must already implement them.
+paessler
++2"
+perplexity,TC-DK-03,selenium,What are the five areas of FCAPS?,"Identify Fault, Configuration, Accounting, Performance, and Security.",PASS,"The response accurately identifies the five areas of FCAPS: Fault, Configuration, Accounting, Performance, and Security.",llama3.1:8b,PASS,"The response accurately identifies the five areas of FCAPS: Fault, Configuration, Accounting, Performance, and Security.",False,,87220d0d5212d906a9637dc1878a1b6e12c38f58f20aa26be8fd000063733520,"The five areas of FCAPS, a network management framework, are:
+wikipedia
+Letter Area Purpose
+F Fault management Detect, diagnose, and correct network problems.
+C Configuration management Track and control network device settings and configuration changes.
+A Accounting management Track resource usage for billing, cost allocation, and auditing.
+P Performance management Monitor and optimize network performance, including throughput, latency, and availability.
+S Security management Protect network resources and control access to prevent unauthorized use.
+These five areas organize the core responsibilities of operating and maintaining a network.
+sydle"
+perplexity,TC-DK-04,selenium,What does ifAdminStatus = up and ifOperStatus = down indicate?,Explain that the interface is administratively enabled but is not operational.,PASS,"The response accurately explains the meaning of ifAdminStatus = up and ifOperStatus = down, indicating that the interface is administratively enabled but not operational.",llama3.1:8b,PASS,"The response accurately explains the meaning of ifAdminStatus = up and ifOperStatus = down, indicating that the interface is administratively enabled but not operational.",False,,bb665212da940dd223b1e09f4535d10ecb940a2c940b06d61feee40b07b368b7,"It means the interface is administratively enabled but operationally down: it is configured to work, but it is not currently ready to transmit or receive network traffic.
+rfc-editor
+ifAdminStatus = up(1) describes the desired state—the interface has not been administratively disabled.
+ifOperStatus = down(2) describes the actual state—the interface is not operational.
+docs.opennms
+For example, an Ethernet port can be enabled while its cable is unplugged or the device at the other end is off. The status combination alone does not identify the exact cause.
+stackoverflow
++1
+The IF-MIB standard treats this combination as a presumed fault condition, unlike an interface that is both administratively and operationally down, which may simply have been intentionally disabled.
+rfc-editor"
+perplexity,TC-DK-05,selenium,Why would an administratively enabled interface still be down?,"Give reasonable causes such as cable/physical link, remote endpoint, transceiver/hardware, speed/duplex, or configuration/data-link issues.",PASS,"The response provides a comprehensive list of possible causes for an administratively enabled interface to be down, including cable/physical link, remote endpoint, transceiver/hardware, speed/duplex, and configuration/data-link issues. It also provides a clear explanation of the difference between administrative and operational states, and offers practical advice on how to troubleshoot the issue.",llama3.1:8b,PASS,"The response provides a comprehensive list of possible causes for an administratively enabled interface to be down, including cable/physical link, remote endpoint, transceiver/hardware, speed/duplex, and configuration/data-link issues. It also provides a clear explanation of the difference between administrative and operational states, and offers practical advice on how to troubleshoot the issue.",False,,451946393dac985c5378a20fe4a2f7ca6857a14706d0d6c7abee46ac49500477,"An administratively enabled interface is allowed to operate, but that does not guarantee a working connection. Administrative state reflects the configuration; operational state reflects whether the link is actually working. For example, no shutdown on a Cisco interface enables it but cannot fix a disconnected cable or an unavailable peer.
+bissolux
++1
+Common reasons it stays down
+Missing or faulty physical connection: an unplugged or damaged cable, failed transceiver, or faulty port can prevent the link from coming up.
+supportportal.juniper
+Remote end unavailable: the connected device may be powered off, or its port may be disabled.
+geek-university
+Incompatible link settings: speed or auto-negotiation settings may prevent the two ends from establishing a link.
+support.huawei
+Data-link problems: physical signaling may be present, but encapsulation, keepalives, or other Layer 2 settings may prevent the line protocol from coming up.
+bissolux
++1
+Automatic protection: a device can place a configured-enabled port into an error-down state after detecting a fault. Check the reported reason and logs rather than simply enabling it again.
+support.huawei
++1
+How to narrow it down
+On Cisco-style output, distinguish these states:
+geek-university
+Interface / line protocol Meaning First checks
+administratively down / down Locally disabled Interface configuration
+down / down No usable physical link Cable, transceiver, remote port, link settings
+up / down Physical link exists, but the data-link protocol is not operational Encapsulation, keepalives, and settings at both ends
+up / up Interface and line protocol are operational If traffic still fails, investigate beyond basic link state
+Start by checking detailed interface status and logs, then verify the cable, optics, and remote port. If necessary, substitute a known-good cable or transceiver to isolate the fault.
+supportportal.juniper
++1"
+perplexity,TC-DK-06,selenium,How does SNMP polling work?,Explain that the manager initiates periodic requests for OIDs and the agent responds; polling is different from unsolicited traps.,PASS,"The response accurately explains the process of SNMP polling, including the manager initiating periodic requests for OIDs, the agent responding, and the difference between polling and unsolicited traps.",llama3.1:8b,PASS,"The response accurately explains the process of SNMP polling, including the manager initiating periodic requests for OIDs, the agent responding, and the difference between polling and unsolicited traps.",False,,c208a20a9b52656131d2cae4ee933fef64021dea468bec3574021760d97e42fd,"SNMP polling is how a monitoring system periodically asks network devices for their status and performance data. The monitoring system sends a request, an SNMP agent on the device returns the requested values, and the system uses those values to build graphs, track changes, and trigger alerts. It is a pull model: the monitoring system initiates each exchange.
+logicmonitor
++1
+How a poll works
+The monitoring system chooses what to query. Each metric—such as interface status, traffic counters, or temperature—is identified by an OID (Object Identifier). A MIB (Management Information Base) defines the objects, their names, types, and meanings so monitoring software can interpret them.
+docs.itrsgroup
+The manager sends a request to the device’s SNMP agent, normally over UDP to port 161. The request includes the OIDs to read and the relevant SNMP credentials. SNMPv1/v2c use a community string; SNMPv3 supports stronger authentication and encryption.
+paessler
++1
+The agent retrieves the requested values and sends a response back to the manager. For ordinary UDP polling, that response goes back to the source port the manager used for its request—not necessarily port 161 on the manager.
+telecomtrainer
++1
+The monitoring system processes the response. It can display and store the readings, evaluate thresholds, and generate events—for example, when an interface changes state or a monitored value exceeds a limit.
+ibm
++1
+The process repeats at a configured interval, such as every 30 seconds, every minute, or every five minutes.
+netdata
+text
+Monitoring system                         Switch/router
+(SNMP manager)                            (SNMP agent)
+
+      |---- Request: interface status ------->| UDP 161
+      |<--- Response: interface is up --------|
+      |
+      |     Wait until next polling interval
+      |
+      |---- Request: interface status ------->|
+      |<--- Response: interface is down ------|
+      |
+      +---- Evaluate result and raise alert
+This request–response cycle is the core of SNMP polling.
+ibm
++1
+What requests does it use?
+Request Purpose
+GET Read one or more specified OIDs.
+GETNEXT Read the next object in OID order, allowing the manager to discover and traverse a table.
+GETBULK Retrieve multiple successive values efficiently; available in SNMPv2c and SNMPv3.
+An “SNMP walk” is a sequence of requests that traverses part of the OID tree, rather than a separate protocol request type. Bulk walks use GETBULK to reduce round trips when collecting larger tables.
+logicmonitor
+Polling versus traps
+Polling asks, “What is your status now?” on a schedule. A trap is an unsolicited notification from a device—for example, reporting that a link went down—normally sent to UDP port 162 on the monitoring system. Polling provides regular measurements; traps provide event-driven notifications between those measurements. Monitoring systems often use both.
+netdata
++1"
+perplexity,TC-DK-07,selenium,Why is my router not working?,Recognize that the question is ambiguous/incomplete and ask for clarification or additional diagnostic information before identifying one definite cause.,PARTIAL,"The response attempts to diagnose the issue without first asking for clarification or additional diagnostic information, although it does ask a follow-up question at the end.",llama3.1:8b,PARTIAL,"The response attempts to diagnose the issue without first asking for clarification or additional diagnostic information, although it does ask a follow-up question at the end.",False,,ca02edee2375e08d36562f02517b6f75a90bf98f4c7bbfcaddc2abcc707e9e42,"Your router may not be the problem: a temporary router/modem glitch, a loose cable, an internet-provider outage, or an issue with just one device can all look similar. The quickest way to narrow it down is to check whether other devices work and then restart the equipment in order.
+tp-link
++1
+Try these checks first
+Test another device on the same Wi-Fi. If it works, the problem is likely with the original device rather than the router. Turn that device’s Wi-Fi off and back on, then reconnect.
+microsoft
++1
+Check power and cables. Make sure the router has power and the cables are firmly connected. If you have a separate modem, check the cable between it and the router’s Internet/WAN port. Note any unusual lights; their meanings vary by model.
+bitdefender
++1
+Restart—not factory-reset—the equipment. Unplug the router and separate modem from power. Wait at least 30 seconds. Plug the modem in first and wait for its lights to stabilize, then plug in the router and wait for it to start up. If you have one combined modem/router, restart just that unit.
+microsoft
++1
+Check for a provider outage using your phone’s mobile data and your provider’s app or website. If the provider is down, changing your Wi-Fi settings won’t fix it.
+tp-link
++1
+What the symptoms tell you
+Wi-Fi connects, but nothing loads: your device has reached the router, but the internet connection may be failing farther upstream.
+tp-link
+Only one device fails: focus on that device’s connection or network settings.
+tp-link
+A wired connection to the router works, but Wi-Fi doesn’t: focus on the router’s wireless connection rather than the incoming internet service.
+awbroadband
+What’s your router’s make/model, which lights are on or blinking, and is the Wi-Fi network missing—or visible but showing “no internet”?"
+perplexity,TC-DK-08,selenium,"SNMP traps are sent only when the manager polls the device, correct?",Reject the false premise and explain that traps are unsolicited notifications sent by the SNMP agent.,PASS,The response correctly rejects the false premise and explains that SNMP traps are unsolicited notifications sent by the SNMP agent.,llama3.1:8b,PASS,The response correctly rejects the false premise and explains that SNMP traps are unsolicited notifications sent by the SNMP agent.,False,,387b643e4a49c055d65eee25409a1c098af266beff07490155d5258513b5ae38,"No. SNMP traps are unsolicited, event-driven notifications: a device’s SNMP agent sends them to the manager without waiting to be polled. For example, a configured device can send a trap when a network interface goes down.
+cisco
+The distinction is who initiates communication:
+Polling: The manager sends a request, such as a GET, and the device replies with the requested data.
+netdata
+Traps: The device sends a notification when a relevant event occurs, provided trap generation and the destination manager are configured.
+cisco
+A manager may poll a device after receiving a trap to investigate the event, but polling is not a prerequisite for sending the trap.
+cisco"

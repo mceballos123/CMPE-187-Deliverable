@@ -1,0 +1,58 @@
+[
+  {
+    "app": "claude",
+    "test_id": "TC-DK-01",
+    "prompt": "What is SNMP?",
+    "expected": "Define SNMP as Simple Network Management Protocol and explain that it is used to monitor/manage network devices.",
+    "response": "SNMP (Simple Network Management Protocol) is a standard protocol for monitoring and managing devices on an IP network, such as routers, switches, servers, printers, and firewalls.\n\nHow it works:\n- Manager: a central system (e.g., Nagios, Zabbix, PRTG) that polls devices and collects data.\n- Agent: software running on each managed device that reports its status.\n- MIB (Management Information Base): a hierarchical dictionary of what can be queried on a device. Each variable is identified by an OID (Object Identifier).\n\nCore operations include GET, GETNEXT, GETBULK, SET, TRAP, and INFORM. UDP port 161 is used for queries and port 162 for traps. SNMPv3 adds authentication and encryption."
+  },
+  {
+    "app": "claude",
+    "test_id": "TC-DK-02",
+    "prompt": "What is the difference between a MIB and an OID?",
+    "expected": "Explain that a MIB defines/organizes managed objects while an OID uniquely identifies a managed object or instance.",
+    "response": "An OID is a single address. A MIB is the dictionary that defines a whole set of those addresses and what they mean.\n\nOID (Object Identifier):\n- A dotted numeric path to one specific piece of data.\n- Points to a single node in a global tree.\n\nMIB (Management Information Base):\n- A text file written in SMI/ASN.1 that defines a collection of OIDs.\n- For each OID it gives a human-readable name, data type, access, and description.\n\nAn OID is like a street address, and a MIB is the map plus directory explaining what is at each address."
+  },
+  {
+    "app": "claude",
+    "test_id": "TC-DK-03",
+    "prompt": "What are the five areas of FCAPS?",
+    "expected": "Identify Fault, Configuration, Accounting, Performance, and Security.",
+    "response": "FCAPS is the ISO model for network management. It splits management into five functional areas:\n1. Fault management\n2. Configuration management\n3. Accounting management\n4. Performance management\n5. Security management\n\nSNMP can support these areas through traps, SET operations, counters, and SNMPv3 security."
+  },
+  {
+    "app": "claude",
+    "test_id": "TC-DK-04",
+    "prompt": "What does ifAdminStatus = up and ifOperStatus = down indicate?",
+    "expected": "Explain that the interface is administratively enabled but is not operational.",
+    "response": "It means the interface is enabled by configuration but not actually working.\n\nifAdminStatus is the desired state set by the administrator. ifOperStatus is the actual state of the link.\n\nAdmin up / Oper down can indicate a cable problem, a powered-off far-end device, a bad transceiver, a speed/duplex mismatch, Layer 2 problems, or an underlying interface problem."
+  },
+  {
+    "app": "claude",
+    "test_id": "TC-DK-05",
+    "prompt": "Why would an administratively enabled interface still be down?",
+    "expected": "Give reasonable causes such as cable/physical link, remote endpoint, transceiver/hardware, speed/duplex, or configuration/data-link issues.",
+    "response": "Because enabled only means the port is allowed to come up. It still needs a working link.\n\nCommon causes include:\n- Cable unplugged, damaged, or wrong type\n- Faulty or incompatible SFP/transceiver\n- Far-end device powered off or port shut down\n- Speed or duplex mismatch\n- Wrong encapsulation on WAN links\n- Port security, BPDU guard, UDLD, storm control, or link flapping\n- Logical-interface dependencies such as VLAN, tunnel, or parent-interface problems."
+  },
+  {
+    "app": "claude",
+    "test_id": "TC-DK-06",
+    "prompt": "How does SNMP polling work?",
+    "expected": "Explain that the manager initiates periodic requests for OIDs and the agent responds; polling is different from unsolicited traps.",
+    "response": "SNMP polling is a pull model: the manager asks each device for data on a fixed schedule, and the agent answers.\n\nThe manager sends GetRequest, GetNext, or GetBulk requests over UDP 161 with the OIDs it wants. The agent checks access, reads the values from the device's MIB, and sends a GetResponse. The manager stores the values, checks thresholds, and repeats this at a configured interval.\n\nPolling is manager initiated. Traps are agent-initiated unsolicited notifications, usually sent to UDP 162."
+  },
+  {
+    "app": "claude",
+    "test_id": "TC-DK-07",
+    "prompt": "Why is my router not working?",
+    "expected": "Recognize that the question is ambiguous/incomplete and ask for clarification or additional diagnostic information before identifying one definite cause.",
+    "response": "I need a few details to narrow it down, but here is a quick triage.\n\nCheck power and status lights, cables, another device, a wired connection, and whether there is an ISP outage. You can also check the router admin page for WAN status.\n\nWhat is actually happening? Is it no internet on any device, Wi-Fi not showing up, connected but no internet, slow speeds, or something else? What do the router's lights look like?"
+  },
+  {
+    "app": "claude",
+    "test_id": "TC-DK-08",
+    "prompt": "SNMP traps are sent only when the manager polls the device, correct?",
+    "expected": "Reject the false premise and explain that traps are unsolicited notifications sent by the SNMP agent.",
+    "response": "No, that is backwards. Traps are unsolicited: the agent sends them on its own as soon as an event happens, with no request from the manager.\n\nPolling: the manager asks, the agent answers over UDP 161.\nTraps: the agent sends an event notification such as link down or reboot over UDP 162.\n\nA standard trap is not acknowledged. An INFORM is also unsolicited, but the manager acknowledges it."
+  }
+]

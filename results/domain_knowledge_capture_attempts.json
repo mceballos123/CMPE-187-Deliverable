@@ -1,0 +1,16 @@
+[
+  {
+    "app": "gemini",
+    "test_id": "TC-DK-03",
+    "attempted_at_utc": "2026-11-23T06:51:22.219598+00:00",
+    "status": "CAPTURED",
+    "response": "Gemini said\nFCAPS is the ISO Telecommunications Management Network (TMN) model and framework for network management. The acronym stands for the five functional areas required to manage a network effectively:\nFault Management: Detecting, isolating, logging, and resolving network hardware or software failures (e.g., handling SNMP traps, link-down alerts, and root-cause analysis).\nConfiguration Management: Tracking, modifying, and backing up network hardware and software configurations, as well as provisioning new devices and documenting network topology.\nAccounting Management: Measuring and tracking network utilization metrics per user, department, or service—used for billing, chargebacks, and capacity planning.\nPerformance Management: Monitoring throughput, latency, packet loss, jitter, and bandwidth utilization to ensure the network meets Service Level Agreements (SLAs).\nSecurity Management: Controlling access to network resources, enforcing security policies, managing firewalls/VPNs, and auditing logs for unauthorized activity or breaches.\nTo explore how FCAPS applies in practice:\nCompare FCAPS with the ITIL framework\nList common tools and protocols for each FCAPS area"
+  },
+  {
+    "app": "gemini",
+    "test_id": "TC-DK-08",
+    "attempted_at_utc": "2026-11-23T06:51:46.307637+00:00",
+    "status": "CAPTURED",
+    "response": "Gemini said\nNo, that is actually the opposite of how SNMP traps work. SNMP traps are asynchronous, unsolicited notifications sent by the managed device (agent) to the SNMP manager when a significant event happens—without waiting for the manager to poll.\nTraps vs. Polling (GET Requests)\nFeature SNMP Polling (GET / GETNEXT / GETBULK) SNMP Traps (TRAP / INFORM)\nWho initiates? The SNMP Manager asks the device. The Managed Device (Agent) pushes the alert.\nTiming Periodic / on-demand (e.g., every 1–5 minutes). Event-driven / immediate (e.g., link down, fan failure, reboot).\nNetwork overhead Predictable, steady traffic; can miss brief spikes between polls. Quiet during normal operation; bursts when events occur.\nDelivery guarantee Manager waits for response (or retries). TRAP is unacknowledged (UDP); INFORM (SNMPv2c/v3) expects an acknowledgment.\nWhy Both Are Used Together\nPolling gives you a continuous baseline and metrics over time (like CPU utilization or interface throughput) so you can spot gradual trends.\nTraps give you near-instant alerts for state changes or faults between polling intervals (like a port going down or a power supply failing).\nIf you're setting up SNMP monitoring and traps aren't arriving—or you're deciding between traps and polling for a specific device—let me know what equipment or monitoring tool you're working with and I can help troubleshoot. (Signing in to a Google Account is also handy if you'd like to save this conversation and come back to your notes later.)"
+  }
+]

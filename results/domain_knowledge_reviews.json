@@ -1,0 +1,10 @@
+[
+  {
+    "app": "gemini",
+    "test_id": "TC-DK-07",
+    "response_sha256": "ce14e1f6d9d843925af1f8d950c35fe310a5f5b76cf2a09f0fd9bc5a2587046a",
+    "result": "PARTIAL",
+    "reason": "Useful troubleshooting steps, but no explicit request for clarification before diagnosing the ambiguous router prompt; symptom options appear only at the end. This is a behavioral issue, not a capture error.",
+    "source": "User-requested rubric review of the existing Gemini TC-DK-07 response"
+  }
+]
