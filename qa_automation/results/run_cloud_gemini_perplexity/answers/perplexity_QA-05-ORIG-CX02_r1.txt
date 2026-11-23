@@ -1,0 +1,27 @@
+PROMPT:
+What is the difference between an SNMP trap and an SNMP inform?
+
+ANSWER:
+The key difference is acknowledgment: an SNMP trap does not require a reply, while an SNMP inform requires the receiver to acknowledge receipt. If that acknowledgment does not arrive, the sender can retry the inform.
+cisco
+Both are event-driven notifications sent to an SNMP manager—a monitoring system—rather than waiting for the manager to poll for information.
+cisco
+Feature SNMP trap SNMP inform
+Acknowledgment No acknowledgment Manager replies with an SNMP Response PDU
+Retries No built-in acknowledgment-based retry Can retry if no response arrives
+Delivery assurance Sender cannot confirm receipt Sender can confirm receipt when the response arrives
+Resource use Lower overhead Higher overhead: responses, pending-message storage, and possible retries
+The trade-off is reliability versus resource use: informs are more likely to reach their destination, but require more memory and network traffic.
+cisco
+Example
+Suppose a switch sends a notification that a network link went down:
+With a trap, the switch sends “Link down” and moves on. If the notification is lost, the switch gets no indication.
+With an inform, the switch sends “Link down” and waits for a response. If no response arrives within the configured timeout, it can resend, subject to its retry limit.
+cisco
++1
+Which should you use?
+Use informs when confirmation of receipt is important, especially for critical notifications. Use traps when low overhead is more important and occasional notification loss is acceptable.
+cisco
+Informs are not guaranteed delivery: they can still fail if the receiver remains unreachable until retries are exhausted. An acknowledgment confirms receipt of the notification—not that someone fixed the underlying problem.
+cisco
++1

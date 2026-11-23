@@ -1,0 +1,5 @@
+PROMPT:
+what is the OID of sysUpTime, and what unit does its vaule use
+
+ANSWER:
+

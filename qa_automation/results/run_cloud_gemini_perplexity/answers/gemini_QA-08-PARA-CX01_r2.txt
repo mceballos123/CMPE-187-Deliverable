@@ -1,0 +1,12 @@
+PROMPT:
+What features were added in SNMPv4, and what is the RFC number for it?
+
+ANSWER:
+There is no SNMPv4, and there is no RFC number for it.
+SNMPv3 remains the latest major version of the Simple Network Management Protocol. Rather than creating a fourth major version of SNMP, the networking industry and IETF largely shifted modern network configuration and telemetry toward model-driven protocols—such as NETCONF, RESTCONF, and streaming telemetry with YANG—while continuing to maintain and extend SNMPv3.
+Key Context on SNMP Versions & RFCs
+SNMPv3 Core Framework (RFCs 3410–3418): Introduced cryptographic authentication, encryption (privacy), and granular access control (VACM), addressing the major security flaws of SNMPv1 and SNMPv2c.
+   Wikipedia
+Later SNMPv3 Extensions: Rather than bumping the protocol version to v4, newer capabilities were added as modular extensions—such as the Transport Subsystem / Transport Security Model (RFCs 5590–5591) and TLS/SSH transport mappings (e.g., RFC 5953).
+   RFC Editor
+If you were thinking of a specific feature—such as TLS/SSH transport security, AES encryption, or modern YANG-based management alternatives—let me know and I can walk through how those work.

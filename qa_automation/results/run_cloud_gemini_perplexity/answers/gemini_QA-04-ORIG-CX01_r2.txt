@@ -1,0 +1,19 @@
+PROMPT:
+Why does SNMP normally run over UDP instead of TCP?
+
+ANSWER:
+SNMP (Simple Network Management Protocol) normally runs over UDP (typically ports 161 for queries/responses and 162 for traps) rather than TCP because it was designed to be lightweight, connectionless, and reliable even when the network itself is degraded or failing.
+1. Resilience During Network Outages
+Network management tools are most critical when links are congested, dropping packets, or partially down.
+TCP requires a three-way handshake and maintains persistent connection state. If a router or link is failing, establishing or holding a TCP session can stall, time out, or fail altogether—right when you need diagnostic data or urgent alert traps the most.
+UDP sends datagrams immediately without connection setup or session state, making it far more likely to get a status poll or trap packet through during partial outages.
+2. Low Overhead on Constrained Devices
+When SNMP was introduced in the late 1980s, routers, switches, and network appliances had very limited CPU and memory.
+Avoiding TCP's connection tables, retransmission buffers, and congestion-control logic keeps memory and processing overhead tiny on managed devices.
+This is especially important for traps (unsolicited alerts sent by a device when an event occurs): a device can fire off a trap and move on without maintaining open sockets to every management station.
+3. Predictable, Low-Latency Polling
+SNMP relies heavily on request–response polling (e.g., querying thousands of interfaces every few minutes) and event notifications.
+With UDP, a manager sends a GET and receives a GET-RESPONSE without extra round-trips for connection setup/teardown or TCP ACK overhead.
+If a poll packet is dropped, the SNMP manager already handles timeouts and retries at the application layer—often while adjusting polling intervals or marking a node unreachable rather than waiting on TCP's back-off behavior.
+4. Trade-offs and Where TCP Fits In
+Using UDP comes with trade-offs: no guaranteed delivery, no ordering, and no built-in congestion control (which can matter when transferring large tables via GETBULK over congested WAN links). Because of this, later versions (such as SNMPv2c and SNMPv3) added support for SNMP over TCP, which is occasionally used for large data transfers or across NAT/firewall setups where connection state is helpful—though UDP remains the standard default across most deployments.

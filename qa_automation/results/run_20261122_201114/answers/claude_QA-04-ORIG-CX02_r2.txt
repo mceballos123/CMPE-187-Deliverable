@@ -1,0 +1,5 @@
+PROMPT:
+Why does SNMP normally run over UDP instead of TCP?
+
+ANSWER:
+

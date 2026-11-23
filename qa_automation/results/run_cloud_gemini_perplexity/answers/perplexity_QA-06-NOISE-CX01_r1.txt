@@ -1,0 +1,30 @@
+PROMPT:
+what are the three SNMPv3 security lveels, what does each one protect, and which one should a company use for production moniotring
+
+ANSWER:
+The three SNMPv3 security levels are noAuthNoPriv, authNoPriv, and authPriv. For production monitoring, a company should use authPriv because it provides both authenticated messages and encrypted monitoring data.
+cisco
+What each level protects
+Here, “auth” means authentication and message-integrity protection; “priv” means privacy through encryption.
+cisco
+Security level What it protects What it does not protect
+noAuthNoPriv Neither message authenticity nor confidentiality. A username alone is not cryptographic proof of identity. No cryptographic protection against forged or modified messages, and no protection against someone reading the monitoring data in transit.
+netdata
+authNoPriv Verifies the message’s origin and detects modification in transit, protecting authenticity and integrity. Does not encrypt the payload, so someone capturing the traffic can still read the monitoring data.
+cisco
++1
+authPriv Provides the authentication and integrity protections above, plus encryption of the SNMP payload to protect confidentiality. Does not replace access controls that determine which devices a user may query or which information they may read or change.
+cisco
++1
+What to use in production
+Use authPriv as the production standard—even on an internal management network. Authentication alone prevents neither observation nor disclosure of readable monitoring data; encryption adds that missing protection. Cisco explicitly recommends authPriv for secure deployments and advises avoiding the other two levels for secure production use.
+cisco
++1
+Pair it with these controls:
+Use a read-only monitoring account unless write access is genuinely required.
+Restrict SNMP traffic to trusted monitoring servers.
+Use SNMP views to limit which management objects the account can access.
+cisco
+The key distinction is that the security level protects the messages, while access-control settings determine what the monitoring account is allowed to do. Selecting “SNMPv3” alone is not enough—you must configure the appropriate security level and permissions.
+cisco
++1

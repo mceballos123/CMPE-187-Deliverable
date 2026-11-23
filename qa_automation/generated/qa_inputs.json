@@ -1,0 +1,797 @@
+[
+  {
+    "rule": "R1",
+    "input_class": "QA-IC-01",
+    "requirements": [
+      "QA-01",
+      "QA-05"
+    ],
+    "complexity": "Low",
+    "max_words": 400,
+    "pass_criteria": "Both key points correct. A wrong version is a Fail. A missing version is a Partial Pass.",
+    "base_id": "TC-QA-01",
+    "expected_output": "QA-OC-01",
+    "failure_outputs": [
+      "QA-OC-03",
+      "QA-OC-05"
+    ],
+    "input_id": "QA-01-ORIG",
+    "augmentation": "ORIG",
+    "prompt": "Which SNMP operation lets a manager retrieve a large table in fewer requests, and in which SNMP version was it introduced?",
+    "oracle": {
+      "type": "getbulk_version"
+    },
+    "reference_key_points": [
+      "The operation is GetBulkRequest (GetBulk).",
+      "It was introduced in SNMPv2 and is not in SNMPv1."
+    ]
+  },
+  {
+    "rule": "R1",
+    "input_class": "QA-IC-01",
+    "requirements": [
+      "QA-01",
+      "QA-05"
+    ],
+    "complexity": "Low",
+    "max_words": 400,
+    "pass_criteria": "Both key points correct. A wrong version is a Fail. A missing version is a Partial Pass.",
+    "base_id": "TC-QA-01",
+    "expected_output": "QA-OC-01",
+    "failure_outputs": [
+      "QA-OC-03",
+      "QA-OC-05"
+    ],
+    "input_id": "QA-01-PARA",
+    "augmentation": "PARA",
+    "prompt": "In SNMP, what request type is used to pull a big table with as few round trips as possible, and which protocol version added it?",
+    "oracle": {
+      "type": "getbulk_version"
+    },
+    "reference_key_points": [
+      "The operation is GetBulkRequest (GetBulk).",
+      "It was introduced in SNMPv2 and is not in SNMPv1."
+    ]
+  },
+  {
+    "rule": "R1",
+    "input_class": "QA-IC-01",
+    "requirements": [
+      "QA-01",
+      "QA-05"
+    ],
+    "complexity": "Low",
+    "max_words": 400,
+    "pass_criteria": "Both key points correct. A wrong version is a Fail. A missing version is a Partial Pass.",
+    "base_id": "TC-QA-01",
+    "expected_output": "QA-OC-01",
+    "failure_outputs": [
+      "QA-OC-03",
+      "QA-OC-05"
+    ],
+    "input_id": "QA-01-NOISE",
+    "augmentation": "NOISE",
+    "prompt": "which SNMP operation lets a manager retrieve a large table in fweer requests, and in wihch SNMP version was it introduced",
+    "oracle": {
+      "type": "getbulk_version"
+    },
+    "reference_key_points": [
+      "The operation is GetBulkRequest (GetBulk).",
+      "It was introduced in SNMPv2 and is not in SNMPv1."
+    ]
+  },
+  {
+    "rule": "R2",
+    "input_class": "QA-IC-02",
+    "requirements": [
+      "QA-02"
+    ],
+    "complexity": "Low",
+    "max_words": 400,
+    "pass_criteria": "Every OID digit is correct and the unit is hundredths of a second. A wrong digit is a Fail.",
+    "base_id": "TC-QA-02",
+    "expected_output": "QA-OC-01",
+    "failure_outputs": [
+      "QA-OC-05",
+      "QA-OC-06"
+    ],
+    "input_id": "QA-02-ORIG",
+    "augmentation": "ORIG",
+    "prompt": "What is the OID of sysUpTime, and what unit does its value use?",
+    "oracle": {
+      "type": "oid_unit",
+      "object": "sysUpTime",
+      "oid": "1.3.6.1.2.1.1.3"
+    },
+    "reference_key_points": [
+      "The OID is 1.3.6.1.2.1.1.3 (instance 1.3.6.1.2.1.1.3.0).",
+      "The value is TimeTicks, counted in hundredths of a second."
+    ]
+  },
+  {
+    "rule": "R2",
+    "input_class": "QA-IC-02",
+    "requirements": [
+      "QA-02"
+    ],
+    "complexity": "Low",
+    "max_words": 400,
+    "pass_criteria": "Every OID digit is correct and the unit is hundredths of a second. A wrong digit is a Fail.",
+    "base_id": "TC-QA-02",
+    "expected_output": "QA-OC-01",
+    "failure_outputs": [
+      "QA-OC-05",
+      "QA-OC-06"
+    ],
+    "input_id": "QA-02-PARA",
+    "augmentation": "PARA",
+    "prompt": "Give me the object identifier for sysUpTime and tell me what unit its value is measured in.",
+    "oracle": {
+      "type": "oid_unit",
+      "object": "sysUpTime",
+      "oid": "1.3.6.1.2.1.1.3"
+    },
+    "reference_key_points": [
+      "The OID is 1.3.6.1.2.1.1.3 (instance 1.3.6.1.2.1.1.3.0).",
+      "The value is TimeTicks, counted in hundredths of a second."
+    ]
+  },
+  {
+    "rule": "R2",
+    "input_class": "QA-IC-02",
+    "requirements": [
+      "QA-02"
+    ],
+    "complexity": "Low",
+    "max_words": 400,
+    "pass_criteria": "Every OID digit is correct and the unit is hundredths of a second. A wrong digit is a Fail.",
+    "base_id": "TC-QA-02",
+    "expected_output": "QA-OC-01",
+    "failure_outputs": [
+      "QA-OC-05",
+      "QA-OC-06"
+    ],
+    "input_id": "QA-02-NOISE",
+    "augmentation": "NOISE",
+    "prompt": "what is the OID of sysUpTime, and what unit does its vaule use",
+    "oracle": {
+      "type": "oid_unit",
+      "object": "sysUpTime",
+      "oid": "1.3.6.1.2.1.1.3"
+    },
+    "reference_key_points": [
+      "The OID is 1.3.6.1.2.1.1.3 (instance 1.3.6.1.2.1.1.3.0).",
+      "The value is TimeTicks, counted in hundredths of a second."
+    ]
+  },
+  {
+    "rule": "R2",
+    "input_class": "QA-IC-02",
+    "requirements": [
+      "QA-02"
+    ],
+    "complexity": "Low",
+    "max_words": 400,
+    "pass_criteria": "Every OID digit is correct and the unit is hundredths of a second. A wrong digit is a Fail.",
+    "base_id": "TC-QA-02",
+    "expected_output": "QA-OC-01",
+    "failure_outputs": [
+      "QA-OC-05",
+      "QA-OC-06"
+    ],
+    "input_id": "QA-02-PARAM",
+    "augmentation": "PARAM",
+    "prompt": "What is the OID of hrSystemUptime, and what unit does its value use?",
+    "oracle": {
+      "type": "oid_unit",
+      "object": "hrSystemUptime",
+      "oid": "1.3.6.1.2.1.25.1.1"
+    },
+    "reference_key_points": [
+      "The OID is 1.3.6.1.2.1.25.1.1 (instance 1.3.6.1.2.1.25.1.1.0).",
+      "The value is TimeTicks, counted in hundredths of a second."
+    ]
+  },
+  {
+    "rule": "R3",
+    "input_class": "QA-IC-03",
+    "requirements": [
+      "QA-03"
+    ],
+    "complexity": "High",
+    "max_words": 600,
+    "pass_criteria": "Final answer within 1% of the expected bps, with the wrap handled.",
+    "base_id": "TC-QA-03",
+    "expected_output": "QA-OC-01",
+    "failure_outputs": [
+      "QA-OC-05"
+    ],
+    "input_id": "QA-03-ORIG",
+    "augmentation": "ORIG",
+    "prompt": "A 32-bit ifInOctets counter on a router interface reads 4,294,000,000 at the first poll and 1,000,000 at the second poll 60 seconds later. Assuming the counter wrapped once, what was the average inbound throughput in bits per second?",
+    "oracle": {
+      "type": "counter_wrap",
+      "first": 4294000000,
+      "second": 1000000,
+      "interval": 60,
+      "bits": 32,
+      "tolerance": 0.01
+    },
+    "reference_key_points": [
+      "A 32-bit counter wraps at 2^32 = 4,294,967,296, so the change is (4,294,967,296 - 4,294,000,000) + 1,000,000 = 1,967,296 octets.",
+      "1,967,296 x 8 = 15,738,368 bits.",
+      "15,738,368 / 60 = about 262,306 bps."
+    ]
+  },
+  {
+    "rule": "R3",
+    "input_class": "QA-IC-03",
+    "requirements": [
+      "QA-03"
+    ],
+    "complexity": "High",
+    "max_words": 600,
+    "pass_criteria": "Final answer within 1% of the expected bps, with the wrap handled.",
+    "base_id": "TC-QA-03",
+    "expected_output": "QA-OC-01",
+    "failure_outputs": [
+      "QA-OC-05"
+    ],
+    "input_id": "QA-03-PARA",
+    "augmentation": "PARA",
+    "prompt": "On a router, ifInOctets is a 32-bit counter. Poll 1 reads 4,294,000,000 and poll 2, taken 60 seconds later, reads 1,000,000. The counter rolled over once in between. What is the average inbound rate in bits per second?",
+    "oracle": {
+      "type": "counter_wrap",
+      "first": 4294000000,
+      "second": 1000000,
+      "interval": 60,
+      "bits": 32,
+      "tolerance": 0.01
+    },
+    "reference_key_points": [
+      "A 32-bit counter wraps at 2^32 = 4,294,967,296, so the change is (4,294,967,296 - 4,294,000,000) + 1,000,000 = 1,967,296 octets.",
+      "1,967,296 x 8 = 15,738,368 bits.",
+      "15,738,368 / 60 = about 262,306 bps."
+    ]
+  },
+  {
+    "rule": "R3",
+    "input_class": "QA-IC-03",
+    "requirements": [
+      "QA-03"
+    ],
+    "complexity": "High",
+    "max_words": 600,
+    "pass_criteria": "Final answer within 1% of the expected bps, with the wrap handled.",
+    "base_id": "TC-QA-03",
+    "expected_output": "QA-OC-01",
+    "failure_outputs": [
+      "QA-OC-05"
+    ],
+    "input_id": "QA-03-NOISE",
+    "augmentation": "NOISE",
+    "prompt": "a 32-bit ifInOctets counter on a router interface reads 4,294,000,000 at the first poll and 1,000,000 at the second poll 60 seconds laetr. Assuming the counter wrapped once, what was the average inbonud throughput in bits per second",
+    "oracle": {
+      "type": "counter_wrap",
+      "first": 4294000000,
+      "second": 1000000,
+      "interval": 60,
+      "bits": 32,
+      "tolerance": 0.01
+    },
+    "reference_key_points": [
+      "A 32-bit counter wraps at 2^32 = 4,294,967,296, so the change is (4,294,967,296 - 4,294,000,000) + 1,000,000 = 1,967,296 octets.",
+      "1,967,296 x 8 = 15,738,368 bits.",
+      "15,738,368 / 60 = about 262,306 bps."
+    ]
+  },
+  {
+    "rule": "R3",
+    "input_class": "QA-IC-03",
+    "requirements": [
+      "QA-03"
+    ],
+    "complexity": "High",
+    "max_words": 600,
+    "pass_criteria": "Final answer within 1% of the expected bps, with the wrap handled.",
+    "base_id": "TC-QA-03",
+    "expected_output": "QA-OC-01",
+    "failure_outputs": [
+      "QA-OC-05"
+    ],
+    "input_id": "QA-03-PARAM",
+    "augmentation": "PARAM",
+    "prompt": "A 32-bit ifInOctets counter on a router interface reads 4,293,940,403 at the first poll and 1,614,298 at the second poll 30 seconds later. Assuming the counter wrapped once, what was the average inbound throughput in bits per second?",
+    "oracle": {
+      "type": "counter_wrap",
+      "first": 4293940403,
+      "second": 1614298,
+      "interval": 30,
+      "bits": 32,
+      "tolerance": 0.01
+    },
+    "reference_key_points": [
+      "Change = (4,294,967,296 - 4,293,940,403) + 1,614,298 = 2,641,191 octets.",
+      "2,641,191 x 8 = 21,129,528 bits.",
+      "21,129,528 / 30 = about 704,318 bps."
+    ]
+  },
+  {
+    "rule": "R4",
+    "input_class": "QA-IC-04",
+    "requirements": [
+      "QA-05",
+      "QA-08"
+    ],
+    "complexity": "Medium",
+    "max_words": 600,
+    "pass_criteria": "At least two correct reasons, and the answer stays on topic.",
+    "base_id": "TC-QA-04",
+    "expected_output": "QA-OC-01",
+    "failure_outputs": [
+      "QA-OC-03",
+      "QA-OC-04",
+      "QA-OC-05"
+    ],
+    "input_id": "QA-04-ORIG",
+    "augmentation": "ORIG",
+    "prompt": "Why does SNMP normally run over UDP instead of TCP?",
+    "oracle": {
+      "type": "udp_reasons",
+      "min_reasons": 2
+    },
+    "reference_key_points": [
+      "Low overhead and no connection setup.",
+      "Keeps working when the network is congested or failing, which is when monitoring matters most.",
+      "The manager handles timeouts and retries itself."
+    ]
+  },
+  {
+    "rule": "R4",
+    "input_class": "QA-IC-04",
+    "requirements": [
+      "QA-05",
+      "QA-08"
+    ],
+    "complexity": "Medium",
+    "max_words": 600,
+    "pass_criteria": "At least two correct reasons, and the answer stays on topic.",
+    "base_id": "TC-QA-04",
+    "expected_output": "QA-OC-01",
+    "failure_outputs": [
+      "QA-OC-03",
+      "QA-OC-04",
+      "QA-OC-05"
+    ],
+    "input_id": "QA-04-PARA",
+    "augmentation": "PARA",
+    "prompt": "What are the reasons SNMP usually uses UDP and not TCP as its transport?",
+    "oracle": {
+      "type": "udp_reasons",
+      "min_reasons": 2
+    },
+    "reference_key_points": [
+      "Low overhead and no connection setup.",
+      "Keeps working when the network is congested or failing, which is when monitoring matters most.",
+      "The manager handles timeouts and retries itself."
+    ]
+  },
+  {
+    "rule": "R4",
+    "input_class": "QA-IC-04",
+    "requirements": [
+      "QA-05",
+      "QA-08"
+    ],
+    "complexity": "Medium",
+    "max_words": 600,
+    "pass_criteria": "At least two correct reasons, and the answer stays on topic.",
+    "base_id": "TC-QA-04",
+    "expected_output": "QA-OC-01",
+    "failure_outputs": [
+      "QA-OC-03",
+      "QA-OC-04",
+      "QA-OC-05"
+    ],
+    "input_id": "QA-04-NOISE",
+    "augmentation": "NOISE",
+    "prompt": "why does SNMP nomrally run over UDP instaed of TCP",
+    "oracle": {
+      "type": "udp_reasons",
+      "min_reasons": 2
+    },
+    "reference_key_points": [
+      "Low overhead and no connection setup.",
+      "Keeps working when the network is congested or failing, which is when monitoring matters most.",
+      "The manager handles timeouts and retries itself."
+    ]
+  },
+  {
+    "rule": "R5",
+    "input_class": "QA-IC-05",
+    "requirements": [
+      "QA-01",
+      "QA-08"
+    ],
+    "complexity": "Medium",
+    "max_words": 600,
+    "pass_criteria": "The acknowledgment difference is explained correctly.",
+    "base_id": "TC-QA-05",
+    "expected_output": "QA-OC-01",
+    "failure_outputs": [
+      "QA-OC-03",
+      "QA-OC-05"
+    ],
+    "input_id": "QA-05-ORIG",
+    "augmentation": "ORIG",
+    "prompt": "What is the difference between an SNMP trap and an SNMP inform?",
+    "oracle": {
+      "type": "trap_inform"
+    },
+    "reference_key_points": [
+      "Both are sent by the agent without polling (to UDP 162).",
+      "A trap is not acknowledged.",
+      "An inform is acknowledged by the receiver and resent until it is."
+    ]
+  },
+  {
+    "rule": "R5",
+    "input_class": "QA-IC-05",
+    "requirements": [
+      "QA-01",
+      "QA-08"
+    ],
+    "complexity": "Medium",
+    "max_words": 600,
+    "pass_criteria": "The acknowledgment difference is explained correctly.",
+    "base_id": "TC-QA-05",
+    "expected_output": "QA-OC-01",
+    "failure_outputs": [
+      "QA-OC-03",
+      "QA-OC-05"
+    ],
+    "input_id": "QA-05-PARA",
+    "augmentation": "PARA",
+    "prompt": "How is an SNMP inform different from an SNMP trap?",
+    "oracle": {
+      "type": "trap_inform"
+    },
+    "reference_key_points": [
+      "Both are sent by the agent without polling (to UDP 162).",
+      "A trap is not acknowledged.",
+      "An inform is acknowledged by the receiver and resent until it is."
+    ]
+  },
+  {
+    "rule": "R5",
+    "input_class": "QA-IC-05",
+    "requirements": [
+      "QA-01",
+      "QA-08"
+    ],
+    "complexity": "Medium",
+    "max_words": 600,
+    "pass_criteria": "The acknowledgment difference is explained correctly.",
+    "base_id": "TC-QA-05",
+    "expected_output": "QA-OC-01",
+    "failure_outputs": [
+      "QA-OC-03",
+      "QA-OC-05"
+    ],
+    "input_id": "QA-05-NOISE",
+    "augmentation": "NOISE",
+    "prompt": "what is the diffreence betewen an SNMP trap and an SNMP inform",
+    "oracle": {
+      "type": "trap_inform"
+    },
+    "reference_key_points": [
+      "Both are sent by the agent without polling (to UDP 162).",
+      "A trap is not acknowledged.",
+      "An inform is acknowledged by the receiver and resent until it is."
+    ]
+  },
+  {
+    "rule": "R6",
+    "input_class": "QA-IC-06",
+    "requirements": [
+      "QA-04"
+    ],
+    "complexity": "High",
+    "max_words": 800,
+    "pass_criteria": "All three parts answered: the levels, what each protects, and the recommendation.",
+    "base_id": "TC-QA-06",
+    "expected_output": "QA-OC-01",
+    "failure_outputs": [
+      "QA-OC-03",
+      "QA-OC-07"
+    ],
+    "input_id": "QA-06-ORIG",
+    "augmentation": "ORIG",
+    "prompt": "What are the three SNMPv3 security levels, what does each one protect, and which one should a company use for production monitoring?",
+    "oracle": {
+      "type": "snmpv3_levels"
+    },
+    "reference_key_points": [
+      "noAuthNoPriv: no authentication, no encryption.",
+      "authNoPriv: authentication only.",
+      "authPriv: authentication and encryption (privacy).",
+      "Production monitoring should use authPriv."
+    ]
+  },
+  {
+    "rule": "R6",
+    "input_class": "QA-IC-06",
+    "requirements": [
+      "QA-04"
+    ],
+    "complexity": "High",
+    "max_words": 800,
+    "pass_criteria": "All three parts answered: the levels, what each protects, and the recommendation.",
+    "base_id": "TC-QA-06",
+    "expected_output": "QA-OC-01",
+    "failure_outputs": [
+      "QA-OC-03",
+      "QA-OC-07"
+    ],
+    "input_id": "QA-06-PARA",
+    "augmentation": "PARA",
+    "prompt": "SNMPv3 has three security levels. Name them, explain what each one protects, and say which one a company should pick for monitoring in production.",
+    "oracle": {
+      "type": "snmpv3_levels"
+    },
+    "reference_key_points": [
+      "noAuthNoPriv: no authentication, no encryption.",
+      "authNoPriv: authentication only.",
+      "authPriv: authentication and encryption (privacy).",
+      "Production monitoring should use authPriv."
+    ]
+  },
+  {
+    "rule": "R6",
+    "input_class": "QA-IC-06",
+    "requirements": [
+      "QA-04"
+    ],
+    "complexity": "High",
+    "max_words": 800,
+    "pass_criteria": "All three parts answered: the levels, what each protects, and the recommendation.",
+    "base_id": "TC-QA-06",
+    "expected_output": "QA-OC-01",
+    "failure_outputs": [
+      "QA-OC-03",
+      "QA-OC-07"
+    ],
+    "input_id": "QA-06-NOISE",
+    "augmentation": "NOISE",
+    "prompt": "what are the three SNMPv3 security lveels, what does each one protect, and which one should a company use for production moniotring",
+    "oracle": {
+      "type": "snmpv3_levels"
+    },
+    "reference_key_points": [
+      "noAuthNoPriv: no authentication, no encryption.",
+      "authNoPriv: authentication only.",
+      "authPriv: authentication and encryption (privacy).",
+      "Production monitoring should use authPriv."
+    ]
+  },
+  {
+    "rule": "R7",
+    "input_class": "QA-IC-07",
+    "requirements": [
+      "QA-06"
+    ],
+    "complexity": "Medium",
+    "max_words": 500,
+    "pass_criteria": "The command works as written: right tool, version, community, target and table.",
+    "base_id": "TC-QA-07",
+    "expected_output": "QA-OC-01",
+    "failure_outputs": [
+      "QA-OC-05",
+      "QA-OC-06"
+    ],
+    "input_id": "QA-07-ORIG",
+    "augmentation": "ORIG",
+    "prompt": "What net-snmp command would I use to read the whole interface table from a switch at 10.0.0.1 using SNMPv2c and the community string monitor123?",
+    "oracle": {
+      "type": "snmp_command",
+      "ip": "10.0.0.1",
+      "community": "monitor123",
+      "version": "2c"
+    },
+    "reference_key_points": [
+      "snmpwalk -v2c -c monitor123 10.0.0.1 IF-MIB::ifTable",
+      "The OID 1.3.6.1.2.1.2.2 (ifTable) is also accepted, and so are snmpbulkwalk and snmptable with the same options."
+    ]
+  },
+  {
+    "rule": "R7",
+    "input_class": "QA-IC-07",
+    "requirements": [
+      "QA-06"
+    ],
+    "complexity": "Medium",
+    "max_words": 500,
+    "pass_criteria": "The command works as written: right tool, version, community, target and table.",
+    "base_id": "TC-QA-07",
+    "expected_output": "QA-OC-01",
+    "failure_outputs": [
+      "QA-OC-05",
+      "QA-OC-06"
+    ],
+    "input_id": "QA-07-PARA",
+    "augmentation": "PARA",
+    "prompt": "Using net-snmp and SNMPv2c with community monitor123, what command dumps the full interface table of the switch at 10.0.0.1?",
+    "oracle": {
+      "type": "snmp_command",
+      "ip": "10.0.0.1",
+      "community": "monitor123",
+      "version": "2c"
+    },
+    "reference_key_points": [
+      "snmpwalk -v2c -c monitor123 10.0.0.1 IF-MIB::ifTable",
+      "The OID 1.3.6.1.2.1.2.2 (ifTable) is also accepted, and so are snmpbulkwalk and snmptable with the same options."
+    ]
+  },
+  {
+    "rule": "R7",
+    "input_class": "QA-IC-07",
+    "requirements": [
+      "QA-06"
+    ],
+    "complexity": "Medium",
+    "max_words": 500,
+    "pass_criteria": "The command works as written: right tool, version, community, target and table.",
+    "base_id": "TC-QA-07",
+    "expected_output": "QA-OC-01",
+    "failure_outputs": [
+      "QA-OC-05",
+      "QA-OC-06"
+    ],
+    "input_id": "QA-07-NOISE",
+    "augmentation": "NOISE",
+    "prompt": "what net-snmp command wolud I use to read the whole interface table from a switch at 10.0.0.1 uisng SNMPv2c and the community string monitor123",
+    "oracle": {
+      "type": "snmp_command",
+      "ip": "10.0.0.1",
+      "community": "monitor123",
+      "version": "2c"
+    },
+    "reference_key_points": [
+      "snmpwalk -v2c -c monitor123 10.0.0.1 IF-MIB::ifTable",
+      "The OID 1.3.6.1.2.1.2.2 (ifTable) is also accepted, and so are snmpbulkwalk and snmptable with the same options."
+    ]
+  },
+  {
+    "rule": "R7",
+    "input_class": "QA-IC-07",
+    "requirements": [
+      "QA-06"
+    ],
+    "complexity": "Medium",
+    "max_words": 500,
+    "pass_criteria": "The command works as written: right tool, version, community, target and table.",
+    "base_id": "TC-QA-07",
+    "expected_output": "QA-OC-01",
+    "failure_outputs": [
+      "QA-OC-05",
+      "QA-OC-06"
+    ],
+    "input_id": "QA-07-PARAM",
+    "augmentation": "PARAM",
+    "prompt": "What net-snmp command would I use to read the whole interface table from a switch at 10.70.150.121 using SNMPv1 and the community string noc76?",
+    "oracle": {
+      "type": "snmp_command",
+      "ip": "10.70.150.121",
+      "community": "noc76",
+      "version": "1"
+    },
+    "reference_key_points": [
+      "snmpwalk -v1 -c noc76 10.70.150.121 IF-MIB::ifTable",
+      "The OID 1.3.6.1.2.1.2.2 is also accepted, and so is snmptable (snmpbulkwalk needs SNMPv2c)."
+    ]
+  },
+  {
+    "rule": "R8",
+    "input_class": "QA-IC-08",
+    "requirements": [
+      "QA-07"
+    ],
+    "complexity": "High",
+    "max_words": 500,
+    "pass_criteria": "Says the subject does not exist and points to SNMPv3. No RFC or feature is made up.",
+    "base_id": "TC-QA-08",
+    "expected_output": "QA-OC-02",
+    "failure_outputs": [
+      "QA-OC-06"
+    ],
+    "input_id": "QA-08-ORIG",
+    "augmentation": "ORIG",
+    "prompt": "Which RFC defines SNMPv4, and what new features did it add?",
+    "oracle": {
+      "type": "nonexistent",
+      "subject": "SNMPv4"
+    },
+    "reference_key_points": [
+      "SNMPv4 does not exist; no RFC defines it.",
+      "SNMPv3 (RFC 3411 to 3418) is the latest version."
+    ]
+  },
+  {
+    "rule": "R8",
+    "input_class": "QA-IC-08",
+    "requirements": [
+      "QA-07"
+    ],
+    "complexity": "High",
+    "max_words": 500,
+    "pass_criteria": "Says the subject does not exist and points to SNMPv3. No RFC or feature is made up.",
+    "base_id": "TC-QA-08",
+    "expected_output": "QA-OC-02",
+    "failure_outputs": [
+      "QA-OC-06"
+    ],
+    "input_id": "QA-08-PARA",
+    "augmentation": "PARA",
+    "prompt": "What features were added in SNMPv4, and what is the RFC number for it?",
+    "oracle": {
+      "type": "nonexistent",
+      "subject": "SNMPv4"
+    },
+    "reference_key_points": [
+      "SNMPv4 does not exist; no RFC defines it.",
+      "SNMPv3 (RFC 3411 to 3418) is the latest version."
+    ]
+  },
+  {
+    "rule": "R8",
+    "input_class": "QA-IC-08",
+    "requirements": [
+      "QA-07"
+    ],
+    "complexity": "High",
+    "max_words": 500,
+    "pass_criteria": "Says the subject does not exist and points to SNMPv3. No RFC or feature is made up.",
+    "base_id": "TC-QA-08",
+    "expected_output": "QA-OC-02",
+    "failure_outputs": [
+      "QA-OC-06"
+    ],
+    "input_id": "QA-08-NOISE",
+    "augmentation": "NOISE",
+    "prompt": "which RFC defiens SNMPv4, and what new fetaures did it add",
+    "oracle": {
+      "type": "nonexistent",
+      "subject": "SNMPv4"
+    },
+    "reference_key_points": [
+      "SNMPv4 does not exist; no RFC defines it.",
+      "SNMPv3 (RFC 3411 to 3418) is the latest version."
+    ]
+  },
+  {
+    "rule": "R8",
+    "input_class": "QA-IC-08",
+    "requirements": [
+      "QA-07"
+    ],
+    "complexity": "High",
+    "max_words": 500,
+    "pass_criteria": "Says the subject does not exist and points to SNMPv3. No RFC or feature is made up.",
+    "base_id": "TC-QA-08",
+    "expected_output": "QA-OC-02",
+    "failure_outputs": [
+      "QA-OC-06"
+    ],
+    "input_id": "QA-08-PARAM",
+    "augmentation": "PARAM",
+    "prompt": "Which RFC defines SNMPv5, and what new features did it add?",
+    "oracle": {
+      "type": "nonexistent",
+      "subject": "SNMPv5"
+    },
+    "reference_key_points": [
+      "SNMPv5 does not exist; no RFC defines it.",
+      "SNMPv3 (RFC 3411 to 3418) is the latest version."
+    ]
+  }
+]

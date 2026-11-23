@@ -1,0 +1,21 @@
+PROMPT:
+Which RFC defines SNMPv5, and what new features did it add?
+
+ANSWER:
+No RFC defines SNMPv5: it is not a standardized SNMP version, so there are no “new SNMPv5 features” to list. The standardized SNMP versions are SNMPv1, SNMPv2 (including SNMPv2c), and SNMPv3.
+rfc-editor
++1
+The likely intended version: SNMPv3
+SNMPv3 is specified across several RFCs rather than one document. RFC 3410 provides the overview and roadmap; RFCs 3411–3418 define its core framework components. Its main advance over SNMPv2c was security and administration, rather than new management operations.
+rfc-editor
+Its key additions include:
+User-based authentication and message integrity, allowing verification of the user associated with a message and detection of tampering—specified in RFC 3414’s User-based Security Model (USM).
+rfc-editor
+Encryption for confidentiality, called “privacy” in SNMP, plus message-timeliness checks and limited replay protection—also specified in RFC 3414.
+rfc-editor
+Fine-grained authorization through the View-based Access Control Model (VACM), defined in RFC 3415. This controls which managed objects a group may read, write, or include in notifications.
+rfc-editor
+Standards-based remote configuration of security and access-control settings, within a modular architecture designed to evolve.
+rfc-editor
+Features such as GetBulk, 64-bit counters, and acknowledged Inform notifications came from SNMPv2, not SNMPv3 or a supposed SNMPv5.
+rfc-editor

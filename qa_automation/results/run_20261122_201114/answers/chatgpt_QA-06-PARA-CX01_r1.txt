@@ -1,0 +1,38 @@
+PROMPT:
+SNMPv3 has three security levels. Name them, explain what each one protects, and say which one a company should pick for monitoring in production.
+
+ANSWER:
+SNMPv3 has three security levels, each providing a different degree of protection.
+1. The three SNMPv3 security levels
+Security level
+Authentication
+Encryption
+What it protects
+noAuthNoPriv
+No
+No
+Provides no authentication or encryption. SNMP messages can be read or spoofed.
+authNoPriv
+Yes
+No
+Verifies the sender's identity and message integrity, but data is transmitted without encryption and can be read.
+authPriv
+Yes
+Yes
+Provides authentication, message integrity, and encryption to protect data from unauthorized access and tampering.
+2. What each level means
+noAuthNoPriv: No security. Anyone with network access may potentially read or impersonate SNMP communications.
+authNoPriv: Uses authentication (such as SHA) to verify the sender and protect message integrity. However, SNMP data remains visible in transit.
+authPriv: Uses authentication plus privacy (encryption, such as AES). It protects against unauthorized reading, impersonation, and message modification.
+3. Which should a company choose for production?
+Recommended: authPriv
+A company should choose SNMPv3 authPriv for production monitoring.
+Reasons:
+Authentication: Ensures SNMP messages come from trusted devices and users.
+Encryption: Prevents attackers from reading sensitive monitoring information.
+Integrity: Helps detect unauthorized modifications to SNMP messages.
+Compliance: Helps meet security requirements in enterprise environments.
+Final recommendation
+Use SNMPv3 with authPriv, SHA-256 (where supported) for authentication, and AES-128 or AES-256 for encryption.
+Avoid noAuthNoPriv in production. Use authNoPriv only when encryption is genuinely unavailable and the network has additional compensating security controls.
+Bottom line: authPriv is the best choice because it provides authentication, integrity, and confidentiality for production SNMP monitoring.

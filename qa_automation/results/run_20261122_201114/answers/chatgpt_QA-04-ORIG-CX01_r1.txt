@@ -1,0 +1,53 @@
+PROMPT:
+Why does SNMP normally run over UDP instead of TCP?
+
+ANSWER:
+SNMP (Simple Network Management Protocol) normally runs over UDP rather than TCP because network management generally benefits more from simplicity, low overhead, and fast communication than from guaranteed delivery.
+Here are the main reasons:
+1. Lower overhead
+UDP is connectionless, so it doesn't require a connection handshake.
+TCP requires connection establishment (three-way handshake), sequence numbers, acknowledgments, and connection management.
+SNMP messages are typically small, so UDP keeps communication lightweight.
+2. Faster communication
+SNMP frequently polls network devices for information such as CPU usage, memory, interface status, and traffic statistics.
+UDP allows these requests and responses to be sent without establishing a persistent connection.
+This reduces latency and network overhead, especially when monitoring many devices.
+3. SNMP can tolerate occasional packet loss
+If an SNMP request or response is lost, the SNMP manager can simply retry the request after a timeout.
+SNMP has its own request IDs and retry mechanisms to help manage communication.
+Therefore, TCP's built-in reliable delivery is often unnecessary.
+4. Better suited for network monitoring
+Network devices may have limited processing power and memory.
+UDP requires fewer resources than TCP.
+This makes it practical to monitor many devices simultaneously, including routers, switches, and printers.
+5. Supports connectionless communication
+An SNMP manager can send requests to many devices without establishing a separate TCP connection to each one.
+This is particularly useful in large networks.
+UDP vs. TCP for SNMP
+Feature
+UDP
+TCP
+Connection
+Connectionless
+Connection-oriented
+Handshake
+Not required
+Required
+Overhead
+Low
+Higher
+Reliability
+No built-in delivery guarantee
+Reliable delivery
+Speed
+Generally lower latency
+More connection overhead
+SNMP usage
+Standard transport
+Optional in some implementations
+Common SNMP ports
+UDP 161: SNMP requests and responses (Get, GetNext, GetBulk, Set).
+UDP 162: SNMP traps and informs.
+Interview-ready answer
+"SNMP normally uses UDP because it is lightweight, connectionless, and has low overhead. Network monitoring involves frequent polling of multiple devices, and establishing TCP connections for every interaction would introduce unnecessary overhead. SNMP handles lost requests through timeouts and retries at the application level, making UDP a suitable transport protocol."
+Key takeaway: SNMP prioritizes lightweight, efficient network monitoring over TCP's built-in reliable delivery.

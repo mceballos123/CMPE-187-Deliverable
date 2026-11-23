@@ -1,0 +1,15 @@
+PROMPT:
+which RFC defiens SNMPv4, and what new fetaures did it add
+
+ANSWER:
+There is no RFC defining an "SNMPv4." The Simple Network Management Protocol stopped at SNMPv3 as its major protocol version—and rather than creating a version 4, the IETF evolved network management through modular extensions to SNMPv3 (such as new transport security models) and newer protocols like NETCONF and RESTCONF.
+   Wikipedia
+If you are thinking of a specific version or extension, here is how the actual SNMP standards map out:
+Standard / Version Key RFCs What It Introduced
+SNMPv1 RFC 1155, RFC 1157, RFC 1212, RFC 1213 Core architecture, MIBs, GET/GETNEXT/SET/TRAP operations, 32-bit counters, and plain-text community strings.
+SNMPv2c RFC 1901, RFC 3416, RFC 3417 GETBULK for faster table retrieval, INFORM (acknowledged notifications), and 64-bit counters.
+SNMPv3 RFC 3411–RFC 3418 Modular engine architecture, User-based Security Model (authentication and encryption), and View-based Access Control Model (VACM).
+Later SNMPv3 Extensions e.g., RFC 3826 (AES), RFC 5590/5591 (Transport Security), RFC 5953 (TLS) Stronger encryption (AES) and running SNMP over secure transports like SSH and TLS instead of relying solely on USM.
+Why no v4? By the time modern configuration and telemetry needs outgrew SNMP, the industry moved toward model-driven management protocols (like NETCONF and YANG) rather than incrementing SNMP's version number.
+   Wikipedia
+Were you looking for details on a specific SNMPv3 security/transport RFC, or trying to see how modern network management compares to SNMP?

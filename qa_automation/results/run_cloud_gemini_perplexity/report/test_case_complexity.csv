@@ -1,0 +1,9 @@
+test,input_class,level,variants,turns_cx01,turns_cx02,key_point_checks,error_checks,oracle
+TC-QA-01,QA-IC-01,Low,3,1,4,2,2,getbulk_version
+TC-QA-02,QA-IC-02,Low,4,1,4,2,3,oid_unit
+TC-QA-03,QA-IC-03,High,4,1,4,2,3,counter_wrap
+TC-QA-04,QA-IC-04,Medium,3,1,4,2,3,udp_reasons
+TC-QA-05,QA-IC-05,Medium,3,1,4,2,4,trap_inform
+TC-QA-06,QA-IC-06,High,3,1,4,5,2,snmpv3_levels
+TC-QA-07,QA-IC-07,Medium,4,1,4,5,8,snmp_command
+TC-QA-08,QA-IC-08,High,4,1,4,2,3,nonexistent

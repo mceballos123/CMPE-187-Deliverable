@@ -1,0 +1,21 @@
+PROMPT:
+What is the difference between an SNMP trap and an SNMP inform?
+
+ANSWER:
+The core difference between an SNMP Trap and an SNMP Inform (also called an InformRequest) is acknowledgment and reliability: a trap is a one-way, "fire-and-forget" alert, whereas an inform is a confirmed alert where the receiving manager sends back an acknowledgment so the sender knows the message arrived.
+Both are event-driven messages sent proactively from an SNMP agent (such as a router, switch, or server) to a Network Management Station (NMS) when something notable happens—like an interface going down, high CPU usage, or a failed login—rather than waiting for the NMS to poll for it.
+Side-by-Side Comparison
+Feature SNMP Trap SNMP Inform (InformRequest)
+Acknowledgment No — sender does not wait for a reply. Yes — NMS replies with an SNMP Response PDU.
+Delivery Reliability Best-effort; if dropped over UDP, the sender never knows. Higher reliability; sender can retry if no response arrives within a timeout.
+SNMP Versions SNMPv1, SNMPv2c, and SNMPv3. Introduced in SNMPv2c and supported in SNMPv3 (not in SNMPv1).
+Overhead & Latency Lower overhead, faster/chattier for high-volume alerts. Extra round-trip packet plus retry/buffer state on the sending agent.
+Typical Use Case High-frequency or less critical events where occasional loss is acceptable. Critical alerts (link down, hardware failure, security events) where missed delivery is costly.
+How Each One Behaves
+SNMP Trap ("Fire and Forget"): The agent sends the trap over UDP (typically port 162) and immediately moves on. Because UDP is connectionless and traps require no response, a dropped packet or congested link means the NMS might miss the event silently.
+SNMP Inform ("Confirmed Alert"): The agent sends the inform message (also typically to UDP port 162) and waits for an acknowledgment from the NMS. If the NMS receives it, it sends a Response back. If the timer expires without an acknowledgment, the sending agent can retransmit the inform up to a configured retry count.
+Practical Trade-Offs
+Why not always use Informs? Retries take CPU, memory, and network bandwidth on the sending device—which can become noticeable if a device fires thousands of events during a network storm or if an NMS goes offline and agents start buffering/retrying informs.
+SNMPv3 Note: In SNMPv3, informs also participate in SNMPv3 engine discovery/time synchronization and security (authPriv / authNoPriv / noAuthNoPriv), making confirmed alerting available with authentication and encryption.
+Want to see how to configure traps vs. informs on network gear?
+Yes

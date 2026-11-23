@@ -1,0 +1,22 @@
+PROMPT:
+What net-snmp command would I use to read the whole interface table from a switch at 10.70.150.121 using SNMPv1 and the community string noc76?
+
+ANSWER:
+Use snmpwalk targeting the standard ifTable OID (1.3.6.1.2.1.2.2 or IF-MIB::ifTable):
+Bash
+snmpwalk -v 1 -c noc76 10.70.150.121 1.3.6.1.2.1.2.2
+Key Flags and Options
+-v 1: Specifies SNMPv1.
+-c noc76: Sets the read community string to noc76.
+10.70.150.121: Target switch IP address.
+1.3.6.1.2.1.2.2 (IF-MIB::ifTable): The root OID for the standard interface table.
+Helpful Variations
+Use MIB names instead of numeric OIDs (if MIBs are installed and loaded):
+Bash
+snmpwalk -v 1 -c noc76 10.70.150.121 IF-MIB::ifTable
+Walk the 64-bit counter table (ifXTable) for high-speed interfaces or extra interface details (64-bit counters require SNMPv2c/v3 in standard IF-MIB, though the table structure itself starts at .1.3.6.1.2.1.31.1.1):
+Bash
+snmpwalk -v 1 -c noc76 10.70.150.121 1.3.6.1.2.1.31.1.1
+Suppress OID prefixes / print clean values (-OQ or -Osq for compact output):
+Bash
+snmpwalk -v 1 -c noc76 -Osq 10.70.150.121 1.3.6.1.2.1.2.2

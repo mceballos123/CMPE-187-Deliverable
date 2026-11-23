@@ -1,0 +1,12 @@
+PROMPT:
+Which SNMP operation lets a manager retrieve a large table in fewer requests, and in which SNMP version was it introduced?
+
+ANSWER:
+The GetBulkRequest operation (commonly invoked as snmpbulkwalk or snmpbulkget) lets an SNMP manager retrieve large tables or blocks of MIB objects in far fewer round-trip requests, and it was introduced in SNMPv2c (and carried forward into SNMPv3).
+Why It Saves Round Trips
+SNMPv1 (GetNextRequest): Walks a table one variable instance per request-response cycle. Retrieving a table with hundreds or thousands of rows means hundreds or thousands of sequential round trips, adding latency and overhead.
+SNMPv2c / SNMPv3 (GetBulkRequest): Tells the agent to return multiple lexicographically next values in a single response using two parameters:
+non-repeaters: How many requested OIDs should return just a single next value (useful for scalar objects alongside a table).
+max-repetitions: How many subsequent rows/entries to fetch per remaining repeating OID in one go.
+Practical Caveat
+Setting max-repetitions too high on a large table can cause the agent's response packet to exceed its maximum buffer/message size (or time out if the agent is slow to gather values), so administrators typically tune max-repetitions (often around 10–50) rather than setting it blindly huge.

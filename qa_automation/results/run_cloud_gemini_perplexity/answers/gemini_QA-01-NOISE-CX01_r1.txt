@@ -1,0 +1,15 @@
+PROMPT:
+which SNMP operation lets a manager retrieve a large table in fweer requests, and in wihch SNMP version was it introduced
+
+ANSWER:
+The GetBulkRequest operation allows an SNMP manager to retrieve large tables (and large sets of OIDs) in far fewer requests than repeated GetNextRequest calls, and it was introduced in SNMPv2c (and SNMPv2u / SNMPv2*, standardized in SNMPv2 / RFC 1905).
+Why GetBulkRequest Reduces Round Trips
+Standard GetNextRequest: Fetches only one variable binding (OID + value) per request/response cycle. Walking a table with hundreds or thousands of rows requires a separate round trip for every entry.
+GetBulkRequest: Tells the agent to return multiple lexicographically next values in a single response using two key parameters:
+non-repeaters: The number of leading OIDs in the request list that should each return just one next value (useful for scalar values fetched alongside a table).
+max-repetitions: The maximum number of subsequent rows/values to return for each remaining (repeating) OID in the list.
+Version Context
+SNMPv1 (RFC 1157): Supports GetRequest, GetNextRequest, SetRequest, GetResponse, and Trap — no GetBulkRequest.
+SNMPv2c (RFC 1905 / RFC 3416): Introduced GetBulkRequest (along with InformRequest and Report) to make bulk table retrieval dramatically faster over networks with high latency.
+SNMPv3: Built on the SNMPv2 protocol operations (retaining GetBulkRequest) while adding strong authentication and encryption.
+(Note: Even with GetBulkRequest, an agent may return fewer rows than max-repetitions if it hits packet/message size limits or reaches the end of the MIB/table.)

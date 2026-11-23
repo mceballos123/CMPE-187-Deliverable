@@ -1,0 +1,5 @@
+PROMPT:
+How is an SNMP inform different from an SNMP trap?
+
+ANSWER:
+

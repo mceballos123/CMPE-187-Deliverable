@@ -1,0 +1,5 @@
+PROMPT:
+what net-snmp command wolud I use to read the whole interface table from a switch at 10.0.0.1 uisng SNMPv2c and the community string monitor123
+
+ANSWER:
+

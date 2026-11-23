@@ -1,0 +1,5 @@
+PROMPT:
+Give me the object identifier for sysUpTime and tell me what unit its value is measured in.
+
+ANSWER:
+

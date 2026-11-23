@@ -1,0 +1,24 @@
+PROMPT:
+Why does SNMP normally run over UDP instead of TCP?
+
+ANSWER:
+SNMP normally uses UDP because its typical traffic consists of small, independent requests and responses. UDP keeps those exchanges lightweight, without TCP’s connection setup, connection state, and transport-level acknowledgments. SNMP applications can handle timeouts and retries themselves.
+rfc-editor
+Why UDP fits SNMP
+Lower overhead: A monitoring system can send a request immediately, without establishing a TCP connection first. This avoids extra connection-management traffic for short exchanges.
+rfc-editor
+Lower resource use: Devices do not need to maintain TCP connections with monitoring systems. That matters when managing many devices or devices with limited resources.
+rfc-editor
+Application-controlled retries: If a monitoring system gets no response, it can wait for its configured timeout and retry—or mark the poll as failed. UDP does not guarantee delivery; the monitoring application handles the missing response.
+rfc-editor
+TCP would not eliminate SNMP-level timeouts: A TCP acknowledgment confirms receipt by the remote transport stack, not that the SNMP agent processed the request and returned a result. SNMP still needs to detect missing application responses.
+rfc-editor
+For example, a monitor asking a router for an interface counter can send one request and receive one response—without first setting up a connection.
+rfc-editor
+The trade-off
+UDP can lose packets. Request/response operations can use retries, but an ordinary SNMP trap is unacknowledged and may be lost. SNMP informs provide an acknowledged notification mechanism; reliability therefore depends on the SNMP operation as well as the transport.
+rfc-editor
+SNMP can also run over TCP: RFC 3430 defines an experimental TCP transport mapping. TCP can be useful for larger transfers because it provides segmentation and flow control, but it has a larger resource footprint, and UDP remains the baseline transport.
+rfc-editor
+The key point is not simply “UDP is faster.” It is that UDP’s low-overhead, connectionless design fits SNMP’s usual message pattern, while SNMP handles the application-level response checking it needs.
+rfc-editor

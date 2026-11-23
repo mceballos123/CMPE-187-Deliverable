@@ -1,0 +1,16 @@
+PROMPT:
+Give me the object identifier for sysUpTime and tell me what unit its value is measured in.
+
+ANSWER:
+The SNMP Object Identifier (OID) for sysUpTime is 1.3.6.1.2.1.1.3 (querying the scalar instance directly uses 1.3.6.1.2.1.1.3.0).
+   www.alvestrand.no
+Its value is of syntax TimeTicks and is measured in hundredths of a second (centiseconds, or 0.01 seconds) since the network management portion of the system was last re-initialized.
+   www.alvestrand.no
+A Few Practical Details
+Converting to seconds: Divide the raw TimeTicks value by 100 (for example, 15000 ticks equals 150 seconds).
+32-bit rollover: Because TimeTicks is a 32-bit unsigned integer (0 to 4,294,967,295), the counter wraps back to 0 after roughly 497.1 days (42,949,672.95 seconds).
+   oidref.com
+Management stack vs. full OS boot: sysUpTime measures the network management subsystem (such as the SNMP agent), meaning it can reset if the SNMP service restarts without a full device reboot.
+ For host/OS uptime, devices often expose hrSystemUptime (1.3.6.1.2.1.25.1.1.0) as well.
+   BMC Community - BMC Software
++ 1

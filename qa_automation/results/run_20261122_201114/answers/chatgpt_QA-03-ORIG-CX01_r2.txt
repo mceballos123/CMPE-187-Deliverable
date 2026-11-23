@@ -1,0 +1,5 @@
+PROMPT:
+A 32-bit ifInOctets counter on a router interface reads 4,294,000,000 at the first poll and 1,000,000 at the second poll 60 seconds later. Assuming the counter wrapped once, what was the average inbound throughput in bits per second?
+
+ANSWER:
+

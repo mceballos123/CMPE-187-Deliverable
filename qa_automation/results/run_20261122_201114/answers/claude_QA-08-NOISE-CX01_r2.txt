@@ -1,0 +1,5 @@
+PROMPT:
+which RFC defiens SNMPv4, and what new fetaures did it add
+
+ANSWER:
+

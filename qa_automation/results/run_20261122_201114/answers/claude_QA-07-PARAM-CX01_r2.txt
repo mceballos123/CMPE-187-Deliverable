@@ -1,0 +1,5 @@
+PROMPT:
+What net-snmp command would I use to read the whole interface table from a switch at 10.70.150.121 using SNMPv1 and the community string noc76?
+
+ANSWER:
+

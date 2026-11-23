@@ -1,0 +1,6 @@
+app,executions,mean_response_s,median_response_s,p90_response_s,max_response_s,mean_execution_s,sum_execution_min,mean_words
+ChatGPT,45,8.6,6.3,17.2,19.6,37.9,28.4,192.8
+Claude,0,-,-,-,-,-,-,-
+Gemini,72,18.7,17.1,23.6,44.0,46.6,55.9,248.3
+Perplexity,72,7.5,6.8,11.8,15.3,32.7,39.3,143.3
+All,189,12.0,11.1,20.3,44.0,39.2,123.6,195.1

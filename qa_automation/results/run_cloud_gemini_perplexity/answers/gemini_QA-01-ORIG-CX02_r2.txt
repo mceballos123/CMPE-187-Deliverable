@@ -1,0 +1,19 @@
+PROMPT:
+Which SNMP operation lets a manager retrieve a large table in fewer requests, and in which SNMP version was it introduced?
+
+ANSWER:
+The GetBulkRequest (commonly called GetBulk) operation allows an SNMP manager to retrieve large blocks of data—such as entire MIB tables—in far fewer round trips than chaining individual GetNextRequest calls.
+ It was introduced in SNMPv2 (widely deployed as SNMPv2c, and retained in SNMPv3).
+   Wikipedia
++ 1
+How GetBulkRequest Works
+Instead of making one request-response round trip per row or entry like GetNextRequest, GetBulkRequest tells the agent to perform multiple GetNext iterations and pack the results into a single response (up to message size limits).
+ It uses two special parameters:   
+Wikipedia
+non-repeaters: The number of starting OIDs in the request list that should be fetched only once (behaving like a single GetNext), useful when combining scalar values (like sysUpTime) with table columns.
+   An Introduction to Computer Networks
+max-repetitions: The maximum number of GetNext steps to take for each of the remaining OIDs in the list—letting you pull multiple rows of a table column in one reply.
+   DPS Telecom
+Why It Matters in Practice
+Lower Latency: Over high-latency links or when polling hundreds of interfaces/devices, cutting round trips dramatically speeds up collection cycles.
+Version Requirement: Because it was added in SNMPv2, it is not available in SNMPv1; you must use SNMPv2c or SNMPv3. (In Net-SNMP CLI tools, snmpbulkwalk uses GetBulkRequest under the hood).

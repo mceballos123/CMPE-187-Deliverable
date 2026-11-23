@@ -1,0 +1,5 @@
+PROMPT:
+Which SNMP operation lets a manager retrieve a large table in fewer requests, and in which SNMP version was it introduced?
+
+ANSWER:
+

@@ -1,0 +1,2 @@
+runs,plan,apps,repeats,tests_in_plan,executions_planned,executions_recorded,graded,ok,timeout,blocked,error,judge,wall_clock_min
+run_cloud_gemini_perplexity,3d,"Gemini, Perplexity",2,36,144,144,144,144,0,0,0,unavailable,58.5

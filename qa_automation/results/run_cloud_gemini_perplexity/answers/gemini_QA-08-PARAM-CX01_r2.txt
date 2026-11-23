@@ -1,0 +1,12 @@
+PROMPT:
+Which RFC defines SNMPv5, and what new features did it add?
+
+ANSWER:
+There is no RFC defining SNMPv5—the Simple Network Management Protocol never had a version 5.
+In fact, the official IETF SNMP versions stop at SNMPv3 (there was never an official SNMPv4 either; SNMPv2 went through experimental/community variants like SNMPv2c and SNMPv2u before the IETF standardized SNMPv3). (Note: Sometimes people confuse protocol versions with software/library release numbers—such as SNMP 5.x releases in Erlang/OTP—which are implementation versions rather than IETF protocol RFCs.)
+For context on what the actual standardized SNMP versions introduced:
+SNMPv1 (originally RFCs 1065–1067, later updated in RFCs 1155–1157): Established the core framework, MIB structure, basic operations (Get, GetNext, Set, Trap), and cleartext community strings.
+   Wikipedia
+SNMPv2 / SNMPv2c (e.g., RFC 1901–1908 / RFC 3416–3418 series): Added GetBulk for efficient table retrieval, Inform (acknowledged notifications), and 64-bit counters (Counter64) for high-speed interfaces.
+SNMPv3 (RFCs 3411–3418 series, later expanded with additions like RFC 3826 for AES and RFC 5591 for Transport Security): Added message authentication, encryption (privacy), user-based/view-based access control, and modular transport/security frameworks.
+   LogicMonitor

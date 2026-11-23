@@ -1,0 +1,10 @@
+PROMPT:
+Which SNMP operation lets a manager retrieve a large table in fewer requests, and in which SNMP version was it introduced?
+
+ANSWER:
+The GetBulkRequest (often written as GETBULK) operation lets an SNMP manager retrieve large tables or blocks of MIB data in far fewer round-trips than repeated GetNextRequest calls. It was introduced in SNMPv2 (specifically SNMPv2c, defined in RFC 1905 / RFC 3416) and carried forward into SNMPv3.
+How GetBulkRequest Reduces Round-Trips
+Instead of fetching one variable instance per GetNextRequest packet, a manager sends a single GetBulkRequest specifying two key parameters:
+non-repeaters: The number of leading scalar (non-table) variables to fetch once, acting like a standard GetNextRequest.
+max-repetitions: The maximum number of lexicographical next rows/entries to retrieve for the remaining table columns in a single response.
+This lets the agent pack multiple rows of table data into a single UDP response packet, cutting network latency and overhead when walking large tables (such as routing or interface tables). Note that if max-repetitions is set too high on a large table, the response can exceed the agent's or network's maximum message size (MTU), causing truncation or errors—so tuning max-repetitions matters in practice.

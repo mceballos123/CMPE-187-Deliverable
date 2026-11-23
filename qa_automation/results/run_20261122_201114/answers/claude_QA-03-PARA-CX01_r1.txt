@@ -1,0 +1,5 @@
+PROMPT:
+On a router, ifInOctets is a 32-bit counter. Poll 1 reads 4,294,000,000 and poll 2, taken 60 seconds later, reads 1,000,000. The counter rolled over once in between. What is the average inbound rate in bits per second?
+
+ANSWER:
+

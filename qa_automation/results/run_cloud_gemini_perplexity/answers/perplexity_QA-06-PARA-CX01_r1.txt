@@ -1,0 +1,23 @@
+PROMPT:
+SNMPv3 has three security levels. Name them, explain what each one protects, and say which one a company should pick for monitoring in production.
+
+ANSWER:
+SNMPv3’s three security levels are noAuthNoPriv, authNoPriv, and authPriv. A company should choose authPriv for production monitoring because it provides both authenticated messages and encrypted monitoring data.
+cisco
++1
+Security level What it protects What it does not protect
+noAuthNoPriv No cryptographic protection. A username identifies the user, but does not cryptographically prove the sender’s identity. No protection against message forgery, tampering, or reading the monitoring data in transit.
+cisco
++1
+authNoPriv Authentication verifies the message’s origin, and integrity checking detects modification in transit. No confidentiality: an observer can still read the monitoring data because it is unencrypted.
+cisco
++1
+authPriv Authentication and integrity protection, plus privacy through encryption of the SNMP payload. This protects against forged or altered messages and disclosure of monitoring data in transit. It does not replace authorization controls that determine which information a user may read or change.
+cisco
++1
+Production recommendation
+Use authPriv, preferably with SHA-2 authentication and AES encryption where both the devices and monitoring platform support them. Merely selecting “SNMPv3” is not enough—the configured security level determines whether authentication and encryption are actually used. Cisco explicitly recommends authPriv for secure production deployments.
+cisco
++1
+Also configure the monitoring account with read-only, least-privilege access. Encryption protects data in transit; access controls separately restrict which management objects the account can access.
+logicmonitor

@@ -1,0 +1,19 @@
+PROMPT:
+what net-snmp command wolud I use to read the whole interface table from a switch at 10.0.0.1 uisng SNMPv2c and the community string monitor123
+
+ANSWER:
+Use snmpwalk to read the entire standard interface table (ifTable):
+bash
+snmpwalk -v2c -c monitor123 10.0.0.1 1.3.6.1.2.1.2.2
+-v2c selects SNMPv2c.
+-c monitor123 sets the community string.
+10.0.0.1 is the switch’s address.
+1.3.6.1.2.1.2.2 selects the interface-table subtree. snmpwalk retrieves its columns and interface entries.
+net-snmp
++1
+For row-and-column output instead, use snmptable with the IF-MIB installed:
+bash
+snmptable -v2c -c monitor123 10.0.0.1 IF-MIB::ifTable
+snmptable formats the results as a table rather than listing each column’s values in sequence.
+net-snmp
++1

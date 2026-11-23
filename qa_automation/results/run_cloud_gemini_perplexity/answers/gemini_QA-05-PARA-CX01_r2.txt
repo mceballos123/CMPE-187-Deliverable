@@ -1,0 +1,17 @@
+PROMPT:
+How is an SNMP inform different from an SNMP trap?
+
+ANSWER:
+The key difference between an SNMP trap and an SNMP inform is acknowledgment and reliability: traps are "fire-and-forget" notifications with no confirmation of receipt, while informs require an acknowledgment (GetResponse) from the receiving management station and will be retried if not acknowledged.
+Here is how they compare in practice:
+Feature SNMP Trap SNMP Inform
+Acknowledgment None (fire-and-forget) Yes — receiver sends back a GetResponse PDU
+Retries None; if dropped over UDP, it is lost Retries up to a configured count/timeout if unacknowledged
+Network Overhead Lower (1 packet per event) Higher (2+ packets per event, plus retries on failure)
+Sender Resource Load Lower (does not hold state waiting for replies) Higher (tracks pending informs and retry timers)
+Protocol Versions SNMPv1, SNMPv2c, SNMPv3 SNMPv2c, SNMPv3 (not supported in SNMPv1)
+When to Use Which
+Use SNMP Traps for high-frequency, non-critical, or bursty events where occasional packet loss is acceptable and minimizing agent/network overhead matters most (for example, routine interface status updates across large fleets).
+Use SNMP Informs for critical alerts where missing an event would cause a blind spot (such as hardware failures, link-down alerts on core routers, or security events) and the network supports bidirectional reachability between the agent/sender and the SNMP manager.
+One Subtle Detail to Watch For
+Because informs require the receiving station to reply, both directions must be allowed in firewalls/ACLs, and SNMPv3 engine IDs must be properly configured on inform senders/receivers so authentication and encryption work cleanly. Also, in some network architectures, a device sends a trap to a local proxy/collector, which then forwards it as a reliable inform upstream to a central manager.

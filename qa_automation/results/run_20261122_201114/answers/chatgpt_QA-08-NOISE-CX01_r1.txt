@@ -1,0 +1,63 @@
+PROMPT:
+which RFC defiens SNMPv4, and what new fetaures did it add
+
+ANSWER:
+There is no officially standardized SNMPv4 RFC. The latest formally standardized version of SNMP is SNMPv3, defined by a collection of RFCs published in December 2002.
+You may have encountered references to SNMPv4, but these are generally informal references to a potential next generation of network management, or comparisons with NETCONF.
+What actually changed in SNMPv3?
+SNMPv3 introduced significant improvements over SNMPv1 and SNMPv2c, particularly around security and access control.
+Feature
+What it added
+Authentication
+Verifies the identity of the SNMP message sender
+Encryption
+Protects SNMP messages against eavesdropping
+Access control
+Controls which MIB objects users can read or modify
+User-based security
+Introduces individual users and security credentials
+Modular architecture
+Separates message processing, security, and access control
+Engine identification
+Provides unique identification of SNMP engines
+The important SNMPv3 RFCs
+RFC
+Purpose
+RFC 3411 
+SNMP architecture
+RFC 3412 
+Message processing and dispatching
+RFC 3413 
+SNMP applications
+RFC 3414 
+User-based Security Model (USM)
+RFC 3415 
+View-based Access Control Model (VACM)
+RFC 3416 
+Protocol operations
+RFC 3417 
+Transport mappings
+RFC 3418 
+SNMP MIB
+These collectively form STD 62, the SNMPv3 standards suite.
+RFC Editor
++2
+What about SNMPv4?
+You might also be thinking of NETCONF, which is sometimes informally described as SNMPv4.
+NETCONF introduced capabilities that address some limitations of traditional SNMP:
+XML-based configuration and management.
+Structured configuration data.
+Transaction-based configuration changes.
+Configuration validation and rollback.
+Secure transport, commonly SSH.
+YANG data models (defined separately).
+NETCONF is formally defined in
+RFC 6241 
+, not as SNMPv4.
+ipSpace.net Blog
++1
+Bottom line: If you're studying SNMP versions for networking or certification, remember:
+SNMPv1 — RFC 1157.
+SNMPv2c — RFC 1901 and related RFCs.
+SNMPv3 — RFC 3411–3418.
+SNMPv4 — No officially standardized version.

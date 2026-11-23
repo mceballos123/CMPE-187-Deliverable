@@ -1,0 +1,5 @@
+group,executed,pass,partial,fail,review,not_run,pass_rate,pass_or_partial
+Low,54,54,0,0,0,18,100.0%,100.0%
+Medium,65,65,0,0,0,26,100.0%,100.0%
+High,70,67,0,3,0,29,95.7%,95.7%
+Total,189,186,0,3,0,73,98.4%,98.4%

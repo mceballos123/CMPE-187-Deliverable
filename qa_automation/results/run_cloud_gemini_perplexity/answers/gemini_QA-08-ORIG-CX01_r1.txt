@@ -1,0 +1,23 @@
+PROMPT:
+Which RFC defines SNMPv4, and what new features did it add?
+
+ANSWER:
+There is no RFC defining SNMPv4. The Simple Network Management Protocol (SNMP) has never had a version 4—SNMPv3 is the latest major version of the protocol, defined across a suite of RFCs (primarily RFCs 3411–3418, STD 62), with later extensions such as TLS/DTLS transport security (e.g., RFC 5590, RFC 5591, and RFC 6353).
+   SNMP Monitoring
+Why "SNMPv4" Comes Up
+A few related standards and terms sometimes cause confusion:
+SNMPv3 (RFCs 3411–3418): The actual current standard.
+ Rather than releasing a "v4" for new security or transport mechanisms, the IETF made SNMPv3's architecture modular so new security models (like Transport Security Model / TLS/DTLS) and transport mappings could be added onto v3.
+   Wikipedia
++ 1
+Version 4 of specific MIBs or protocols: You may see "version 4" in unrelated or sub-component documents, such as RFC 6933 (Entity MIB (Version 4)), BGPv4 traps in SNMP configurations, or NTPv4 MIBs.
+   IETF Datatracker
+What SNMPv3 Added (as the Latest Protocol Version)
+Since SNMPv3 is where major protocol evolution landed rather than a v4, its key additions over SNMPv1 and SNMPv2c were:
+Authentication & Integrity: Verifying message origin and detecting tampering (initially via HMAC-MD5 / HMAC-SHA-1 in USM, later expanded with SHA-2).
+   Wikipedia
+Confidentiality (Encryption): Encrypting SNMP payloads to prevent eavesdropping (e.g., DES, and later AES via RFC 3826 or TLS/DTLS transport encryption).
+   SNMP Research
+Granular Access Control (VACM): Fine-grained authorization rules controlling who can read, write, or be notified about specific MIB views.
+Modular Architecture: Separating the SNMP engine into Message Processing, Security, and Access Control subsystems so security and transport models could evolve independently.
+If you had a specific RFC number or feature in mind—such as TLS/DTLS transport for SNMP or a particular MIB—let me know and I can look up the exact details.

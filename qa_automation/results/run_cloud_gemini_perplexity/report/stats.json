@@ -1,0 +1,860 @@
+{
+  "run_overview": [
+    {
+      "runs": "run_cloud_gemini_perplexity",
+      "plan": "3d",
+      "apps": "Gemini, Perplexity",
+      "repeats": 2,
+      "tests_in_plan": 36,
+      "executions_planned": 144,
+      "executions_recorded": 144,
+      "graded": 144,
+      "ok": 144,
+      "timeout": 0,
+      "blocked": 0,
+      "error": 0,
+      "judge": "unavailable",
+      "wall_clock_min": 58.5
+    }
+  ],
+  "verdict_by_app": [
+    {
+      "group": "Gemini",
+      "executed": 72,
+      "pass": 70,
+      "partial": 0,
+      "fail": 2,
+      "review": 0,
+      "not_run": 0,
+      "pass_rate": "97.2%",
+      "pass_or_partial": "97.2%"
+    },
+    {
+      "group": "Perplexity",
+      "executed": 72,
+      "pass": 71,
+      "partial": 0,
+      "fail": 1,
+      "review": 0,
+      "not_run": 0,
+      "pass_rate": "98.6%",
+      "pass_or_partial": "98.6%"
+    },
+    {
+      "group": "Total",
+      "executed": 144,
+      "pass": 141,
+      "partial": 0,
+      "fail": 3,
+      "review": 0,
+      "not_run": 0,
+      "pass_rate": "97.9%",
+      "pass_or_partial": "97.9%"
+    }
+  ],
+  "verdict_by_input_class": [
+    {
+      "group": "QA-IC-01",
+      "executed": 16,
+      "pass": 16,
+      "partial": 0,
+      "fail": 0,
+      "review": 0,
+      "not_run": 0,
+      "pass_rate": "100.0%",
+      "pass_or_partial": "100.0%"
+    },
+    {
+      "group": "QA-IC-02",
+      "executed": 20,
+      "pass": 20,
+      "partial": 0,
+      "fail": 0,
+      "review": 0,
+      "not_run": 0,
+      "pass_rate": "100.0%",
+      "pass_or_partial": "100.0%"
+    },
+    {
+      "group": "QA-IC-03",
+      "executed": 20,
+      "pass": 17,
+      "partial": 0,
+      "fail": 3,
+      "review": 0,
+      "not_run": 0,
+      "pass_rate": "85.0%",
+      "pass_or_partial": "85.0%"
+    },
+    {
+      "group": "QA-IC-04",
+      "executed": 16,
+      "pass": 16,
+      "partial": 0,
+      "fail": 0,
+      "review": 0,
+      "not_run": 0,
+      "pass_rate": "100.0%",
+      "pass_or_partial": "100.0%"
+    },
+    {
+      "group": "QA-IC-05",
+      "executed": 16,
+      "pass": 16,
+      "partial": 0,
+      "fail": 0,
+      "review": 0,
+      "not_run": 0,
+      "pass_rate": "100.0%",
+      "pass_or_partial": "100.0%"
+    },
+    {
+      "group": "QA-IC-06",
+      "executed": 16,
+      "pass": 16,
+      "partial": 0,
+      "fail": 0,
+      "review": 0,
+      "not_run": 0,
+      "pass_rate": "100.0%",
+      "pass_or_partial": "100.0%"
+    },
+    {
+      "group": "QA-IC-07",
+      "executed": 20,
+      "pass": 20,
+      "partial": 0,
+      "fail": 0,
+      "review": 0,
+      "not_run": 0,
+      "pass_rate": "100.0%",
+      "pass_or_partial": "100.0%"
+    },
+    {
+      "group": "QA-IC-08",
+      "executed": 20,
+      "pass": 20,
+      "partial": 0,
+      "fail": 0,
+      "review": 0,
+      "not_run": 0,
+      "pass_rate": "100.0%",
+      "pass_or_partial": "100.0%"
+    },
+    {
+      "group": "Total",
+      "executed": 144,
+      "pass": 141,
+      "partial": 0,
+      "fail": 3,
+      "review": 0,
+      "not_run": 0,
+      "pass_rate": "97.9%",
+      "pass_or_partial": "97.9%"
+    }
+  ],
+  "verdict_by_context": [
+    {
+      "group": "QA-CX-01",
+      "executed": 112,
+      "pass": 110,
+      "partial": 0,
+      "fail": 2,
+      "review": 0,
+      "not_run": 0,
+      "pass_rate": "98.2%",
+      "pass_or_partial": "98.2%"
+    },
+    {
+      "group": "QA-CX-02",
+      "executed": 32,
+      "pass": 31,
+      "partial": 0,
+      "fail": 1,
+      "review": 0,
+      "not_run": 0,
+      "pass_rate": "96.9%",
+      "pass_or_partial": "96.9%"
+    },
+    {
+      "group": "Total",
+      "executed": 144,
+      "pass": 141,
+      "partial": 0,
+      "fail": 3,
+      "review": 0,
+      "not_run": 0,
+      "pass_rate": "97.9%",
+      "pass_or_partial": "97.9%"
+    }
+  ],
+  "verdict_by_augmentation": [
+    {
+      "group": "ORIG",
+      "executed": 64,
+      "pass": 62,
+      "partial": 0,
+      "fail": 2,
+      "review": 0,
+      "not_run": 0,
+      "pass_rate": "96.9%",
+      "pass_or_partial": "96.9%"
+    },
+    {
+      "group": "PARA",
+      "executed": 32,
+      "pass": 32,
+      "partial": 0,
+      "fail": 0,
+      "review": 0,
+      "not_run": 0,
+      "pass_rate": "100.0%",
+      "pass_or_partial": "100.0%"
+    },
+    {
+      "group": "NOISE",
+      "executed": 32,
+      "pass": 32,
+      "partial": 0,
+      "fail": 0,
+      "review": 0,
+      "not_run": 0,
+      "pass_rate": "100.0%",
+      "pass_or_partial": "100.0%"
+    },
+    {
+      "group": "PARAM",
+      "executed": 16,
+      "pass": 15,
+      "partial": 0,
+      "fail": 1,
+      "review": 0,
+      "not_run": 0,
+      "pass_rate": "93.8%",
+      "pass_or_partial": "93.8%"
+    },
+    {
+      "group": "Total",
+      "executed": 144,
+      "pass": 141,
+      "partial": 0,
+      "fail": 3,
+      "review": 0,
+      "not_run": 0,
+      "pass_rate": "97.9%",
+      "pass_or_partial": "97.9%"
+    }
+  ],
+  "verdict_by_complexity": [
+    {
+      "group": "Low",
+      "executed": 36,
+      "pass": 36,
+      "partial": 0,
+      "fail": 0,
+      "review": 0,
+      "not_run": 0,
+      "pass_rate": "100.0%",
+      "pass_or_partial": "100.0%"
+    },
+    {
+      "group": "Medium",
+      "executed": 52,
+      "pass": 52,
+      "partial": 0,
+      "fail": 0,
+      "review": 0,
+      "not_run": 0,
+      "pass_rate": "100.0%",
+      "pass_or_partial": "100.0%"
+    },
+    {
+      "group": "High",
+      "executed": 56,
+      "pass": 53,
+      "partial": 0,
+      "fail": 3,
+      "review": 0,
+      "not_run": 0,
+      "pass_rate": "94.6%",
+      "pass_or_partial": "94.6%"
+    },
+    {
+      "group": "Total",
+      "executed": 144,
+      "pass": 141,
+      "partial": 0,
+      "fail": 3,
+      "review": 0,
+      "not_run": 0,
+      "pass_rate": "97.9%",
+      "pass_or_partial": "97.9%"
+    }
+  ],
+  "pass_by_test_and_app": [
+    {
+      "test": "TC-QA-01",
+      "requirements": "QA-01,QA-05",
+      "Gemini": "8/8",
+      "Perplexity": "8/8",
+      "total_pass": "16/16",
+      "pass_rate": "100.0%"
+    },
+    {
+      "test": "TC-QA-02",
+      "requirements": "QA-02",
+      "Gemini": "10/10",
+      "Perplexity": "10/10",
+      "total_pass": "20/20",
+      "pass_rate": "100.0%"
+    },
+    {
+      "test": "TC-QA-03",
+      "requirements": "QA-03",
+      "Gemini": "8/10",
+      "Perplexity": "9/10",
+      "total_pass": "17/20",
+      "pass_rate": "85.0%"
+    },
+    {
+      "test": "TC-QA-04",
+      "requirements": "QA-05,QA-08",
+      "Gemini": "8/8",
+      "Perplexity": "8/8",
+      "total_pass": "16/16",
+      "pass_rate": "100.0%"
+    },
+    {
+      "test": "TC-QA-05",
+      "requirements": "QA-01,QA-08",
+      "Gemini": "8/8",
+      "Perplexity": "8/8",
+      "total_pass": "16/16",
+      "pass_rate": "100.0%"
+    },
+    {
+      "test": "TC-QA-06",
+      "requirements": "QA-04",
+      "Gemini": "8/8",
+      "Perplexity": "8/8",
+      "total_pass": "16/16",
+      "pass_rate": "100.0%"
+    },
+    {
+      "test": "TC-QA-07",
+      "requirements": "QA-06",
+      "Gemini": "10/10",
+      "Perplexity": "10/10",
+      "total_pass": "20/20",
+      "pass_rate": "100.0%"
+    },
+    {
+      "test": "TC-QA-08",
+      "requirements": "QA-07",
+      "Gemini": "10/10",
+      "Perplexity": "10/10",
+      "total_pass": "20/20",
+      "pass_rate": "100.0%"
+    }
+  ],
+  "observed_output_classes": [
+    {
+      "output_class": "QA-OC-01",
+      "name": "Accurate, relevant and complete",
+      "verdict": "Pass",
+      "Gemini": 60,
+      "Perplexity": 61,
+      "total": 121
+    },
+    {
+      "output_class": "QA-OC-02",
+      "name": "Nonexistent subject identified",
+      "verdict": "Pass",
+      "Gemini": 10,
+      "Perplexity": 10,
+      "total": 20
+    },
+    {
+      "output_class": "QA-OC-03",
+      "name": "Accurate but incomplete",
+      "verdict": "Partial Pass",
+      "Gemini": 0,
+      "Perplexity": 0,
+      "total": 0
+    },
+    {
+      "output_class": "QA-OC-04",
+      "name": "Accurate but unfocused",
+      "verdict": "Partial Pass",
+      "Gemini": 0,
+      "Perplexity": 0,
+      "total": 0
+    },
+    {
+      "output_class": "QA-OC-05",
+      "name": "Inaccurate",
+      "verdict": "Fail",
+      "Gemini": 2,
+      "Perplexity": 1,
+      "total": 3
+    },
+    {
+      "output_class": "QA-OC-06",
+      "name": "Fabricated",
+      "verdict": "Fail",
+      "Gemini": 0,
+      "Perplexity": 0,
+      "total": 0
+    },
+    {
+      "output_class": "QA-OC-07",
+      "name": "Irrelevant or misses most key points",
+      "verdict": "Fail",
+      "Gemini": 0,
+      "Perplexity": 0,
+      "total": 0
+    }
+  ],
+  "defects": [
+    {
+      "app": "Gemini",
+      "test": "QA-03-ORIG-CX01",
+      "repeat": 1,
+      "verdict": "Fail",
+      "output_class": "QA-OC-05",
+      "why": "gives conflicting results: 254629.6, 254600.0 bps next to 262306 bps"
+    },
+    {
+      "app": "Perplexity",
+      "test": "QA-03-PARAM-CX01",
+      "repeat": 2,
+      "verdict": "Fail",
+      "output_class": "QA-OC-05",
+      "why": "final rate 461651 bps is not within 1% of 704318 bps"
+    },
+    {
+      "app": "Gemini",
+      "test": "QA-03-ORIG-CX02",
+      "repeat": 2,
+      "verdict": "Fail",
+      "output_class": "QA-OC-05",
+      "why": "gives conflicting results: 255585.6, 255600.0 bps next to 262306 bps"
+    }
+  ],
+  "validation": [
+    {
+      "graded_by_oracle": 144,
+      "also_graded_by_judge": 0,
+      "agreed": 0,
+      "agreement_rate": "-",
+      "review_raised": 0,
+      "review_decided_by_hand": 0,
+      "review_still_open": 0,
+      "body_diff_extractions": 0,
+      "key_point_checks_run": 396
+    }
+  ],
+  "timing": [
+    {
+      "app": "Gemini",
+      "executions": 72,
+      "mean_response_s": 18.7,
+      "median_response_s": 17.1,
+      "p90_response_s": 23.6,
+      "max_response_s": 44.0,
+      "mean_execution_s": 46.6,
+      "sum_execution_min": 55.9,
+      "mean_words": 248.3
+    },
+    {
+      "app": "Perplexity",
+      "executions": 72,
+      "mean_response_s": 7.5,
+      "median_response_s": 6.8,
+      "p90_response_s": 11.8,
+      "max_response_s": 15.3,
+      "mean_execution_s": 32.7,
+      "sum_execution_min": 39.3,
+      "mean_words": 143.3
+    },
+    {
+      "app": "All",
+      "executions": 144,
+      "mean_response_s": 13.1,
+      "median_response_s": 14.1,
+      "p90_response_s": 23.0,
+      "max_response_s": 44.0,
+      "mean_execution_s": 39.7,
+      "sum_execution_min": 95.2,
+      "mean_words": 195.8
+    }
+  ],
+  "coverage": [
+    {
+      "item": "Requirements",
+      "covered": "8 of 8",
+      "rate": "100.0%"
+    },
+    {
+      "item": "Decision rules",
+      "covered": "8 of 8",
+      "rate": "100.0%"
+    },
+    {
+      "item": "Input classes",
+      "covered": "8 of 8",
+      "rate": "100.0%"
+    },
+    {
+      "item": "Context classes (session)",
+      "covered": "2 of 2",
+      "rate": "100.0%"
+    },
+    {
+      "item": "Apps",
+      "covered": "2 of 4",
+      "rate": "50.0%"
+    },
+    {
+      "item": "Augmentation types",
+      "covered": "4 of 4",
+      "rate": "100.0%"
+    },
+    {
+      "item": "Expected output classes tested",
+      "covered": "QA-OC-01, QA-OC-02",
+      "rate": "-"
+    },
+    {
+      "item": "Output classes observed",
+      "covered": "3 of 7 (QA-OC-01, QA-OC-02, QA-OC-05)",
+      "rate": "42.9%"
+    },
+    {
+      "item": "3D cells (app x context x input) in the plan",
+      "covered": "32 of 32",
+      "rate": "100.0%"
+    },
+    {
+      "item": "3D cells of the full model",
+      "covered": "32 of 64",
+      "rate": "50.0%"
+    },
+    {
+      "item": "Executions graded",
+      "covered": "144 of 144",
+      "rate": "100.0%"
+    }
+  ],
+  "script_complexity": [
+    {
+      "file": "qa_generate.py",
+      "total_lines": 347,
+      "loc": 291,
+      "functions": 13,
+      "avg_cc": 7.7,
+      "max_cc": 20,
+      "most_complex": "validate (20)",
+      "role": "script"
+    },
+    {
+      "file": "qa_oracle.py",
+      "total_lines": 524,
+      "loc": 402,
+      "functions": 25,
+      "avg_cc": 6.9,
+      "max_cc": 19,
+      "most_complex": "_check_command (19)",
+      "role": "script"
+    },
+    {
+      "file": "qa_judge.py",
+      "total_lines": 157,
+      "loc": 117,
+      "functions": 6,
+      "avg_cc": 4.5,
+      "max_cc": 12,
+      "most_complex": "cmd_regrade (12)",
+      "role": "script"
+    },
+    {
+      "file": "qa_sites.py",
+      "total_lines": 92,
+      "loc": 65,
+      "functions": 2,
+      "avg_cc": 3.0,
+      "max_cc": 3,
+      "most_complex": "is_site_error (3)",
+      "role": "script"
+    },
+    {
+      "file": "qa_runner.py",
+      "total_lines": 538,
+      "loc": 447,
+      "functions": 21,
+      "avg_cc": 7.3,
+      "max_cc": 19,
+      "most_complex": "send_and_wait (19)",
+      "role": "script"
+    },
+    {
+      "file": "qa_review.py",
+      "total_lines": 70,
+      "loc": 52,
+      "functions": 2,
+      "avg_cc": 11.5,
+      "max_cc": 19,
+      "most_complex": "main (19)",
+      "role": "script"
+    },
+    {
+      "file": "qa_report.py",
+      "total_lines": 519,
+      "loc": 444,
+      "functions": 25,
+      "avg_cc": 8.9,
+      "max_cc": 29,
+      "most_complex": "charts (29)",
+      "role": "script"
+    },
+    {
+      "file": "test_qa_oracle.py",
+      "total_lines": 155,
+      "loc": 115,
+      "functions": 8,
+      "avg_cc": 2.4,
+      "max_cc": 3,
+      "most_complex": "test_param_counter_expected_value (3)",
+      "role": "unit test"
+    },
+    {
+      "file": "test_qa_generate.py",
+      "total_lines": 62,
+      "loc": 43,
+      "functions": 7,
+      "avg_cc": 4.9,
+      "max_cc": 12,
+      "most_complex": "test_noise_keeps_technical_tokens (12)",
+      "role": "unit test"
+    },
+    {
+      "file": "test_qa_report.py",
+      "total_lines": 43,
+      "loc": 30,
+      "functions": 4,
+      "avg_cc": 4.2,
+      "max_cc": 7,
+      "most_complex": "test_verdict_table_counts_and_rates (7)",
+      "role": "unit test"
+    },
+    {
+      "file": "qa_model_3d.json",
+      "role": "test data",
+      "total_lines": 258,
+      "loc": 258,
+      "functions": "-",
+      "avg_cc": "-",
+      "max_cc": "-",
+      "most_complex": "-"
+    },
+    {
+      "file": "qa_test_data.json",
+      "role": "test data",
+      "total_lines": 168,
+      "loc": 168,
+      "functions": "-",
+      "avg_cc": "-",
+      "max_cc": "-",
+      "most_complex": "-"
+    }
+  ],
+  "test_case_complexity": [
+    {
+      "test": "TC-QA-01",
+      "input_class": "QA-IC-01",
+      "level": "Low",
+      "variants": 3,
+      "turns_cx01": 1,
+      "turns_cx02": 4,
+      "key_point_checks": 2,
+      "error_checks": 2,
+      "oracle": "getbulk_version"
+    },
+    {
+      "test": "TC-QA-02",
+      "input_class": "QA-IC-02",
+      "level": "Low",
+      "variants": 4,
+      "turns_cx01": 1,
+      "turns_cx02": 4,
+      "key_point_checks": 2,
+      "error_checks": 3,
+      "oracle": "oid_unit"
+    },
+    {
+      "test": "TC-QA-03",
+      "input_class": "QA-IC-03",
+      "level": "High",
+      "variants": 4,
+      "turns_cx01": 1,
+      "turns_cx02": 4,
+      "key_point_checks": 2,
+      "error_checks": 3,
+      "oracle": "counter_wrap"
+    },
+    {
+      "test": "TC-QA-04",
+      "input_class": "QA-IC-04",
+      "level": "Medium",
+      "variants": 3,
+      "turns_cx01": 1,
+      "turns_cx02": 4,
+      "key_point_checks": 2,
+      "error_checks": 3,
+      "oracle": "udp_reasons"
+    },
+    {
+      "test": "TC-QA-05",
+      "input_class": "QA-IC-05",
+      "level": "Medium",
+      "variants": 3,
+      "turns_cx01": 1,
+      "turns_cx02": 4,
+      "key_point_checks": 2,
+      "error_checks": 4,
+      "oracle": "trap_inform"
+    },
+    {
+      "test": "TC-QA-06",
+      "input_class": "QA-IC-06",
+      "level": "High",
+      "variants": 3,
+      "turns_cx01": 1,
+      "turns_cx02": 4,
+      "key_point_checks": 5,
+      "error_checks": 2,
+      "oracle": "snmpv3_levels"
+    },
+    {
+      "test": "TC-QA-07",
+      "input_class": "QA-IC-07",
+      "level": "Medium",
+      "variants": 4,
+      "turns_cx01": 1,
+      "turns_cx02": 4,
+      "key_point_checks": 5,
+      "error_checks": 8,
+      "oracle": "snmp_command"
+    },
+    {
+      "test": "TC-QA-08",
+      "input_class": "QA-IC-08",
+      "level": "High",
+      "variants": 4,
+      "turns_cx01": 1,
+      "turns_cx02": 4,
+      "key_point_checks": 2,
+      "error_checks": 3,
+      "oracle": "nonexistent"
+    }
+  ],
+  "repeatability": [
+    {
+      "app": "Gemini",
+      "tests_with_2plus_repeats": 36,
+      "same_verdict_every_repeat": 34,
+      "stability": "94.4%"
+    },
+    {
+      "app": "Perplexity",
+      "tests_with_2plus_repeats": 36,
+      "same_verdict_every_repeat": 35,
+      "stability": "97.2%"
+    },
+    {
+      "app": "Total",
+      "tests_with_2plus_repeats": 72,
+      "same_verdict_every_repeat": 69,
+      "stability": "95.8%"
+    }
+  ],
+  "flaky_tests": [
+    {
+      "app": "Gemini",
+      "test": "QA-03-ORIG-CX01",
+      "verdicts": "Fail / Pass"
+    },
+    {
+      "app": "Gemini",
+      "test": "QA-03-ORIG-CX02",
+      "verdicts": "Pass / Fail"
+    },
+    {
+      "app": "Perplexity",
+      "test": "QA-03-PARAM-CX01",
+      "verdicts": "Pass / Fail"
+    }
+  ],
+  "automation_cost": [
+    {
+      "item": "Development effort (scripts, data, oracle)",
+      "value": "fill in with --dev-hours",
+      "basis": "own time log"
+    },
+    {
+      "item": "Code written",
+      "value": "1818 LOC in 7 scripts + 188 LOC unit tests",
+      "basis": "measured (non-blank, non-comment, no docstrings)"
+    },
+    {
+      "item": "Executions that got an answer",
+      "value": "144",
+      "basis": "measured"
+    },
+    {
+      "item": "Messages sent to chatbots",
+      "value": "240",
+      "basis": "measured (test prompts + context fillers)"
+    },
+    {
+      "item": "Machine time, wall clock",
+      "value": "58.5 min",
+      "basis": "measured (apps in parallel)"
+    },
+    {
+      "item": "Machine time, sequential sum",
+      "value": "95.2 min",
+      "basis": "measured"
+    },
+    {
+      "item": "Judge (Ollama) time",
+      "value": "0.0 min",
+      "basis": "measured, local model"
+    },
+    {
+      "item": "Same work done by hand",
+      "value": "432 min",
+      "basis": "assumption: 3.0 min per execution (type, wait, read, grade, record)"
+    },
+    {
+      "item": "Human time with automation",
+      "value": "15 min",
+      "basis": "assumption: 15 min setup per run + 1.5 min per REVIEW item"
+    },
+    {
+      "item": "Human time saved per run",
+      "value": "417 min",
+      "basis": "manual minus automated"
+    },
+    {
+      "item": "Break-even point",
+      "value": "needs --dev-hours",
+      "basis": "development time / time saved per run"
+    },
+    {
+      "item": "Money spent",
+      "value": "$0.00",
+      "basis": "given with --dollars (plans, API)"
+    }
+  ]
+}

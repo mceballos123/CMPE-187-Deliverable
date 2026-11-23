@@ -1,0 +1,5 @@
+PROMPT:
+In SNMP, what request type is used to pull a big table with as few round trips as possible, and which protocol version added it?
+
+ANSWER:
+

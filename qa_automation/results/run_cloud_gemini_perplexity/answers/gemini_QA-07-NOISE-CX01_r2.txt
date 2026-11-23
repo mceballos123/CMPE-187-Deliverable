@@ -1,0 +1,17 @@
+PROMPT:
+what net-snmp command wolud I use to read the whole interface table from a switch at 10.0.0.1 uisng SNMPv2c and the community string monitor123
+
+ANSWER:
+Use snmpwalk with the IF-MIB::ifTable object identifier:
+Bash
+snmpwalk -v2c -c monitor123 10.0.0.1 IF-MIB::ifTable
+Helpful Variations
+Tabular output (snmptable): If you want columns formatted as a table instead of one OID per line:
+Bash
+snmptable -v2c -c monitor123 10.0.0.1 IF-MIB::ifTable
+64-bit counters and interface names (ifXTable): For gigabit/10G+ links or interface names (ifName / ifAlias), IF-MIB::ifXTable is often more useful than the older 32-bit ifTable:
+Bash
+snmpwalk -v2c -c monitor123 10.0.0.1 IF-MIB::ifXTable
+Numeric OIDs only: Add -On if you don't want MIB names resolved (helpful if IF-MIB isn't loaded locally, though IF-MIB is standard in net-snmp):
+Bash
+snmpwalk -v2c -c monitor123 -On 10.0.0.1 .1.3.6.1.2.1.2.2

@@ -1,0 +1,19 @@
+PROMPT:
+What net-snmp command would I use to read the whole interface table from a switch at 10.0.0.1 using SNMPv2c and the community string monitor123?
+
+ANSWER:
+Use snmpwalk to read every accessible entry in the switch’s interface table:
+bash
+snmpwalk -v 2c -c monitor123 10.0.0.1 .1.3.6.1.2.1.2.2
+snmpwalk retrieves all objects under the specified OID; .1.3.6.1.2.1.2.2 is the standard ifTable OID. Using the numeric OID avoids needing local MIB files to resolve its name.
+net-snmp
++1
+-v 2c selects SNMPv2c.
+-c monitor123 supplies the community string.
+10.0.0.1 is the target switch.
+net-snmp
+If the IF-MIB is installed locally, the equivalent command is:
+bash
+snmpwalk -v 2c -c monitor123 10.0.0.1 IF-MIB::ifTable
+For a formatted table rather than one object per line, use snmptable with the same arguments.
+github

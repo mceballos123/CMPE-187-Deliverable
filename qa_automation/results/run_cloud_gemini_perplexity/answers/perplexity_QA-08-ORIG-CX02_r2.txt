@@ -1,0 +1,19 @@
+PROMPT:
+Which RFC defines SNMPv4, and what new features did it add?
+
+ANSWER:
+No RFC defines SNMPv4: there is no standardized SNMP version 4, so it has no standardized new features. The standardized SNMP frameworks are SNMPv1, SNMPv2, and SNMPv3.
+rfc-editor
++1
+The likely intended version: SNMPv3
+SNMPv3 is defined by a suite of RFCs, not a single document. RFC 3411 defines its architecture; the core specifications are collected in Internet Standard STD 62, comprising RFCs 3411–3418.
+rfc-editor
+Compared with the SNMPv2 framework, SNMPv3 added:
+A new message format.
+Message security.
+Access control.
+Remote configuration of SNMP parameters.
+rfc-editor
+Two important documents within that suite are RFC 3412, which defines SNMPv3 message processing and its message format, and RFC 3414, which defines its User-based Security Model (USM). Neither defines SNMPv4.
+rfc-editor
++1

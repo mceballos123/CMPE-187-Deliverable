@@ -1,0 +1,29 @@
+PROMPT:
+What features were added in SNMPv4, and what is the RFC number for it?
+
+ANSWER:
+There is no officially standardized SNMPv4 and therefore no RFC number for SNMPv4.
+You may be referring to SNMPv3, which introduced several important improvements over SNMPv2.
+Features introduced in SNMPv3
+Authentication: Verifies the identity of the sender.
+Encryption (Privacy): Encrypts SNMP messages to protect sensitive information.
+Message Integrity: Prevents unauthorized modification of messages.
+Access Control: Controls which users can access specific management information.
+Secure Configuration: Supports remote configuration of SNMP security parameters.
+Important RFC numbers
+RFC
+Description
+RFC 3411
+SNMP architecture
+RFC 3412
+Message processing and dispatching
+RFC 3414
+User-Based Security Model (USM)
+RFC 3415
+View-Based Access Control Model (VACM)
+RFC 3416
+SNMP protocol operations
+Official reference:
+RFC 3411 – SNMP Architecture 
+.
+In short: If your question refers to the version that added authentication, encryption, and access control, the answer is SNMPv3, defined across RFCs 3411–3418, not SNMPv4.

@@ -1,0 +1,7 @@
+PROMPT:
+which SNMP operation lets a manager retrieve a large table in fweer requests, and in wihch SNMP version was it introduced
+
+ANSWER:
+The operation is GetBulk (GetBulkRequest), introduced in SNMPv2. It lets a manager retrieve multiple rows of a table in a single response, reducing the number of requests compared with repeatedly using GetNext.
+ibm
++1

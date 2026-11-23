@@ -1,0 +1,10 @@
+PROMPT:
+A 32-bit ifInOctets counter on a router interface reads 4,293,940,403 at the first poll and 1,614,298 at the second poll 30 seconds later. Assuming the counter wrapped once, what was the average inbound throughput in bits per second?
+
+ANSWER:
+The increase was
+2
+32
+−4,293,940,403+1,614,298=1,731,191 octets. Over 30 seconds, that is about 461,651 bits per second
+(Δoctets×8÷30).
+snmp-monitoring

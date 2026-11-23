@@ -1,0 +1,78 @@
+PROMPT:
+why does SNMP nomrally run over UDP instaed of TCP
+
+ANSWER:
+SNMP (Simple Network Management Protocol) normally runs over UDP instead of TCP because network management generally benefits more from simplicity, low overhead, and fast communication than from guaranteed delivery.
+There are several reasons for this:
+1. Lower overhead
+UDP is connectionless, meaning it doesn't require a connection to be established before sending data.
+UDP: Sends a request immediately without a handshake.
+TCP: Requires a three-way handshake (SYN, SYN-ACK, ACK) before data can be exchanged.
+SNMP messages are typically small, so the overhead of establishing and maintaining TCP connections would be unnecessary.
+2. SNMP handles reliability at the application layer
+You might wonder: if UDP doesn't guarantee delivery, how does SNMP deal with lost packets?
+SNMP handles this through its own request/response mechanism.
+For example:
+The SNMP manager sends a GET request to a device.
+The device responds with the requested information.
+If the manager doesn't receive a response within a configured timeout, it can retransmit the request.
+This means SNMP doesn't need TCP's built-in retransmission mechanisms.
+3. Better suited for network monitoring
+Imagine you're monitoring 500 switches and routers.
+You periodically poll them for information such as:
+CPU utilization
+Memory usage
+Interface bandwidth
+Interface errors
+Device uptime
+UDP allows these queries to be sent with minimal overhead.
+If a packet gets lost, the monitoring system can retry or wait for the next polling interval.
+For monitoring, a small amount of lost data is often preferable to introducing additional connection-management overhead.
+4. SNMP traps work well with UDP
+SNMP also supports unsolicited notifications called traps.
+For example:
+A switch detects that an interface has gone down.
+It immediately sends an SNMP trap to the monitoring server.
+The monitoring server receives the notification.
+UDP is useful here because the device can send the notification without establishing a TCP connection first.
+ 5. UDP is lightweight for embedded devices
+Many network devices have limited processing resources.
+Historically, routers, switches, printers, and other network equipment benefited from UDP's:
+Smaller protocol overhead.
+No connection state to maintain.
+Lower processing requirements.
+Simpler implementation.
+UDP vs TCP for SNMP
+Feature
+UDP
+TCP
+Connection-oriented
+No
+Yes
+Three-way handshake
+No
+Yes
+Guaranteed delivery
+No
+Yes
+Retransmissions
+Application-managed
+Built-in
+Connection overhead
+Low
+Higher
+Typical SNMP transport
+Yes
+No
+Which ports does SNMP use?
+Port
+Protocol
+Purpose
+UDP 161
+UDP
+SNMP requests and responses
+UDP 162
+UDP
+SNMP traps and informs
+One interesting detail: SNMPv3 still normally uses UDP. SNMPv3 improves security through authentication, integrity protection, and encryption; it doesn't require TCP to achieve those features.
+The key takeaway: SNMP uses UDP because network monitoring is typically made up of small, frequent messages where low overhead and simplicity are more valuable than TCP's guaranteed delivery.

@@ -1,0 +1,9 @@
+PROMPT:
+Using net-snmp and SNMPv2c with community monitor123, what command dumps the full interface table of the switch at 10.0.0.1?
+
+ANSWER:
+bash
+snmpwalk -v 2c -c monitor123 10.0.0.1 .1.3.6.1.2.1.2.2
+This uses SNMPv2c (-v 2c) and community monitor123 to walk the full standard interface table, IF-MIB::ifTable, whose numeric OID is .1.3.6.1.2.1.2.2. Using the numeric OID avoids requiring local MIB-name resolution.
+net-snmp
++1

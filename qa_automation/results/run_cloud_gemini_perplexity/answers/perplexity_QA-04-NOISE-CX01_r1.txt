@@ -1,0 +1,21 @@
+PROMPT:
+why does SNMP nomrally run over UDP instaed of TCP
+
+ANSWER:
+SNMP normally uses UDP because its typical job—small monitoring requests and responses—doesn’t need the overhead of a TCP connection. More importantly, SNMP was designed to keep management communication as lightweight as possible when the network is already having problems. That is the primary motivation given in the protocol’s design discussion.
+rfc-editor
+Why UDP fits SNMP
+Less connection overhead. A manager can send a request and receive a response without a TCP handshake, connection teardown, or transport-level acknowledgments. This avoids extra traffic during congestion.
+rfc-editor
+Less work for managed devices. Routers, switches, and other SNMP agents don’t need to maintain TCP connections for monitoring. The manager usually handles request timeouts and retries, keeping the device-side implementation simpler.
+rfc-editor
+A good match for request–response exchanges. A typical poll asks for a value and gets an answer; it doesn’t require a long-lived, ordered byte stream. Many TCP features therefore provide limited benefit for that exchange.
+rfc-editor
+Application-level confirmation is still needed. A TCP acknowledgment confirms receipt by the remote TCP stack—not that the SNMP application processed the request. SNMP still needs its own response and timeout logic.
+rfc-editor
+What about reliability?
+UDP itself does not guarantee delivery. For an SNMP request, the manager can wait for a response and retry or report a timeout if none arrives. The design therefore puts retry decisions at the application layer rather than relying on a connection-oriented transport. This does not mean UDP guarantees success on a failing network; it means management messages can be attempted with fewer transport dependencies and less overhead.
+rfc-editor
+SNMP can also run over TCP. RFC 3430 defines an experimental TCP transport mapping, particularly useful for large transfers where TCP’s segmentation and flow control help. UDP remains the conventional baseline because it better fits lightweight polling and has broad interoperability.
+rfc-editor
++2

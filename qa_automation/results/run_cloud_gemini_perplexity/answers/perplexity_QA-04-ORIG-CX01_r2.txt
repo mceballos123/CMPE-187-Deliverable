@@ -1,0 +1,20 @@
+PROMPT:
+Why does SNMP normally run over UDP instead of TCP?
+
+ANSWER:
+SNMP normally runs over UDP because it was designed for small, simple management exchanges with minimal overhead—even when the network being managed is having problems. UDP also keeps the SNMP agent on each managed device simpler and less resource-intensive.
+rfc-editor
+Why UDP fits SNMP
+No connection setup. A manager can send a request and receive a response without first establishing a TCP connection. UDP also avoids TCP’s connection-management traffic and transport acknowledgments. This matters when polling many devices, especially on a congested network.
+rfc-editor
+Less work for managed devices. With UDP, the agent does not need to maintain a TCP connection for each manager. For ordinary request–response exchanges, the manager handles timeouts and decides whether to retry, placing much of the recovery logic on the management station rather than the devices being monitored.
+rfc-editor
+Control during network trouble. A central design goal was for SNMP to keep operating, if possible, when the network is at its worst. Independent datagrams avoid requiring a connection to be established and maintained before useful management information can pass. This does not guarantee delivery; it avoids making management depend on the additional connection machinery.
+rfc-editor
+TCP’s features are often unnecessary. Typical small SNMP request–response exchanges do not need a reliable, ordered byte stream. Application-controlled retries can provide the recovery needed for those exchanges.
+rfc-editor
+The trade-off—and why TCP is still an option
+UDP does not guarantee delivery, so an SNMP request or response can be lost; the requesting application must time out and retry or give up. The design deliberately accepts this trade-off to keep the transport and agents lightweight.
+rfc-editor
+SNMP over TCP is defined too. It can be useful for large transfers because TCP provides efficient segmentation, flow control, and retransmission. However, it uses more resources, so UDP remains the normal choice for routine monitoring.
+datatracker.ietf

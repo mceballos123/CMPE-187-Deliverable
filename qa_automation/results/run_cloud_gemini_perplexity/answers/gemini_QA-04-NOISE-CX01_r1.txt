@@ -1,0 +1,19 @@
+PROMPT:
+why does SNMP nomrally run over UDP instaed of TCP
+
+ANSWER:
+Simple Network Management Protocol (SNMP) primarily uses UDP (typically ports 161 for agent queries/responses and 162 for traps/informs) instead of TCP because SNMP was designed to be lightweight, fast, and reliable even when the network itself is degraded or congested.
+1. Low Overhead and Fast Polling
+Network monitoring systems (NMS) regularly poll hundreds or thousands of devices—routers, switches, printers, and servers—for counters and status metrics.
+No connection setup or teardown: TCP requires a three-way handshake (SYN, SYN-ACK, ACK) before sending data and a multi-packet teardown afterward. Over thousands of short request/response exchanges, that extra round-trip latency and packet overhead adds up quickly.
+Minimal protocol state: UDP is connectionless, so an SNMP agent or manager does not have to track TCP session state, sequence numbers, or retransmission timers for every polling cycle. On resource-constrained embedded hardware or legacy network gear, saving CPU and memory matters.
+2. Works When the Network Is Failing
+One of the most important times to check a device is when links are dropping packets, congested, or partially down.
+No connection failure during congestion: Establishing or maintaining a TCP session can time out or stall when packet loss spikes or routing is unstable. A single UDP GET or TRAP packet can still get through without waiting to negotiate a connection.
+Avoids false positives and head-of-line blocking: With UDP, individual polling requests don't block behind retransmissions of earlier lost segments.
+3. Application-Level Retry Handles Reliability
+A common misconception is that UDP means SNMP cannot be reliable. In practice, SNMP manages reliability at the application layer:
+Request-response timeouts and retries: For GET, GETNEXT, GETBULK, and SET operations, the manager sends a request and waits for a response. If no reply arrives within a timeout window, the manager simply resends the request—often polling a fresh value rather than forcing an old, stale TCP byte stream through.
+Unacknowledged vs. acknowledged notifications: Standard SNMP Traps are fire-and-forget UDP messages (great when a dying device needs to send a quick alert before going offline). When guaranteed delivery of notifications is needed, SNMP Informs add an acknowledgment and retry mechanism on top of UDP.
+When TCP Is Used Instead
+Modern SNMP versions (such as SNMPv2c and SNMPv3) do support running over TCP (commonly port 161/162 or dedicated TLS/DTLS transports) when needed—for example, when traversing strict firewalls/NATs where connection state helps, or when transferring larger payloads reliably across WAN links. However, UDP remains the default for standard LAN/WAN monitoring because speed, simplicity, and low overhead win out for frequent polling and alerts.

@@ -1,0 +1,6 @@
+# logged-in browser profiles: never commit
+chrome_profiles/
+sites_override.json
+__pycache__/
+.pytest_cache/
+.venv/

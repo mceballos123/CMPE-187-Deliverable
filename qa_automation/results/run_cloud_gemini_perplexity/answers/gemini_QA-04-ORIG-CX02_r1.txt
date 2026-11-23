@@ -1,0 +1,15 @@
+PROMPT:
+Why does SNMP normally run over UDP instead of TCP?
+
+ANSWER:
+SNMP (Simple Network Management Protocol) normally runs over UDP (typically ports 161 for queries/responses and 162 for traps/informs) primarily because network monitoring favors low overhead, simplicity, and resilience during network trouble over connection-oriented delivery.
+Why UDP Fits SNMP
+Minimal overhead for frequent polling: Monitoring systems often poll hundreds or thousands of devices every few seconds or minutes for metrics like CPU load, interface counters, and errors. UDP avoids TCP's three-way handshake, connection state tracking, and ACK overhead for short request-response exchanges.
+Works when links or devices are congested or failing: During outages, congestion, or packet loss—precisely when you want SNMP telemetry most—TCP connections can stall, time out, or struggle to establish while management stations try to reach degraded devices.
+Simpler agent footprint: Early network gear (routers, switches, printers, UPS units) had tight CPU and memory budgets. Implementing a stateless UDP listener/responder is much lighter than maintaining per-client TCP state tables across many polling stations.
+Built-in tolerance for lost polls: Most SNMP polling is periodic and idempotent—if a single GET or GETNEXT packet is dropped, the management station simply retries or waits for the next polling interval rather than needing stream-level retransmission.
+Trade-Offs & Exceptions
+Reliability is handled at the application/polling layer (or via INFORM): Because UDP does not guarantee delivery or ordering, SNMP relies on timeouts and retries by the polling manager, and SNMPv2c/v3 INFORM messages add application-level acknowledgments (unlike fire-and-forget TRAP messages).
+SNMP over TCP does exist: Modern SNMP implementations and standards allow running SNMP over TCP (including secure transports like DTLS over UDP and TLS over TCP in SNMPv3) when traversing firewalls/NATs more predictably or transferring larger payloads is desired, even though UDP remains the default standard.
+Want to see how SNMPv1, SNMPv2c, and SNMPv3 differ in security?
+Yes

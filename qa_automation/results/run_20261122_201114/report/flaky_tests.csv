@@ -1,0 +1,4 @@
+app,test,verdicts
+Gemini,QA-03-ORIG-CX01,Fail / Pass
+Gemini,QA-03-ORIG-CX02,Pass / Fail
+Perplexity,QA-03-PARAM-CX01,Pass / Fail

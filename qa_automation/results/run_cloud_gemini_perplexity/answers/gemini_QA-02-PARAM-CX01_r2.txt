@@ -1,0 +1,14 @@
+PROMPT:
+What is the OID of hrSystemUptime, and what unit does its value use?
+
+ANSWER:
+The OID for hrSystemUptime (from HOST-RESOURCES-MIB) is 1.3.6.1.2.1.25.1.1 (polled as scalar instance 1.3.6.1.2.1.25.1.1.0).
+   Observium MIB Browser
+Its value uses TimeTicks, which represents time in hundredths of a second (1/100th of a second) since the host was last initialized.
+   Dell
+Quick Reference & Gotchas
+Converting to seconds: Divide the raw TimeTicks value by 100 (e.g., 100 ticks = 1 second).
+32-bit wrap-around: Because TimeTicks is a 32-bit unsigned integer, the counter maxes out at 4,294,967,295 ticks—roughly 497.1 days—before wrapping back to 0.
+   Dell
+Vs. sysUpTime (1.3.6.1.2.1.1.3.0): hrSystemUptime tracks host/OS initialization time, whereas sysUpTime tracks how long the SNMP management subsystem has been running.
+   Observium MIB Browser

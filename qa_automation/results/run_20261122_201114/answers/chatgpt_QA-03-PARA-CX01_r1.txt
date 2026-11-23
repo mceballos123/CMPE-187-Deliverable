@@ -1,0 +1,20 @@
+PROMPT:
+On a router, ifInOctets is a 32-bit counter. Poll 1 reads 4,294,000,000 and poll 2, taken 60 seconds later, reads 1,000,000. The counter rolled over once in between. What is the average inbound rate in bits per second?
+
+ANSWER:
+Since the counter rolled over once, calculate the total bytes using the 32-bit maximum counter value (
+2
+32
+=4,294,967,296).
+Step 1: Calculate bytes received
+(
+(4,294,967,296−4,294,000,000)+1,000,000
+=967,296+1,000,000=1,967,296 bytes
+Step 2: Convert bytes to bits
+1,967,296×8=15,738,368 bits
+Step 3: Divide by 60 seconds
+60
+15,738,368
+=262,306.13
+Final answer
+Average inbound rate = 262,306 bits per second (approximately 262.3 kbps).

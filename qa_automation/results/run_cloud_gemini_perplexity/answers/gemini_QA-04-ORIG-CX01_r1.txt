@@ -1,0 +1,18 @@
+PROMPT:
+Why does SNMP normally run over UDP instead of TCP?
+
+ANSWER:
+SNMP (Simple Network Management Protocol) normally runs over UDP (typically ports 161 and 162) primarily because it was designed to be lightweight, low-overhead, and reliable even when the network itself is congested or failing.
+1. Low Overhead for Frequent Polling
+Network monitoring relies heavily on periodic polling—sending thousands of small GET requests across routers, switches, and servers to check interface counters, CPU usage, or memory. UDP avoids TCP's three-way handshake, connection state tracking, and acknowledgments on every exchange, keeping packet sizes small and CPU/memory load low on embedded network devices.
+2. Works When TCP Might Struggle or Fail
+Congestion and packet loss: During a network outage, link saturation, or broadcast storm, TCP's congestion control and retransmission timers can back off or stall just when you most need diagnostic visibility.
+Connection state limits: Network devices often have limited resources and may handle large numbers of management agents or transient monitoring scripts. Avoiding long-lived TCP connection state reduces the risk of exhausting connection tables.
+3. Stateless Request-Response & Fire-and-Forget Traps
+Many SNMP operations are short, self-contained queries (GET, SET, GETNEXT, GETBULK) or asynchronous notifications (TRAPs). In SNMPv1/v2c, traps are "fire-and-forget" notifications sent from an agent to a management station without waiting for a response—fitting UDP's connectionless model naturally.
+4. Reliability Is Handled at the Application Layer (When Needed)
+Choosing UDP doesn't mean SNMP ignores lost packets:
+Polling retries & timeouts: The management station (NMS) simply times out and resends a GET or SET request if no response arrives.
+SNMPv2c/v3 INFORM messages: Unlike unacknowledged TRAPs, an INFORM requires the receiving manager to send back a response, letting the sender retry if it isn't acknowledged.
+When Is SNMP Over TCP Used?
+While UDP is the standard default, SNMP over TCP (RFC 3430) is occasionally used when traversing strict firewalls/NATs that block or mishandle UDP, or when transporting large payloads/bulk transfers where reliable stream delivery is preferred over connectionless simplicity.

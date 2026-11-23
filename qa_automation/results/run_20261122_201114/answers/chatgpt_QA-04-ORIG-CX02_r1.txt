@@ -1,0 +1,82 @@
+PROMPT:
+Why does SNMP normally run over UDP instead of TCP?
+
+ANSWER:
+SNMP (Simple Network Management Protocol) normally uses UDP instead of TCP because network monitoring prioritizes simplicity, low overhead, and speed over guaranteed delivery for every message.
+SNMP typically uses:
+UDP port 161: For SNMP requests and responses.
+UDP port 162: For SNMP traps and notifications.
+1. Why does SNMP use UDP?
+There are five main reasons:
+Low overhead: UDP has a smaller header and doesn't require establishing a connection before communicating.
+Faster communication: No TCP three-way handshake is needed.
+Efficient monitoring: Monitoring systems often poll hundreds or thousands of network devices. UDP keeps this process lightweight.
+Less network traffic: UDP doesn't require TCP acknowledgments or retransmissions.
+Suitable for monitoring: Occasional lost monitoring messages can often be handled by polling again or using another notification mechanism.
+2. SNMP over UDP vs. TCP
+Feature
+UDP
+TCP
+Connection-oriented
+No
+Yes
+Three-way handshake
+No
+Yes
+Delivery guarantee
+No
+Yes
+Acknowledgments
+No (at transport layer)
+Yes
+Retransmission
+No (at transport layer)
+Yes
+Overhead
+Lower
+Higher
+Speed/latency
+Generally lower overhead
+Generally higher overhead
+3. What happens if an SNMP packet gets lost?
+Imagine your monitoring server sends an SNMP request to a network switch asking:
+"What is your CPU utilization?"
+The following happens:
+SNMP request-response example
+SNMP Monitoring Server
+UDP request — CPU utilization?
+Network Switch
+UDP response — CPU: 35%
+SNMP Monitoring Server
+But what if the response gets lost?
+The monitoring server waits for a response.
+If the timeout expires, it can retransmit the SNMP request.
+If the device still doesn't respond, the monitoring server may mark it as unreachable.
+Important: SNMP implements its own request timeout and retry mechanisms at the application level. UDP itself does not guarantee delivery.
+4. What about SNMP Traps?
+SNMP also supports unsolicited notifications called traps.
+For example, a switch might send a trap to your monitoring server when:
+An interface goes down.
+A power supply fails.
+CPU utilization crosses a threshold.
+A device experiences a critical event.
+SNMP traps normally use UDP port 162.
+One important distinction:
+SNMP Trap: No acknowledgment is required.
+SNMP Inform: Requires an acknowledgment from the receiving SNMP manager.
+This makes SNMP Inform more reliable than a traditional trap.
+5. Common networking interview question
+Q: Why does SNMP use UDP instead of TCP?
+A good interview answer:
+"SNMP uses UDP because network monitoring requires lightweight, efficient communication with minimal overhead. UDP doesn't require a connection handshake, making it suitable for frequent polling of many network devices. Since UDP doesn't guarantee packet delivery, SNMP handles lost requests through application-level timeouts and retries. SNMP also supports traps and informs for notifications."
+Interview tip
+Remember these three things:
+UDP 161 = SNMP requests and responses.
+UDP 162 = SNMP traps and informs.
+UDP = Connectionless, lightweight, and no transport-level delivery guarantee.
+One extra thing to know: SNMPv1 and SNMPv2c use community strings for basic access control, while SNMPv3 adds authentication and encryption capabilities.
+Learn more
+Coursera
+100% Online MCS
+Study the University of Illinois MCS on Coursera.
+Ad

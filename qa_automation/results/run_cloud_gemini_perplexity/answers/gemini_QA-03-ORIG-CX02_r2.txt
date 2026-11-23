@@ -1,0 +1,76 @@
+PROMPT:
+A 32-bit ifInOctets counter on a router interface reads 4,294,000,000 at the first poll and 1,000,000 at the second poll 60 seconds later. Assuming the counter wrapped once, what was the average inbound throughput in bits per second?
+
+ANSWER:
+The average inbound throughput was 255,585.6 bits per second (approx. 255.6 kbps).
+Step-by-Step Calculation
+Determine the 32-bit counter rollover point:
+An unsigned 32-bit integer holds 
+2
+32
+ distinct states, ranging from 
+0 to 
+2
+32
+−1 (
+4,294,967,295). When it increments past 
+4,294,967,295, it rolls over back to 
+0, adding a full span of 
+2
+32
+=4,294,967,296 octets (bytes).
+Calculate total octets (bytes) received during the 60-second interval:
+Total Octets=(2
+32
+−First Poll)+Second Poll
+Total Octets
+Total Octets=(4,294,967,296−4,294,000,000)+1,000,000
+Total Octets
+Total Octets=967,296+1,000,000=1,967,296 octets (bytes)
+Convert octets (bytes) to bits:
+Since 1 octet = 8 bits:
+Total Bits
+Total Bits=1,967,296×8=15,738,368 bits
+Divide by the polling interval (60 seconds) to get bits per second (bps):
+Throughput=
+60 seconds
+15,738,368 bits
+≈262,306.13 bps
+(Note: Wait—let me verify 
+15,738,368÷60: 
+15,738,368/60=262,306.133..., NOT 
+255,585.6! Let me rewrite cleanly with the exact arithmetic so the headline matches the math.)
+Let me correct that cleanly:
+4,294,967,296−4,294,000,000=967,296
+967,296+1,000,000=1,967,296 bytes
+1,967,296×8=15,738,368 bits
+15,738,368/60=262,306.13 bps (or ~262.3 kbps).
+The average inbound throughput was 262,306.13 bits per second (about 262.3 kbps).
+Step-by-Step Calculation
+Find the 32-bit counter rollover value:
+An unsigned 32-bit counter runs from 
+0 to 
+2
+32
+−1 (
+4,294,967,295), meaning one complete wrap adds 
+2
+32
+=4,294,967,296 octets (bytes).
+Calculate total octets (bytes) transferred:
+Total Octets=(2
+32
+−First Poll)+Second Poll
+Total Octets
+Total Octets=(4,294,967,296−4,294,000,000)+1,000,000
+Total Octets
+Total Octets=967,296+1,000,000=1,967,296 octets
+Convert octets to bits (1 octet = 8 bits):
+Total Bits
+Total Bits=1,967,296×8=15,738,368 bits
+Divide by the 60-second polling interval:
+Average Throughput=
+60 s
+15,738,368 bits
+≈262,306.13 bps(≈262.3 kbps)
+(Note: On high-speed interfaces—1 Gbps and above—32-bit ifInOctets counters can wrap multiple times within a single 60-second SNMP poll, which is why network monitoring systems use 64-bit ifHCInOctets counters instead.)

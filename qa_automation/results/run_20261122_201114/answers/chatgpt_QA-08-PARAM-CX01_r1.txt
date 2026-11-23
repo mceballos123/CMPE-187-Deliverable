@@ -1,0 +1,69 @@
+PROMPT:
+Which RFC defines SNMPv5, and what new features did it add?
+
+ANSWER:
+There is no officially standardized SNMPv5 and therefore no RFC defining it.
+You may be thinking of SNMPv3, which introduced significant security and management improvements over SNMPv1 and SNMPv2.
+RFCs defining SNMPv3
+The main specifications are:
+RFC
+Description
+RFC 3411
+SNMP architecture
+RFC 3412
+Message processing and dispatching
+RFC 3413
+SNMP applications
+RFC 3414
+User-based Security Model (USM)
+RFC 3415
+View-based Access Control Model (VACM)
+RFC 3416
+Protocol operations
+RFC 3417
+Transport mappings
+Source:
+RFC 3411 – SNMP Architecture 
+.
+What new features did SNMPv3 add?
+Compared with SNMPv1 and SNMPv2c, SNMPv3 introduced:
+Authentication: Verifies the identity and integrity of SNMP messages using cryptographic authentication.
+Encryption (Privacy): Protects SNMP message contents from unauthorized reading.
+Access control: Introduces VACM (View-based Access Control Model) to restrict which MIB objects users can access.
+User-based security: Uses individual SNMP users and security credentials instead of relying solely on community strings.
+Replay protection: Uses message timing and engine identifiers to help prevent replay attacks.
+Remote configuration: Supports secure remote configuration of SNMP security parameters.
+Modular architecture: Makes it easier to extend SNMP with different security and message-processing models.
+Source:
+RFC 3410 – SNMPv3 Overview 
+.
+Quick comparison
+Feature
+SNMPv1
+SNMPv2c
+SNMPv3
+Get/Set operations
+Yes
+Yes
+Yes
+GetBulk
+No
+Yes
+Yes
+Authentication
+Community string
+Community string
+Cryptographic
+Encryption
+No
+No
+Yes
+Access control
+Basic
+Basic
+VACM
+Secure management
+No
+No
+Yes
+Bottom line: If you encountered the term SNMPv5, it is likely a misunderstanding or a vendor-specific reference. The standardized evolution is SNMPv1 → SNMPv2 → SNMPv3, with SNMPv3's defining improvements being authentication, encryption, and granular access control.

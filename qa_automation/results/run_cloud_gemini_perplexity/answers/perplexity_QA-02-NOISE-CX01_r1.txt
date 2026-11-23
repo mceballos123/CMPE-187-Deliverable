@@ -1,0 +1,10 @@
+PROMPT:
+what is the OID of sysUpTime, and what unit does its vaule use
+
+ANSWER:
+OID: 1.3.6.1.2.1.1.3 (SNMPv2-MIB::sysUpTime). When querying it with SNMP GET, use the scalar instance 1.3.6.1.2.1.1.3.0 (sysUpTime.0).
+mibs.observium
+Unit: TimeTicks, measured in hundredths of a second—each tick is 10 milliseconds. Divide the raw value by 100 to get seconds; for example, 12345 means 123.45 seconds.
+alvestrand
+It measures time since the device’s network-management subsystem was last reinitialized, not necessarily time since the entire device booted. Restarting the SNMP agent can therefore reset it.
+f5

@@ -1,0 +1,21 @@
+PROMPT:
+which RFC defiens SNMPv4, and what new fetaures did it add
+
+ANSWER:
+There is no SNMPv4 RFC—SNMPv4 does not exist.
+The latest and full Internet Standard version of the Simple Network Management Protocol is SNMPv3 (defined across RFCs 3410–3418, STD 62).
+ Rather than creating a brand-new "v4" protocol, the IETF designed SNMPv3's modular architecture so that new security mechanisms and transport models could be added without overhauling the protocol version.   
+IETF Datatracker
+What SNMPv3 Added Over Earlier Versions (v1 & v2c)
+Cryptographic Security: Added authentication (verifying message origin and integrity) and encryption/privacy (preventing eavesdropping), supporting security levels like noAuthNoPriv, authNoPriv, and authPriv.
+   Wikipedia
+Modular Architecture: Split the SNMP engine into distinct subsystems—Message Processing, Security, and Access Control—allowing new security or transport models (such as Transport Security Model / TLS / SSH in later RFCs like RFC 5590, RFC 5591, and RFC 5953) to plug in cleanly.
+   Pearsoncmg.com
+View-Based Access Control (VACM): Introduced granular access control based on users, groups, security levels, and MIB "views" (defining which specific OIDs/subtrees a user can read or write), replacing simple plaintext community strings.
+Logical Contexts & Engine IDs: Added SnmpEngineID to uniquely identify SNMP entities and support for multiple logical contexts within a managed device.
+Remote Configuration & Coexistence: Enabled secure remote configuration of SNMP parameters and defined coexistence rules (RFC 3584) for running alongside SNMPv1 and SNMPv2c.
+(Note: If you saw "v4" in release notes—such as ucd-snmp v4—that refers to software release numbering rather than an SNMP protocol version. Modern network automation often uses newer protocols like NETCONF or RESTCONF alongside or instead of SNMP.)
+   Net-SNMP
+If you're digging into SNMP standards, here are a few helpful next steps:
+Compare SNMPv1, SNMPv2c, and SNMPv3 security
+List key RFCs for SNMPv3 security and transports

@@ -1,0 +1,19 @@
+PROMPT:
+why does SNMP nomrally run over UDP instaed of TCP
+
+ANSWER:
+Simple Network Management Protocol (SNMP) primarily runs over UDP (typically ports 161 for agent queries/responses and 162 for traps/informs) because of how network monitoring was designed to work—especially when networks are congested or failing.
+1. Works When the Network Is Degraded or Failing
+Network management tools are most critical when links are dropping packets, routers are overloaded, or devices are rebooting. TCP requires a multi-step handshake and maintains strict connection state, which can stall or time out during severe congestion or partial outages. UDP sends self-contained datagrams without connection setup, making quick best-effort probes possible even under stress.
+2. Low Overhead Across Thousands of Devices
+Monitoring systems often poll hundreds or thousands of switches, routers, servers, and printers every few seconds or minutes. Opening, maintaining, and closing TCP connections to every managed device creates substantial CPU, memory, and bandwidth overhead—particularly on constrained or embedded hardware. UDP lets a management station fire off lightweight requests and process replies with minimal state.
+3. Request-Response and "Fire-and-Forget" Fit
+Most SNMP traffic follows simple patterns:
+Polling (Get / GetNext / GetBulk): A manager asks for a metric and gets a single reply. If a response doesn't arrive within a timeout window, the manager can simply retry or move on rather than managing a long-lived stream.
+Traps: Agents send asynchronous alerts when an event happens. A connectionless datagram avoids the cost of establishing a session just to report a status change.
+4. Built-in App-Level Handling Where Needed
+UDP doesn't guarantee delivery or ordering, so reliability—when required—is handled at the application or management-station layer:
+Management tools configure timeouts and retries for polls.
+SNMP Inform messages (introduced in SNMPv2c) add an acknowledgment back from the receiving manager over UDP so the sender knows the notification arrived.
+Does SNMP Ever Use TCP?
+Yes—SNMP over TCP is supported (commonly on port 161 or 162 depending on configuration, and standardized in RFCs such as RFC 3430 for SNMPv3). Administrators sometimes choose TCP when traversing firewalls/NATs where connection state is preferred, when transferring large payloads (such as large GetBulk tables), or when running SNMP over TLS/SSH where a reliable transport stream is required. Even so, UDP remains the default and most common transport for everyday network polling.

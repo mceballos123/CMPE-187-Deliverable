@@ -1,0 +1,13 @@
+PROMPT:
+What is the OID of sysUpTime, and what unit does its value use?
+
+ANSWER:
+The OID of sysUpTime is 1.3.6.1.2.1.1.3 (and its scalar instance queried via SNMP is 1.3.6.1.2.1.1.3.0).
+   Ivanti Innovators Hub
+Its value uses TimeTicks, which measures time in hundredths of a second (centiseconds) since the network management portion of the system was last re-initialized.
+ Because TimeTicks is a 32-bit unsigned counter, it wraps around back to zero after roughly 497.1 days (
+2
+32
+−1 hundredths of a second).
+   MyF5
++ 1

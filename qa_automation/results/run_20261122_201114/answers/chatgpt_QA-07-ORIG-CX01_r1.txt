@@ -1,0 +1,21 @@
+PROMPT:
+What net-snmp command would I use to read the whole interface table from a switch at 10.0.0.1 using SNMPv2c and the community string monitor123?
+
+ANSWER:
+Use snmpwalk with the SNMPv2c community string and the interface table OID:
+bash
+snmpwalk -v2c -c monitor123 10.0.0.1 1.3.6.1.2.1.2.2
+This walks the IF-MIB interface table (ifTable), returning information for all interfaces, including:
+ifIndex – Interface index
+ifDescr – Interface description
+ifType – Interface type
+ifMtu – Maximum transmission unit
+ifSpeed – Interface speed
+ifPhysAddress – MAC address
+ifAdminStatus – Administrative status
+ifOperStatus – Operational status
+ifInOctets / ifOutOctets – Traffic counters
+Alternative: To retrieve the extended interface table (including high-capacity counters), use:
+bash
+snmpwalk -v2c -c monitor123 10.0.0.1 1.3.6.1.2.1.31.1.1.1
+This walks the ifXTable from IF-MIB.

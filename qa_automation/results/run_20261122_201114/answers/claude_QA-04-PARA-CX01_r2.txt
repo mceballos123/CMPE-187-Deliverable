@@ -1,0 +1,5 @@
+PROMPT:
+What are the reasons SNMP usually uses UDP and not TCP as its transport?
+
+ANSWER:
+

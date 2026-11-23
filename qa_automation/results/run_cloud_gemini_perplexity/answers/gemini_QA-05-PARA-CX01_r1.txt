@@ -1,0 +1,28 @@
+PROMPT:
+How is an SNMP inform different from an SNMP trap?
+
+ANSWER:
+Both SNMP traps and SNMP informs are asynchronous notifications sent from an SNMP agent to a network management station (NMS) when an event occurs—such as a link going down, high CPU usage, or a device rebooting.
+The key difference comes down to reliability and acknowledgment: a trap is "fire-and-forget," while an inform requires a response from the manager and will retry if not acknowledged.
+Key Differences: Trap vs. Inform
+Feature SNMP Trap SNMP Inform (InformRequest)
+Acknowledgment None. The sender does not wait for or expect a reply. Required. The manager sends back an SNMPv2-PDU response (GetResponse) to confirm receipt.
+Retries None. If a UDP packet is dropped, the event is lost unless another mechanism catches it. Retransmits if no response arrives within a configured timeout, up to a set retry limit.
+SNMP Versions SNMPv1, SNMPv2c, SNMPv3 SNMPv2c, SNMPv3 (not supported in SNMPv1)
+Network & CPU Overhead Lower. Only one packet per event; no retry timers or state tracking. Higher. Extra response packets, timeout/retry tracking, and more state on the sender.
+Best For High-frequency or non-critical events where occasional packet loss is acceptable. Critical alerts (e.g., interface down, power supply failure, security alerts) where delivery matters.
+How Each One Works
+1. SNMP Trap ("Fire and Forget")
+An agent detects an event, builds a trap PDU, and sends it over UDP (typically port 162) to the NMS. Once transmitted, the agent moves on—it has no way of knowing if firewalls, congestion, or receiver load caused the packet to be dropped.
+2. SNMP Inform ("Send and Confirm")
+An inform uses the same core event payload as a trap, but behaves like a confirmed request:
+The agent sends an InformRequest to the NMS.
+If the NMS receives it, it replies with an acknowledgment (Response PDU) and passes the event to its monitoring engine.
+If the agent does not receive the acknowledgment before its timeout expires, it resends the inform—repeating until it gets a reply or hits its retry count limit.
+Important Nuances in Practice
+UDP doesn't make traps vs. informs "TCP vs. UDP": Both typically run over UDP. Reliability in an inform comes from application-layer acknowledgments and retries, not TCP.
+Tuning timeouts and retries matters: If an NMS is slow to process bursts of informs, too aggressive a timeout/retry setting can cause storming (duplicate alerts or extra load). Conversely, if retries are too low, bursts can still drop events.
+SNMPv3 authentication/encryption: Both traps and informs can use SNMPv3 security (authPriv), though SNMPv3 informs also involve engine ID discovery/synchronization for acknowledgment exchange, which can add setup complexity depending on your network devices.
+When Should You Use Which?
+Use Informs when missing an alert is costly—such as WAN link flaps, hardware/PSU faults, or critical threshold crossings—and your network can handle the modest extra traffic.
+Use Traps when events are noisy/frequent, when monitoring many devices at scale where extra round-trips add overhead, or when working with legacy SNMPv1 gear that doesn't support informs.

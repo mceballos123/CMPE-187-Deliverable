@@ -1,0 +1,11 @@
+PROMPT:
+In SNMP, what request type is used to pull a big table with as few round trips as possible, and which protocol version added it?
+
+ANSWER:
+In SNMP, the GetBulkRequest (GETBULK) request type is used to pull large tables or blocks of MIB data in as few round trips as possible, and it was introduced in SNMPv2c (and carried forward into SNMPv3).
+Why It Cuts Down Round Trips
+SNMPv1 only has GetNextRequest, which retrieves one variable per object per round trip—making large tables (like interface or routing tables) slow to walk.
+GetBulkRequest tells the agent to return up to a specified number of subsequent OIDs in a single response using two parameters:
+non-repeaters: How many leading variables in the request should return just one value (similar to GetNextRequest), typically used for scalar values.
+max-repetitions: How many rows/entries to pull for the remaining tabular variables in a single response.
+Keep max-repetitions reasonable (for example, 10 to 50 rather than thousands); setting it too high can cause oversized UDP packets, fragmentation, or agent timeouts on busy network devices.

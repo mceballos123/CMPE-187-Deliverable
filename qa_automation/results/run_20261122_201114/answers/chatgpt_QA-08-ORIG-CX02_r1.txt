@@ -1,0 +1,44 @@
+PROMPT:
+Which RFC defines SNMPv4, and what new features did it add?
+
+ANSWER:
+There is no officially standardized SNMPv4 RFC. The latest widely standardized version of SNMP is SNMPv3.
+You may be thinking of SNMPv3, which introduced major security improvements over SNMPv1 and SNMPv2c.
+RFCs defining SNMP versions
+Version
+RFC
+Description
+SNMPv1
+RFC 1157
+Original SNMP protocol
+SNMPv2c
+RFC 1901
+Community-based SNMPv2
+SNMPv3
+RFC 3411–3418
+Security and administration improvements
+What new features did SNMPv3 add?
+According to the SNMP architecture defined in
+RFC 3411 
+, SNMPv3 introduced four major improvements:
+Authentication: Verifies the identity of the sender using credentials and message authentication.
+Encryption (Privacy): Encrypts SNMP messages to prevent unauthorized users from reading sensitive information.
+Access Control: Controls which users can access specific MIB objects.
+Remote Configuration: Allows SNMP parameters to be configured remotely.
+Important SNMPv3 security components
+Component
+Purpose
+USM
+User-based Security Model; authentication and encryption
+VACM
+View-based Access Control Model; controls access to MIB data
+MD5/SHA
+Authentication algorithms supported by USM
+DES/AES
+Privacy (encryption) algorithms
+See:
+RFC 3414 – User-based Security Model 
+RFC 3418 – SNMP MIB 
+Interview takeaway
+If someone asks you about SNMPv4, clarify that there is no officially standardized SNMPv4 RFC. The version they most likely mean is SNMPv3.
+Remember: SNMPv1 and SNMPv2c rely on community strings, while SNMPv3 adds authentication, encryption, and access control.

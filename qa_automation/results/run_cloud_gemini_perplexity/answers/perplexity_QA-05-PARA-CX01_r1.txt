@@ -1,0 +1,22 @@
+PROMPT:
+How is an SNMP inform different from an SNMP trap?
+
+ANSWER:
+The key difference is acknowledgment: an SNMP trap is sent without expecting a reply, while an SNMP inform requires a response from the receiver confirming receipt. If that response does not arrive, the sender can retry the inform.
+cisco
+Side-by-side comparison
+Aspect SNMP trap SNMP inform
+Receiver response No acknowledgment Receiver sends an SNMP Response PDU
+Delivery feedback Sender cannot tell whether it arrived Sender receives confirmation if the response arrives
+Retransmission No acknowledgment-based retry Can retry if no response arrives, subject to retry limits and timeouts
+Resource usage Lower: no need to retain the notification awaiting a reply Higher: retains state and may generate retries and responses
+Supported versions SNMPv1, SNMPv2c, SNMPv3 SNMPv2c and SNMPv3
+The acknowledgment, retry, and resource differences are documented by Cisco; version support is documented by Broadcom.
+cisco
++1
+What this means in practice
+Both are unsolicited event notifications—for example, a device alerting a monitoring system that a condition has changed—rather than answers to polling requests. A trap effectively says, “Here’s an event,” while an inform says, “Here’s an event; confirm you received it.”
+cisco
+Informs provide greater reliability, not guaranteed delivery: retries can still end in a timeout if the receiver or network remains unavailable. Use informs when receipt confirmation matters; use traps when lower traffic and device overhead matter more than confirmation of every notification.
+cisco
++1

@@ -1,0 +1,18 @@
+PROMPT:
+Which RFC defines SNMPv4, and what new features did it add?
+
+ANSWER:
+No RFC defines SNMPv4; there is no standardized SNMP version 4, so it has no standardized new features. The standardized version you’re likely thinking of is SNMPv3, documented across multiple RFCs rather than a single specification.
+datatracker.ietf
++1
+What SNMPv3 added
+RFC 3411 describes SNMPv3’s main additions over the SNMPv2 framework:
+datatracker.ietf
+A new message format to support its extensible framework.
+Message security, including the User-based Security Model (USM) defined in RFC 3414.
+Access control, including the View-based Access Control Model (VACM) defined in RFC 3415.
+Remote configuration of SNMP parameters.
+datatracker.ietf
++1
+The important distinction is that RFC 3414 defines the security model for SNMPv3—the “4” at the end of its RFC number does not indicate SNMP version 4.
+datatracker.ietf

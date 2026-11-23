@@ -1,0 +1,7 @@
+PROMPT:
+What is the difference between an SNMP trap and an SNMP inform?
+
+ANSWER:
+An SNMP trap is sent without acknowledgment, so the agent generally won’t know if it arrived. An SNMP inform requires the manager to acknowledge receipt; if the acknowledgment doesn’t arrive, the agent can retry, making informs more reliable but adding network and resource overhead.
+techdocs.broadcom
++1

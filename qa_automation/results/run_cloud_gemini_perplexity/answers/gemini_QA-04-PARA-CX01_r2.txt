@@ -1,0 +1,23 @@
+PROMPT:
+What are the reasons SNMP usually uses UDP and not TCP as its transport?
+
+ANSWER:
+SNMP (Simple Network Management Protocol) relies on UDP (typically ports 161 and 162) by default because network management needs to stay lightweight, responsive, and reliable even when the network itself is degraded. TCP adds connection overhead and state that can fail or slow down monitoring at the exact moment you need visibility most.
+1. Lower Overhead and Simpler Agent Footprint
+Many SNMP-managed devices—such as switches, routers, UPS units, sensors, and embedded hardware—have tight CPU and memory constraints.
+No handshake or connection state: UDP sends self-contained datagrams without a three-way handshake, sequence tracking, or retransmission buffers.
+Easier to implement: An SNMP agent only needs basic socket/datagram handling rather than maintaining per-manager TCP state tables across thousands of devices.
+2. Works During Network Congestion or Partial Outages
+Network monitoring is most critical when links are congested, dropping packets, or partially down.
+No TCP head-of-line blocking or connection stalls: TCP tries to maintain an ordered byte stream and backs off or stalls when packets are lost or latency spikes.
+Best-effort reachability: With UDP, a manager can poll a struggling device or receive an asynchronous trap/inform without first establishing or recovering a stateful transport session.
+3. Natural Fit for Short Request/Response Cycles and Traps
+Most SNMP operations are small, discrete exchanges rather than long-lived bulk data transfers:
+Polling (GET / GETNEXT / GETBULK): A single request datagram typically maps cleanly to a single response datagram.
+Asynchronous notifications (TRAP): Devices can fire off an alert packet immediately when an event happens, without waiting to open a TCP connection to a management station that might be unreachable or restarting.
+4. Application-Level Control Over Reliability and Retries
+UDP is "unreliable" at the transport layer, meaning packets can be dropped, but SNMP doesn't leave reliability completely to chance:
+Configurable polling & timeouts: If a poll times out, the Network Management System (NMS) can retry on its own schedule or move on to the next device rather than waiting on TCP's retransmission timers.
+SNMPv2c/v3 INFORM messages: When acknowledged delivery is needed for notifications, SNMP handles acknowledgment at the protocol/application layer (with retries) rather than requiring TCP.
+When TCP Is Used
+While UDP is the standard default, SNMP over TCP (and TLS/DTLS in secure deployments) is supported in modern implementations when firewall traversal, larger payloads, or connection-oriented delivery is specifically desired—though it comes with higher resource use and potential connection churn when polling large fleets.

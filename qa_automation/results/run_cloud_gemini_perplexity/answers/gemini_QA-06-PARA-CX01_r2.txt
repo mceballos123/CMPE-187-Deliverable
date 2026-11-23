@@ -1,0 +1,18 @@
+PROMPT:
+SNMPv3 has three security levels. Name them, explain what each one protects, and say which one a company should pick for monitoring in production.
+
+ANSWER:
+SNMPv3 defines three security levels—noAuthNoPriv, authNoPriv, and authPriv—by combining authentication (verifying who sent the message and that it wasn't altered in transit) with encryption (privacy, keeping payloads unreadable on the wire).
+1. noAuthNoPriv (No Authentication, No Privacy)
+What it protects: Nothing. Messages are sent in cleartext with no cryptographic verification of sender identity or message integrity.
+Practical note: Even though it uses SNMPv3's user-based framework, on the wire it behaves much like SNMPv1/v2c from a confidentiality and integrity standpoint. Avoid it on any network you don't fully trust—and even on internal networks, it offers no defense against spoofing or tampering.
+2. authNoPriv (Authentication, No Privacy)
+What it protects: Identity and integrity (using HMAC authentication such as SHA-256/SHA-512), but not confidentiality.
+Practical note: An attacker can't forge SNMP packets or alter them without detection, but anyone sniffing traffic can still read OIDs, community/context details, and metric values in cleartext.
+3. authPriv (Authentication and Privacy)
+What it protects: Identity, integrity, and confidentiality—combining cryptographic authentication with encryption (such as AES-128 or AES-256) so packets are both verified and unreadable in transit.
+Practical note: Adds modest CPU overhead on agents and pollers compared to cleartext or auth-only modes, which modern network gear and polling servers handle easily at typical monitoring intervals.
+Which One Should a Company Pick for Production?
+Pick authPriv (using modern algorithms like SHA-256 or SHA-512 for authentication and AES-128 or higher for privacy—avoiding legacy MD5 and DES).
+In production monitoring, SNMP traffic regularly carries sensitive operational data—interface/routing topology, hardware inventory, system load, or environmental/power telemetry—and write/set operations or misconfigured views can expose even more. Using authPriv protects credentials and telemetry across internal VLANs, management networks, and cross-site links alike, following zero-trust and compliance baselines without meaningful performance trade-offs on modern hardware.
+(If you're rolling this out across legacy devices that don't support AES or have tight CPU limits, you can use authNoPriv as a temporary compromise on isolated management networks while planning upgrades—never noAuthNoPriv for production telemetry.)

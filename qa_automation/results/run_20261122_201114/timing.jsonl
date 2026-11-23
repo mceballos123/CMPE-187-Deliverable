@@ -1,0 +1,1 @@
+{"session_started": "2026-11-22T20:11:14", "wall_secs": 2050.1, "apps": ["chatgpt", "claude"], "parallel": true, "judge": {"status": "unavailable", "model": "llama3.2:3b", "error": "<urlopen error [Errno 61] Connection refused>"}}

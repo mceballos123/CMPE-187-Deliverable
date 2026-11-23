@@ -1,0 +1,258 @@
+{
+  "feature": "Question/Answering",
+  "owner": "Joel Moyal",
+  "course": "CMPE 187, Group 8, Deliverable 3",
+  "version": "1.0",
+  "requirements": {
+    "QA-01": "Factual accuracy",
+    "QA-02": "Exact technical values (OIDs, units)",
+    "QA-03": "Correct calculations",
+    "QA-04": "Completeness on multi-part questions",
+    "QA-05": "Relevance (answers the question asked)",
+    "QA-06": "Correct, working commands",
+    "QA-07": "Does not invent nonexistent subjects",
+    "QA-08": "Sound reasoning and explanation"
+  },
+  "context": {
+    "description": "Context dimension of the 3D model: which app answers, and what is already in the chat when the test question is asked.",
+    "apps": {
+      "chatgpt": "ChatGPT",
+      "claude": "Claude",
+      "gemini": "Gemini",
+      "perplexity": "Perplexity"
+    },
+    "classes": {
+      "QA-CX-01": {
+        "name": "Fresh session",
+        "description": "New chat, no earlier turns, memory and personalization off, default model. Same setup as Deliverable 2.",
+        "filler_turns": 0
+      },
+      "QA-CX-02": {
+        "name": "Carry-over session",
+        "description": "Same chat, asked after 3 unrelated networking questions (the same three distractor prompts as the Intelligent Memory tests). Checks that unrelated earlier context does not change the answer.",
+        "filler_turns": 3
+      }
+    },
+    "fillers": [
+      "What are the 7 layers of the OSI model?",
+      "What is a VLAN and why would I use one?",
+      "What does a router do?"
+    ]
+  },
+  "input": {
+    "description": "Input dimension: 8 question types from Deliverable 2, each expanded by data augmentation.",
+    "classes": {
+      "QA-IC-01": "Factual question",
+      "QA-IC-02": "Exact value lookup",
+      "QA-IC-03": "Calculation question",
+      "QA-IC-04": "Why / reasoning question",
+      "QA-IC-05": "Comparison question",
+      "QA-IC-06": "Multi-part question",
+      "QA-IC-07": "Command / procedure question",
+      "QA-IC-08": "Nonexistent subject question"
+    },
+    "augmentation": {
+      "ORIG": "Original Deliverable 2 prompt, word for word.",
+      "PARA": "Paraphrase: same meaning and key points, different wording and sentence order.",
+      "NOISE": "Noisy user input: lowercase first letter, no final question mark, two seeded letter swaps (typos) in ordinary words. Technical tokens (numbers, OIDs, protocol and object names) are never changed.",
+      "PARAM": "New parameter values (object, numbers, IP, community string, version). The expected answer is recomputed by the generator, so the oracle stays correct."
+    }
+  },
+  "output": {
+    "description": "Output dimension: every answer is mapped to exactly one output class by the oracle.",
+    "classes": {
+      "QA-OC-01": {
+        "name": "Accurate, relevant and complete",
+        "verdict": "Pass"
+      },
+      "QA-OC-02": {
+        "name": "Nonexistent subject identified",
+        "verdict": "Pass"
+      },
+      "QA-OC-03": {
+        "name": "Accurate but incomplete",
+        "verdict": "Partial Pass"
+      },
+      "QA-OC-04": {
+        "name": "Accurate but unfocused",
+        "verdict": "Partial Pass"
+      },
+      "QA-OC-05": {
+        "name": "Inaccurate",
+        "verdict": "Fail"
+      },
+      "QA-OC-06": {
+        "name": "Fabricated",
+        "verdict": "Fail"
+      },
+      "QA-OC-07": {
+        "name": "Irrelevant or misses most key points",
+        "verdict": "Fail"
+      }
+    }
+  },
+  "rules": [
+    {
+      "rule": "R1",
+      "input": "QA-IC-01",
+      "test": "TC-QA-01",
+      "requirements": [
+        "QA-01",
+        "QA-05"
+      ],
+      "expected": "QA-OC-01",
+      "failure": [
+        "QA-OC-03",
+        "QA-OC-05"
+      ]
+    },
+    {
+      "rule": "R2",
+      "input": "QA-IC-02",
+      "test": "TC-QA-02",
+      "requirements": [
+        "QA-02"
+      ],
+      "expected": "QA-OC-01",
+      "failure": [
+        "QA-OC-05",
+        "QA-OC-06"
+      ]
+    },
+    {
+      "rule": "R3",
+      "input": "QA-IC-03",
+      "test": "TC-QA-03",
+      "requirements": [
+        "QA-03"
+      ],
+      "expected": "QA-OC-01",
+      "failure": [
+        "QA-OC-05"
+      ]
+    },
+    {
+      "rule": "R4",
+      "input": "QA-IC-04",
+      "test": "TC-QA-04",
+      "requirements": [
+        "QA-05",
+        "QA-08"
+      ],
+      "expected": "QA-OC-01",
+      "failure": [
+        "QA-OC-03",
+        "QA-OC-04",
+        "QA-OC-05"
+      ]
+    },
+    {
+      "rule": "R5",
+      "input": "QA-IC-05",
+      "test": "TC-QA-05",
+      "requirements": [
+        "QA-01",
+        "QA-08"
+      ],
+      "expected": "QA-OC-01",
+      "failure": [
+        "QA-OC-03",
+        "QA-OC-05"
+      ]
+    },
+    {
+      "rule": "R6",
+      "input": "QA-IC-06",
+      "test": "TC-QA-06",
+      "requirements": [
+        "QA-04"
+      ],
+      "expected": "QA-OC-01",
+      "failure": [
+        "QA-OC-03",
+        "QA-OC-07"
+      ]
+    },
+    {
+      "rule": "R7",
+      "input": "QA-IC-07",
+      "test": "TC-QA-07",
+      "requirements": [
+        "QA-06"
+      ],
+      "expected": "QA-OC-01",
+      "failure": [
+        "QA-OC-05",
+        "QA-OC-06"
+      ]
+    },
+    {
+      "rule": "R8",
+      "input": "QA-IC-08",
+      "test": "TC-QA-08",
+      "requirements": [
+        "QA-07"
+      ],
+      "expected": "QA-OC-02",
+      "failure": [
+        "QA-OC-06"
+      ]
+    }
+  ],
+  "plans": {
+    "core": {
+      "description": "Deliverable 2 baseline: original prompts in a fresh session.",
+      "cells": [
+        {
+          "augmentation": [
+            "ORIG"
+          ],
+          "context": [
+            "QA-CX-01"
+          ]
+        }
+      ]
+    },
+    "3d": {
+      "description": "Default for Deliverable 3: every augmented input in a fresh session, plus every original prompt in a carry-over session.",
+      "cells": [
+        {
+          "augmentation": [
+            "ORIG",
+            "PARA",
+            "NOISE",
+            "PARAM"
+          ],
+          "context": [
+            "QA-CX-01"
+          ]
+        },
+        {
+          "augmentation": [
+            "ORIG"
+          ],
+          "context": [
+            "QA-CX-02"
+          ]
+        }
+      ]
+    },
+    "full": {
+      "description": "Full cross product: every augmented input in every context class.",
+      "cells": [
+        {
+          "augmentation": [
+            "ORIG",
+            "PARA",
+            "NOISE",
+            "PARAM"
+          ],
+          "context": [
+            "QA-CX-01",
+            "QA-CX-02"
+          ]
+        }
+      ]
+    }
+  }
+}

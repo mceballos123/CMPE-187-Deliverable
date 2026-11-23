@@ -1,0 +1,75 @@
+PROMPT:
+What are the three SNMPv3 security levels, what does each one protect, and which one should a company use for production monitoring?
+
+ANSWER:
+SNMPv3 has three security levels, commonly referred to as noAuthNoPriv, authNoPriv, and authPriv.
+They determine how SNMP messages are authenticated, protected against tampering, and encrypted while traveling between monitoring systems and network devices.
+The three SNMPv3 security levels
+Security level
+Authentication
+Encryption
+What it protects
+noAuthNoPriv
+No
+No
+Neither identity nor message confidentiality or integrity
+authNoPriv
+Yes
+No
+Verifies sender identity and protects message integrity
+authPriv
+Yes
+Yes
+Verifies identity, protects message integrity, and encrypts data
+1. noAuthNoPriv — No authentication, no privacy
+No authentication of the SNMP sender.
+No encryption of SNMP messages.
+SNMP information is transmitted in readable form.
+Provides the lowest level of security.
+Use case: Generally limited to isolated test environments or situations where security is not a concern.
+2. authNoPriv — Authentication, no encryption
+Authenticates the SNMP sender using a username and authentication key.
+Provides message integrity, helping detect tampering.
+Does not encrypt SNMP traffic.
+SNMP data can still be read if intercepted.
+Use case: Environments where authentication and integrity are required, but confidentiality is not a requirement.
+3. authPriv — Authentication and privacy
+Authenticates the sender.
+Protects message integrity.
+Encrypts SNMP communications to prevent unauthorized parties from reading the data.
+Uses authentication and privacy protocols, such as SHA-based authentication and AES encryption.
+Use case: Enterprise production networks where monitoring traffic must be secured.
+Which should a company use for production monitoring?
+Recommended: authPriv
+A company should use authPriv for production SNMPv3 monitoring.
+Reasons:
+Authentication: Only authorized SNMP users can communicate with managed devices.
+Integrity: Helps prevent unauthorized modification of SNMP messages.
+Confidentiality: Encrypts monitoring data so attackers cannot easily read information captured from network traffic.
+The Canadian Centre for Cyber Security also recommends authPriv when using the SNMP User-Based Security Model (USM).
+Canadian Centre
++1
+Recommended production configuration
+Setting
+Recommendation
+Security level
+authPriv
+Authentication
+SHA-2 where supported
+Privacy
+AES-128 or stronger where supported
+SNMP version
+SNMPv3
+Access permissions
+Read-only for monitoring
+Credentials
+Unique, strong authentication and privacy keys
+Network access
+Restrict SNMP access to authorized monitoring servers
+Important: Avoid older algorithms such as MD5 and DES. Prefer modern cryptographic algorithms supported by your network devices.
+Canadian Centre
++1
+Interview-ready answer
+If asked this in a networking or systems administration interview, you can say:
+"SNMPv3 has three security levels: noAuthNoPriv, authNoPriv, and authPriv. noAuthNoPriv provides neither authentication nor encryption. authNoPriv provides authentication and message integrity but no encryption. authPriv provides authentication, integrity, and encryption. For production monitoring, I would recommend authPriv because it protects monitoring traffic from unauthorized access, tampering, and eavesdropping."
+Bottom line: Use authPriv for production, with strong authentication, AES encryption, and read-only access wherever possible.

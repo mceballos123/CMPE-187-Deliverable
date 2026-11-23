@@ -1,0 +1,17 @@
+PROMPT:
+SNMPv3 has three security levels. Name them, explain what each one protects, and say which one a company should pick for monitoring in production.
+
+ANSWER:
+SNMPv3 defines three security levels—noAuthNoPriv, authNoPriv, and authPriv—that control whether network monitoring traffic is authenticated and encrypted.
+The Three SNMPv3 Security Levels
+noAuthNoPriv (No Authentication, No Privacy): Provides neither authentication nor encryption. It uses a configured username (securityName) for access control, but community-style plain-text exposure remains a risk because messages are not verified or encrypted on the wire.
+authNoPriv (Authentication, No Privacy): Verifies message integrity and sender authenticity using a shared authentication key and hash algorithm (such as SHA-256 or HMAC-SHA), protecting against spoofing and tampering. However, the payload (including SNMP values and OIDs) travels in clear text, so anyone capturing packets can still read sensitive monitoring data.
+authPriv (Authentication and Privacy): Combines authentication with encryption of the SNMP payload using a privacy key and cipher (such as AES). It protects against spoofing, tampering, and eavesdropping—making it the only level that keeps monitoring data confidential over the network.
+Security Level Authenticates Sender & Integrity? Encrypts Payload? Key Risk
+noAuthNoPriv No No Credential/data exposure, spoofing, and tampering
+authNoPriv Yes No Eavesdropping on unencrypted SNMP payloads
+authPriv Yes Yes Higher CPU/crypto overhead (minimal on modern gear)
+Which One to Pick for Production Monitoring
+A company should pick authPriv for production monitoring.
+Production SNMP traffic routinely carries sensitive infrastructure details—such as interface states, routing or firewall status, hardware health, and topology information—and often traverses shared or segmented enterprise networks. Using authPriv (ideally paired with strong modern algorithms like SHA-256/SHA-512 for authentication and AES-128 or AES-256 for privacy, rather than legacy MD5 or DES) prevents attackers from reading device telemetry or injecting forged SNMP packets.
+The main trade-off is slightly higher cryptographic overhead on the polling server and managed devices, and a bit more operational care to rotate both authentication and privacy keys. On modern network hardware and servers, that overhead is typically negligible compared to the security risk of leaving monitoring traffic unencrypted.

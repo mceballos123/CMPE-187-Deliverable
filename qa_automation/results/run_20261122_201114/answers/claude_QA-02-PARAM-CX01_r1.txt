@@ -1,0 +1,5 @@
+PROMPT:
+What is the OID of hrSystemUptime, and what unit does its value use?
+
+ANSWER:
+

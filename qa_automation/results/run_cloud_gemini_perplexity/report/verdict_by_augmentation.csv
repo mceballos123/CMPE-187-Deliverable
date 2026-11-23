@@ -1,0 +1,6 @@
+group,executed,pass,partial,fail,review,not_run,pass_rate,pass_or_partial
+ORIG,64,62,0,2,0,0,96.9%,96.9%
+PARA,32,32,0,0,0,0,100.0%,100.0%
+NOISE,32,32,0,0,0,0,100.0%,100.0%
+PARAM,16,15,0,1,0,0,93.8%,93.8%
+Total,144,141,0,3,0,0,97.9%,97.9%

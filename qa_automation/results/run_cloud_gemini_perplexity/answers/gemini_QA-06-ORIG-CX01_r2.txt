@@ -1,0 +1,22 @@
+PROMPT:
+What are the three SNMPv3 security levels, what does each one protect, and which one should a company use for production monitoring?
+
+ANSWER:
+SNMPv3 defines three security levels—commonly abbreviated as noAuthNoPriv, authNoPriv, and authPriv—that control whether messages are authenticated and encrypted.
+1. noAuthNoPriv (No Authentication, No Privacy)
+What it protects: Nothing beyond basic SNMPv3 framing (such as message structure and engine IDs). There is no password/key verification and no encryption.
+Risk: SNMP community-like strings/usernames and all transmitted OIDs, values, and traps are sent in cleartext and can be sniffed, modified, or spoofed on the network. It is generally only acceptable for isolated lab/testing environments.
+2. authNoPriv (Authentication, No Privacy)
+What it protects: Integrity and origin authenticity of the SNMP message (using hash/HMAC algorithms like SHA-256 or SHA-512). It proves who sent the message and ensures it wasn't tampered with in transit.
+What it does not protect: Confidentiality. The payload (device metrics, interface stats, config details, trap data) is still sent in cleartext over the wire, so anyone capturing packets can read the monitoring data.
+3. authPriv (Authentication and Privacy)
+What it protects: Integrity, origin authenticity, and confidentiality. It authenticates the sender/message integrity and encrypts the SNMP payload (using ciphers like AES-128 or AES-256).
+Result: Attackers sniffing network traffic cannot read sensitive monitoring data or configuration details, and unauthorized or modified packets are rejected.
+Summary Comparison
+Security Level Authentication (Integrity & Sender ID) Privacy (Encryption) Typical Use Case
+noAuthNoPriv No No Isolated test/lab networks only
+authNoPriv Yes No Low-sensitivity internal monitoring where confidentiality isn't required
+authPriv Yes Yes Production monitoring
+Which One Should a Company Use for Production Monitoring?
+A company should use authPriv for production monitoring.
+Even on an "internal" corporate network, production monitoring traffic often traverses shared VLANs, trunk links, or sensitive infrastructure where credentials, topology details, and operational metrics should not be exposed in cleartext. Using authPriv with modern cryptographic choices—such as SHA-2 (e.g., SHA-256) for authentication and AES (e.g., AES-128 or AES-256) for privacy—protects both the integrity of polling/traps and the confidentiality of your monitoring data. (Avoid legacy MD5 and DES whenever your devices and NMS support SHA-2 and AES.)

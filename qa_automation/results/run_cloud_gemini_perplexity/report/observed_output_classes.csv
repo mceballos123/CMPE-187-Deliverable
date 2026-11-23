@@ -1,0 +1,8 @@
+output_class,name,verdict,Gemini,Perplexity,total
+QA-OC-01,"Accurate, relevant and complete",Pass,60,61,121
+QA-OC-02,Nonexistent subject identified,Pass,10,10,20
+QA-OC-03,Accurate but incomplete,Partial Pass,0,0,0
+QA-OC-04,Accurate but unfocused,Partial Pass,0,0,0
+QA-OC-05,Inaccurate,Fail,2,1,3
+QA-OC-06,Fabricated,Fail,0,0,0
+QA-OC-07,Irrelevant or misses most key points,Fail,0,0,0

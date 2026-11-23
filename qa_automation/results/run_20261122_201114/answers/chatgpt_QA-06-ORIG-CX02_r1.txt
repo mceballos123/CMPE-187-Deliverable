@@ -1,0 +1,95 @@
+PROMPT:
+What are the three SNMPv3 security levels, what does each one protect, and which one should a company use for production monitoring?
+
+ANSWER:
+SNMPv3 has three security levels that determine how network devices authenticate monitoring systems and protect SNMP traffic.
+The three levels are:
+noAuthNoPriv – No authentication, no encryption.
+authNoPriv – Authentication, but no encryption.
+authPriv – Authentication and encryption.
+For production network monitoring, a company should generally use authPriv because it provides the strongest security.
+1. The three SNMPv3 security levels
+1. noAuthNoPriv
+Lowest security
+Authentication: No
+Encryption: No
+Protects: Neither identity nor data confidentiality.
+Traffic can potentially be read or spoofed.
+Generally unsuitable for production networks.
+2. authNoPriv
+Medium security
+Authentication: Yes
+Encryption: No
+Protects: Verifies the identity and integrity of SNMP messages.
+Does not hide monitoring data from someone who captures network traffic.
+Better than noAuthNoPriv, but data remains readable.
+3. authPriv
+Highest security
+Authentication: Yes
+Encryption: Yes
+Protects: Identity, message integrity, and data confidentiality.
+Prevents unauthorized users from easily reading or modifying SNMP traffic.
+Recommended for production monitoring.
+2. Comparison table
+Security level
+Authentication
+Encryption
+Integrity
+noAuthNoPriv
+No
+No
+No
+authNoPriv
+Yes
+No
+Yes
+authPriv
+Yes
+Yes
+Yes
+One important distinction:
+Authentication verifies who sent the message.
+Integrity verifies that the message wasn't modified in transit.
+Encryption prevents unauthorized people from reading the message contents.
+RFC Editor
++2
+3. Which one should a company use for production?
+Recommended: authPriv
+A company should generally configure SNMPv3 with:
+Authentication: SHA-2 (if supported).
+Privacy/encryption: AES-128 or stronger supported AES option.
+Unique SNMPv3 usernames and strong credentials.
+Read-only permissions for monitoring accounts.
+ACLs restricting SNMP access to authorized monitoring servers.
+SNMP access limited to trusted management networks.
+The Canadian Centre for Cyber Security also recommends authPriv when using the SNMPv3 User-Based Security Model (USM).
+Canadian Centre
++2
+4. Cisco configuration example
+A simplified Cisco IOS example:
+cisco
+configure terminal
+
+! Create SNMPv3 group
+snmp-server group MONITORING v3 priv
+
+! Create SNMPv3 user
+snmp-server user monitor MONITORING v3 auth sha AUTH_PASSWORD priv aes 128 PRIV_PASSWORD
+
+! Allow monitoring server access
+access-list 10 permit 192.168.10.50
+
+! Restrict SNMP access
+snmp-server group MONITORING v3 priv access 10
+
+end
+Note: Commands and supported algorithms vary by Cisco platform and software version. Use secure, unique credentials rather than the illustrative placeholders.
+5. Interview-ready answer
+If an interviewer asks, "Which SNMPv3 security level would you use in production and why?"
+You can answer:
+"I would use SNMPv3 authPriv because it provides authentication, message integrity, and encryption. Authentication ensures that SNMP messages come from authorized users, integrity protects against message modification, and encryption prevents sensitive monitoring information from being exposed. This provides the strongest protection among the three SNMPv3 security levels."
+Remember this simple formula:
+noAuthNoPriv = No authentication + No encryption.
+authNoPriv = Authentication + No encryption.
+authPriv = Authentication + Encryption.
+That's the key concept interviewers want you to understand.

@@ -1,0 +1,20 @@
+PROMPT:
+What are the three SNMPv3 security levels, what does each one protect, and which one should a company use for production monitoring?
+
+ANSWER:
+The three SNMPv3 security levels are noAuthNoPriv, authNoPriv, and authPriv. Each level adds cryptographic protection on top of the previous one, and companies should use authPriv for production monitoring.
+The Three SNMPv3 Security Levels
+Security Level Authentication (Who sent it + integrity) Encryption (Privacy / confidentiality) What It Protects Typical Use
+noAuthNoPriv None None Very little—relies on engine IDs/usernames rather than shared secrets, leaving traffic vulnerable to spoofing and eavesdropping Isolated lab testing or non-sensitive environments where legacy/minimal overhead is acceptable
+authNoPriv Yes (e.g., HMAC-SHA / HMAC-MD5) None Message authenticity and integrity—prevents unauthorized polling/traps and tampering, while payloads remain readable in transit Environments where tampering/spoofing is a concern, but network telemetry values (like interface counters) aren't considered sensitive
+authPriv Yes Yes (e.g., AES-128/256 or DES) Authenticity, integrity, and confidentiality—stops spoofing, tampering, and packet sniffing of SNMP strings, topology details, and device data Production monitoring across enterprise, cloud, or segmented networks
+Which One Should a Company Use in Production?
+Use authPriv for production monitoring.
+Why authPriv is the standard: Even when monitoring data seems harmless (like CPU load or bandwidth counters), SNMP packets can expose device hostnames, IP addressing, interface descriptions, software versions, and internal network topology to anyone capturing traffic. Furthermore, authPriv ensures commands (SET) or polling requests come from a verified management station and haven't been altered.
+Practical hardening tips for production:
+Prefer SHA-2 (such as SHA-256) over older hashes like MD5 or SHA-1 for authentication.
+Prefer AES (such as AES-128 or AES-256) over DES for encryption.
+Combine authPriv with network-level controls—such as dedicated management VLANs/VRFs, ACLs restricting which NMS IPs can poll/send traps, and unique per-device or rotated credentials where feasible.
+If a legacy device genuinely cannot support authPriv, isolate it on a restricted management segment and plan an upgrade or replacement rather than lowering security across your fleet.
+Want a quick checklist for rolling out SNMPv3 authPriv safely?
+Yes

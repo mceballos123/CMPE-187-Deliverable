@@ -1,0 +1,14 @@
+PROMPT:
+What net-snmp command would I use to read the whole interface table from a switch at 10.70.150.121 using SNMPv1 and the community string noc76?
+
+ANSWER:
+bash
+snmptable -v 1 -c noc76 10.70.150.121 IF-MIB::ifTable
+This retrieves the whole interface table and displays it in rows and columns. -v 1 selects SNMPv1, -c noc76 supplies the community string, and IF-MIB::ifTable identifies the interface table.
+net-snmp
++1
+If you prefer a list of individual OIDs and values rather than formatted table output, use:
+bash
+snmpwalk -v 1 -c noc76 10.70.150.121 ifTable
+snmpwalk retrieves the table’s contents one column at a time.
+net-snmp.sourceforge

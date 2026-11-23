@@ -1,0 +1,22 @@
+PROMPT:
+What features were added in SNMPv4, and what is the RFC number for it?
+
+ANSWER:
+There is no SNMPv4, so there is no RFC number for it. SNMPv3 remains the latest major version of the Simple Network Management Protocol.
+Why "SNMPv4" Comes Up
+SNMPv3 is the current standard: Rather than creating an SNMPv4, the IETF extended SNMPv3 modularly—such as adding the Transport Subsystem, SSH, and TLS transport models in RFC 5590–5592 and RFC 5953, and SHA-2 authentication in RFC 7630.
+Common mix-ups: People sometimes refer to Entity MIB (Version 4)—which is RFC 6933—as "SNMPv4," or they think of NETCONF and RESTCONF (and modern streaming telemetry like gNMI) as the next generation beyond SNMP.
+   RFC Editor
+Core RFCs for SNMPv3
+If you are looking for the foundational SNMPv3 specifications, they are defined across a set of RFCs rather than a single number:
+   GeeksforGeeks
+RFC 3411: Architecture for SNMP Management Frameworks
+   AGENT++ / SNMP4J Documentation
+RFC 3412: Message Processing and Dispatching
+   AGENT++ / SNMP4J Documentation
+RFC 3413: SNMP Applications
+   RFC Editor
+RFC 3414: User-based Security Model (USM) for authentication and encryption
+   AGENT++ / SNMP4J Documentation
+RFC 3415: View-based Access Control Model (VACM)
+   AGENT++ / SNMP4J Documentation

@@ -1,0 +1,9 @@
+PROMPT:
+What net-snmp command would I use to read the whole interface table from a switch at 10.70.150.121 using SNMPv1 and the community string noc76?
+
+ANSWER:
+bash
+snmptable -v 1 -c noc76 10.70.150.121 ifTable
+This retrieves the switch’s whole interface table (ifTable) and displays it in tabular form. The -v 1 option selects SNMPv1, and -c noc76 supplies the community string.
+net-snmp
++1

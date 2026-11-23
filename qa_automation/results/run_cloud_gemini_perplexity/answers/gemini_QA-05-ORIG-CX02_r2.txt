@@ -1,0 +1,28 @@
+PROMPT:
+What is the difference between an SNMP trap and an SNMP inform?
+
+ANSWER:
+The core difference between an SNMP trap and an SNMP inform is acknowledgment and reliability: a trap is a "fire-and-forget" alert sent by an SNMP agent to a manager with no response expected, while an inform (introduced in SNMPv2c and supported in SNMPv3) is a acknowledged notification where the SNMP manager sends back a response to confirm receipt.
+Because SNMP runs over UDP (typically UDP port 162 for traps and informs), delivery isn't guaranteed at the transport layer. Informs add reliability on top of UDP by retrying if no acknowledgment comes back.
+How They Differ
+Acknowledgment & Retries:
+Trap: Sent once and forgotten. If a UDP packet is dropped due to congestion or a firewall block, the agent never knows and won't resend it.
+Inform: The receiving SNMP manager replies with a standard SNMP response PDU. If the sender doesn't receive that reply within a configured timeout, it retries up to a set retry limit.
+Overhead & Latency:
+Trap: Lower overhead and slightly faster because there's no round-trip handshake or retry state to track.
+Inform: Slightly higher network and CPU/memory overhead—especially when hundreds or thousands of devices fire alerts simultaneously during a major outage—because each inform requires an acknowledgment and the sender holds state until confirmed (or retries are exhausted).
+Protocol Version Support:
+Traps: Available across SNMPv1, SNMPv2c, and SNMPv3.
+Informs: Introduced in SNMPv2c and supported in SNMPv3 (not available in SNMPv1).
+Side-by-Side Comparison
+Feature SNMP Trap SNMP Inform
+Delivery Confirmation None ("fire-and-forget") Yes (manager sends an acknowledgment response)
+Retransmission on Loss No Yes (configurable timeout and retry count)
+Network & Agent Overhead Lower Higher (response traffic + retry/state tracking)
+SNMP Versions v1, v2c, v3 v2c, v3
+Typical Port UDP 162 UDP 162
+When to Use Which
+Use SNMP Traps when event volume is high or bursty (like link-flap storms or massive outages), network links are reliable, or missing an occasional duplicate/transient alert is acceptable without adding extra round-trip chatter.
+Use SNMP Informs when guaranteed delivery matters—such as critical hardware faults, security alerts, or events over lossy/WAN links—where losing a single alert could leave the monitoring system blind to an issue. (In SNMPv3, informs also make USM engine ID discovery easier for notifications.)
+Want to see how SNMPv3 secures traps and informs compared to v1/v2c?
+Yes

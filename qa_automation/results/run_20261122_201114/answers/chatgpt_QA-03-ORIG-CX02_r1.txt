@@ -1,0 +1,42 @@
+PROMPT:
+A 32-bit ifInOctets counter on a router interface reads 4,294,000,000 at the first poll and 1,000,000 at the second poll 60 seconds later. Assuming the counter wrapped once, what was the average inbound throughput in bits per second?
+
+ANSWER:
+To calculate the average inbound throughput, we need to account for the 32-bit counter wrapping around.
+Step 1: Understand the counter wrap
+A 32-bit counter has a maximum value of:
+2
+32
+−1=4,294,967,295
+When it reaches its maximum, it wraps back to zero.
+Step 2: Calculate the total bytes received
+First poll: 4,294,000,000
+Second poll: 1,000,000
+Since the counter wrapped once:
+Bytes=(2
+32
+−4,294,000,000)+1,000,000
+=967,295+1,000,000
+=
+1,967,295 bytes
+Step 3: Convert bytes to bits
+There are 8 bits in a byte:
+1,967,295×8=15,738,360 bits
+Step 4: Calculate bits per second
+The polling interval is 60 seconds.
+Throughput=
+60
+15,738,360
+Final answer
+262,306 bps
+Approximately 262.3 Kbps
+Interview tip
+Remember this formula for SNMP interface counter calculations:
+bps=
+Time Interval
+Counter Difference×8
+If a counter wraps:
+Difference=(2
+32
+−Old Value)+New Value
+Key takeaway: Always account for counter rollover when calculating network bandwidth using 32-bit SNMP counters.

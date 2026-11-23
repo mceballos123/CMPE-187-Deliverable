@@ -1,0 +1,23 @@
+PROMPT:
+why does SNMP nomrally run over UDP instaed of TCP
+
+ANSWER:
+SNMP normally uses UDP because it was designed for lightweight request–response exchanges with minimal work for the device being monitored—especially when the network is already having problems. TCP’s connection management and reliable byte stream add overhead that basic SNMP polling often doesn’t need.
+rfc-editor
+Why UDP fits SNMP
+No connection setup. A monitoring server can send a request and receive a response without first establishing a TCP connection. UDP also avoids TCP’s connection-management and acknowledgment traffic. This matters when polling many devices.
+rfc-editor
+Simpler device-side implementation. With UDP, the SNMP agent on a router or switch does not need to maintain TCP connections. For polling, the monitoring server handles timeouts and decides whether to retry, keeping much of the reliability logic off the monitored device.
+rfc-editor
+Better fit for troubleshooting degraded networks. A stated design motivation was that SNMP should continue working, if possible, when the network is at its worst. Avoiding extra connection setup and transport state helps meet that goal; it does not mean UDP guarantees delivery or always outperforms TCP.
+rfc-editor
+Its exchanges often don’t need a reliable, ordered stream. Basic SNMP polling consists of individual requests and responses rather than a continuous data transfer, so TCP’s stream-oriented flow control offers less benefit for that workload.
+rfc-editor
+What about lost packets?
+UDP does not guarantee delivery. Instead, an SNMP manager can wait for a response, time out, and retry or abandon the request. The design therefore moves reliability decisions to the application rather than requiring TCP to handle them.
+rfc-editor
+SNMP over TCP does exist. It can be useful for transferring large amounts of management data because TCP provides segmentation and flow control, but it carries a greater resource cost; UDP remains the standard baseline transport.
+datatracker.ietf
++1
+In short: SNMP chose UDP not because reliability is unimportant, but because lightweight device agents and application-controlled retries were a better fit for its original management workload.
+rfc-editor

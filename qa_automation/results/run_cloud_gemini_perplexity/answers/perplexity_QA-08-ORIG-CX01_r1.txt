@@ -1,0 +1,24 @@
+PROMPT:
+Which RFC defines SNMPv4, and what new features did it add?
+
+ANSWER:
+No RFC defines SNMPv4: there is no standardized SNMP version 4, so there are no “SNMPv4 features” to list. The standardized versions are SNMPv1, SNMPv2c, and SNMPv3; the SNMPv3 framework is documented in the STD 62 RFC suite.
+rfc-editor
++1
+The likely intended version: SNMPv3
+SNMPv3 is defined across several RFCs, rather than a single document. Its principal improvements over SNMPv1 and SNMPv2c concern security and access control:
+Capability What it provides Key RFC
+Authentication and message integrity Verifies the user on whose behalf a message was sent and detects message alteration. RFC 3414, User-based Security Model (USM).
+rfc-editor
+Privacy (encryption) Protects the message payload from disclosure. RFC 3414.
+rfc-editor
+Replay protection Uses timeliness checks to limit acceptance of delayed or replayed messages. RFC 3414.
+rfc-editor
+Fine-grained access control Controls which managed objects a user can read, write, or include in notifications. RFC 3415, View-based Access Control Model (VACM).
+rfc-editor
++1
+Modular architecture Separates message processing, security, and access control so these components can evolve. RFC 3411.
+rfc-editor
++1
+These security capabilities are configurable, not automatically enabled for every SNMPv3 exchange: the architecture supports no authentication or encryption, authentication without encryption, and authentication with encryption.
+rfc-editor

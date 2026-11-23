@@ -1,0 +1,13 @@
+file,total_lines,loc,functions,avg_cc,max_cc,most_complex,role
+qa_generate.py,347,291,13,7.7,20,validate (20),script
+qa_oracle.py,524,402,25,6.9,19,_check_command (19),script
+qa_judge.py,157,117,6,4.5,12,cmd_regrade (12),script
+qa_sites.py,92,65,2,3.0,3,is_site_error (3),script
+qa_runner.py,538,447,21,7.3,19,send_and_wait (19),script
+qa_review.py,70,52,2,11.5,19,main (19),script
+qa_report.py,519,444,25,8.9,29,charts (29),script
+test_qa_oracle.py,155,115,8,2.4,3,test_param_counter_expected_value (3),unit test
+test_qa_generate.py,62,43,7,4.9,12,test_noise_keeps_technical_tokens (12),unit test
+test_qa_report.py,43,30,4,4.2,7,test_verdict_table_counts_and_rates (7),unit test
+qa_model_3d.json,258,258,-,-,-,-,test data
+qa_test_data.json,168,168,-,-,-,-,test data

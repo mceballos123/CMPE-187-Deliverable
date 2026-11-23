@@ -1,0 +1,18 @@
+PROMPT:
+What net-snmp command would I use to read the whole interface table from a switch at 10.0.0.1 using SNMPv2c and the community string monitor123?
+
+ANSWER:
+Use snmpwalk to read the entire interface table:
+bash
+snmpwalk -v 2c -c monitor123 10.0.0.1 IF-MIB::ifTable
+-v 2c selects SNMPv2c.
+-c monitor123 supplies the community string.
+10.0.0.1 is the switch’s address.
+IF-MIB::ifTable selects the interface table; snmpwalk retrieves all accessible entries beneath it.
+net-snmp
++1
+If your system cannot resolve the MIB name, use the numeric OID instead:
+bash
+snmpwalk -v 2c -c monitor123 10.0.0.1 1.3.6.1.2.1.2.2
+That OID identifies the same ifTable.
+learn.secbyte

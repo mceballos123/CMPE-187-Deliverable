@@ -1,0 +1,9 @@
+PROMPT:
+Using net-snmp and SNMPv2c with community monitor123, what command dumps the full interface table of the switch at 10.0.0.1?
+
+ANSWER:
+bash
+snmptable -v 2c -c monitor123 10.0.0.1 IF-MIB::ifTable
+This retrieves the full interface table and displays it as rows and columns. -v 2c selects SNMPv2c, and -c monitor123 supplies the community string. The IF-MIB definition must be installed and loaded for snmptable to interpret the table.
+net-snmp
++2

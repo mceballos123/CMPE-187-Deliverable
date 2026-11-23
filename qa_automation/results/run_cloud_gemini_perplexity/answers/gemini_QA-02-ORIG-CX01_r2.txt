@@ -1,0 +1,12 @@
+PROMPT:
+What is the OID of sysUpTime, and what unit does its value use?
+
+ANSWER:
+The OID for sysUpTime is 1.3.6.1.2.1.1.3 (typically queried as scalar instance 1.3.6.1.2.1.1.3.0 in SNMP GET requests).
+Its value uses the TimeTicks data type, which measures time in hundredths of a second (0.01 seconds, or 10 milliseconds) since the network management portion of the system was last re-initialized.
+   www.alvestrand.no
+Key Details to Keep in Mind
+32-bit rollover: TimeTicks is a 32-bit unsigned integer (maximum value 4,294,967,295), so it wraps back to 0 after roughly 497.1 days (42,949,672.95 seconds).
+   oidref.com
+Agent vs. OS uptime: sysUpTime tracks how long the network management subsystem / SNMP agent has been running—if the SNMP service restarts without a full reboot, sysUpTime resets to 0. For full host/OS uptime, devices often expose hrSystemUptime (1.3.6.1.2.1.25.1.1.0).
+   Broadcom support portal - Broadcom Inc.

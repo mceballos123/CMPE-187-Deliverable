@@ -1,0 +1,6 @@
+app,tests_with_2plus_repeats,same_verdict_every_repeat,stability
+ChatGPT,9,9,100.0%
+Claude,0,0,-
+Gemini,36,34,94.4%
+Perplexity,36,35,97.2%
+Total,81,78,96.3%

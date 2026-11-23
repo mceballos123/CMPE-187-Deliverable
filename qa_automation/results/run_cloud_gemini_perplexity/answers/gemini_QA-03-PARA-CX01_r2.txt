@@ -1,0 +1,37 @@
+PROMPT:
+On a router, ifInOctets is a 32-bit counter. Poll 1 reads 4,294,000,000 and poll 2, taken 60 seconds later, reads 1,000,000. The counter rolled over once in between. What is the average inbound rate in bits per second?
+
+ANSWER:
+To find the average inbound rate in bits per second (bps), account for the 32-bit counter rollover, convert the total octets (bytes) to bits, and divide by the polling interval.
+Determine the 32-bit counter capacity:
+A 32-bit unsigned integer stores values from 
+0 to 
+2
+32
+−1 (
+4,294,967,295), rolling over back to 
+0 on the 
+2
+32
+th count (
+4,294,967,296).
+Calculate total octets transferred:
+Total Octets=(2
+32
+−Poll 1)+Poll 2
+Total Octets
+Total Octets=(4,294,967,296−4,294,000,000)+1,000,000
+Total Octets
+Total Octets=967,296+1,000,000=1,967,296 octets
+Convert octets to bits:
+Since 
+1 octet=8 bits:
+Total Bits
+Total Bits=1,967,296×8=15,738,368 bits
+Calculate the rate per second:
+Divide the total bits by the 60-second polling interval:
+Inbound Rate=
+60 seconds
+15,738,368 bits
+≈262,306.13 bps
+The average inbound rate is approximately 262,306 bps (or 262.31 kbps).

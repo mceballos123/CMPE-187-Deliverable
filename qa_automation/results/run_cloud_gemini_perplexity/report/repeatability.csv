@@ -1,0 +1,4 @@
+app,tests_with_2plus_repeats,same_verdict_every_repeat,stability
+Gemini,36,34,94.4%
+Perplexity,36,35,97.2%
+Total,72,69,95.8%

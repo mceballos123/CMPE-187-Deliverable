@@ -1,0 +1,5 @@
+PROMPT:
+Using net-snmp and SNMPv2c with community monitor123, what command dumps the full interface table of the switch at 10.0.0.1?
+
+ANSWER:
+

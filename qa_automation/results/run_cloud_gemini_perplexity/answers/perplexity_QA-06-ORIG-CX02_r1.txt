@@ -1,0 +1,27 @@
+PROMPT:
+What are the three SNMPv3 security levels, what does each one protect, and which one should a company use for production monitoring?
+
+ANSWER:
+The three SNMPv3 security levels are noAuthNoPriv, authNoPriv, and authPriv. For production monitoring, a company should use authPriv, which provides both authenticated messages and encryption of management data.
+cisco
+What each level protects
+Here, Auth means authentication, and Priv means privacy through encryption.
+cisco
+Security level What it protects What it does not protect
+noAuthNoPriv Provides neither cryptographic authentication nor encryption. A username identifies the user, but is not cryptographic proof of identity. Does not protect against forged messages, message tampering, or someone reading the management data in transit.
+authNoPriv Authenticates the message sender and provides message integrity, helping detect forged or modified messages. Does not provide confidentiality: management data remains readable to someone who can capture the traffic.
+authPriv Provides authentication and integrity, plus encryption to protect the confidentiality of the SNMP payload. Does not replace access controls or protect a compromised monitoring server or managed device.
+The levels determine whether SNMP messages are authenticated and/or encrypted; authentication uses a keyed message-authentication mechanism such as HMAC.
+cisco
++1
+What to use in production
+Use authPriv as the standard, even on an internal management network. Simply selecting “SNMPv3” is not enough—the other two levels still leave management data unencrypted. Cisco explicitly recommends authPriv and advises against noAuthNoPriv and authNoPriv for secure production deployments.
+cisco
+For deployment:
+Choose strong algorithms supported by both the device and monitoring system—prefer SHA-2 authentication where available and AES encryption. Algorithm support varies by platform and software version.
+cisco
++1
+Restrict SNMP access to authorized monitoring systems and grant only the permissions monitoring needs, typically read-only access. Authentication and encryption complement access controls rather than replacing them.
+cisco
+The distinction to remember: authNoPriv protects authenticity and integrity; authPriv adds confidentiality.
+cisco

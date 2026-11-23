@@ -1,0 +1,22 @@
+PROMPT:
+What is the OID of sysUpTime, and what unit does its value use?
+
+ANSWER:
+The SNMP OID for sysUpTime is:
+FULL OID (INSTANCE)
+1.3.6.1.2.1.1.3.0
+MIB: SNMPv2-MIB
+Data type: TimeTicks
+Unit: Hundredths of a second (1/100 second)
+Access: Read-only
+How is the value calculated?
+Every 1 TimeTick = 0.01 seconds.
+For example, if sysUpTime returns 123456789:
+123456789÷100=1,234,567.89 seconds
+That's approximately 14.29 days.
+Important detail
+sysUpTime measures the time since the device's network management subsystem was last initialized, not necessarily the time since the entire device booted.
+Source:
+RFC Editor
++1
+Interview tip: Remember sysUpTime = 1.3.6.1.2.1.1.3.0 and TimeTicks = 1/100 of a second.

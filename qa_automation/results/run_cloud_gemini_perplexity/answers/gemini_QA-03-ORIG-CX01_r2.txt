@@ -1,0 +1,32 @@
+PROMPT:
+A 32-bit ifInOctets counter on a router interface reads 4,294,000,000 at the first poll and 1,000,000 at the second poll 60 seconds later. Assuming the counter wrapped once, what was the average inbound throughput in bits per second?
+
+ANSWER:
+To find the average inbound throughput, calculate the total octets (bytes) transferred during the wrap, convert that volume to bits, and divide by the polling interval.
+Determine the 32-bit counter rollover value
+A 32-bit unsigned integer counts from 
+0 to 
+2
+32
+−1 (
+4,294,967,295), wrapping back to 
+0 on the next increment (
+2
+32
+=4,294,967,296 total states).
+Calculate total octets transferred
+Octets=(2
+32
+−First Poll)+Second Poll
+Octets
+Octets=(4,294,967,296−4,294,000,000)+1,000,000
+Octets
+Octets=967,296+1,000,000=1,967,296 octets
+Convert octets to bits
+Bits=1,967,296 octets×8 bits/octet=15,738,368 bits
+Divide by the 60-second polling interval
+Throughput=
+60 seconds
+15,738,368 bits
+≈262,306.13 bps
+The average inbound throughput was 262,306.13 bits per second (or approximately 262.31 kbps).

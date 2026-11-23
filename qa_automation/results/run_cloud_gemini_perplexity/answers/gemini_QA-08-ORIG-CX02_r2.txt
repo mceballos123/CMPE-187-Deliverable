@@ -1,0 +1,19 @@
+PROMPT:
+Which RFC defines SNMPv4, and what new features did it add?
+
+ANSWER:
+There is no RFC defining SNMPv4—an SNMPv4 protocol version does not exist in the IETF's Simple Network Management Protocol standards. SNMPv3 is the latest major version of the SNMP protocol framework (designated as a full Internet Standard by the IETF).
+   Wikipedia
+How SNMP Versions Actually Map to RFCs
+SNMPv1: Originally defined in RFC 1157 (with early drafts in RFCs 1065–1067), introducing core operations like GET, GETNEXT, SET, and TRAP using plain-text community strings.
+   SNMP Monitoring
+SNMPv2 / SNMPv2c: Introduced bulk retrieval (GETBULK), INFORM notifications, and 64-bit counters across RFCs such as RFC 1901, RFC 3416, and RFC 3417.
+   SNMP Monitoring
+SNMPv3: Defined across the RFC 3410–3418 core framework (building on earlier v3 RFCs and later extended with AES encryption in RFC 3826 and transport security models like TLS/SSH in RFC 5590, RFC 5591, and RFC 5953).
+ Its flagship additions over earlier versions are authentication, encryption (integrity and confidentiality), and granular access control via the User-based Security Model (USM) and View-based Access Control Model (VACM), alongside Transport Security Models.
+   SNMP Monitoring
++ 1
+(Note: If you saw "Version 4" in an RFC title, it almost certainly refers to a MIB module revision rather than the SNMP protocol itself—for example, RFC 6933, which defines Entity MIB (Version 4).)
+   RFC Editor
+Want me to break down how SNMPv3 security levels (noAuthNoPriv, authNoPriv, authPriv) work?
+Yes

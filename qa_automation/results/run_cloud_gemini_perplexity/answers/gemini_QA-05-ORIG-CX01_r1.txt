@@ -1,0 +1,30 @@
+PROMPT:
+What is the difference between an SNMP trap and an SNMP inform?
+
+ANSWER:
+Both SNMP traps and SNMP informs are event notifications sent by an SNMP agent (such as a router, switch, or server) to an SNMP manager (your network monitoring system) when something notable happens—like a link going down, high CPU usage, or a failed login.
+The core difference comes down to reliability and acknowledgment: a trap is "fire and forget," while an inform is "send and confirm."
+Key Differences at a Glance
+Feature SNMP Trap SNMP Inform
+Acknowledgment (ACK) No. The manager does not send a reply. Yes. The manager replies with an SNMPv2-PDU response confirming receipt.
+Delivery Reliability Best-effort (unreliable). Can be lost over UDP without the sender knowing. Reliable (with retries). The agent resends if no ACK arrives within a timeout window.
+SNMP Version Support SNMPv1, SNMPv2c, SNMPv3 SNMPv2c, SNMPv3 (not supported in SNMPv1)
+Network & CPU Overhead Lower. Only one packet per event. Higher. Requires an ACK packet plus extra traffic/CPU if retries occur.
+Latency / Load Impact Better for high-frequency or non-critical events. Can add retry delays or flood a congested network if a manager goes down.
+How Each Works
+1. SNMP Trap ("Fire and Forget")
+An event occurs on the monitored device (agent).
+The agent sends a trap packet (typically over UDP port 162) to the manager.
+The agent immediately moves on—it does not wait for confirmation and does not know if the packet arrived.
+Because UDP does not guarantee delivery, a trap can be dropped due to network congestion, firewall rules, or a temporarily unreachable manager with no retry mechanism built into the SNMP protocol itself.
+2. SNMP Inform ("Send and Confirm")
+An event occurs on the agent.
+The agent sends an inform request (also typically over UDP port 162) to the manager.
+The manager receives it and sends back an acknowledgment (ACK) response.
+If the agent does not receive an ACK before its configured timeout expires, it retransmits the inform up to a configured retry count.
+When to Use Which
+Use SNMP Traps when events happen frequently, network bandwidth or manager processing overhead is tight, or occasional missed notifications are acceptable (for example, routine telemetry alerts where periodic polling will catch state changes anyway).
+Use SNMP Informs when missing an alert is costly—such as critical hardware failures, security events, or link flaps on core infrastructure—and you want the agent to retry delivery across transient network hiccups.
+Watch out for retry storms: If an SNMP manager goes offline or becomes overloaded and stops sending ACKs, agents configured with aggressive retry counts and short timeouts can generate extra retry traffic right when the network or monitoring system is already strained. Tune timeouts and retries carefully to match your environment.
+Want to see how SNMPv3 secures traps and informs with authentication and encryption?
+Yes

@@ -1,0 +1,18 @@
+PROMPT:
+What net-snmp command would I use to read the whole interface table from a switch at 10.70.150.121 using SNMPv1 and the community string noc76?
+
+ANSWER:
+To walk the entire interface table (IF-MIB::ifTable, OID 1.3.6.1.2.1.2.2) from the switch using SNMPv1, run:
+Bash
+snmpwalk -v 1 -c noc76 10.70.150.121 IF-MIB::ifTable
+Helpful Variations
+Numeric OIDs (no MIB loading required):
+Bash
+snmpwalk -v 1 -c noc76 10.70.150.121 1.3.6.1.2.1.2.2
+Formatted as a table (snmptable):
+Bash
+snmptable -v 1 -c noc76 10.70.150.121 IF-MIB::ifTable
+(Tip: Add -Cw 120 or wider if columns wrap awkwardly in your terminal.)
+64-bit counters (ifXTable): Standard ifTable uses 32-bit counters, which can wrap quickly on high-speed interfaces. If the switch supports IF-MIB::ifXTable (1.3.6.1.2.1.31.1.1), you can walk that as well for interface names (ifName) and 64-bit byte counters (ifHCInOctets / ifHCOutOctets):
+Bash
+snmpwalk -v 1 -c noc76 10.70.150.121 IF-MIB::ifXTable

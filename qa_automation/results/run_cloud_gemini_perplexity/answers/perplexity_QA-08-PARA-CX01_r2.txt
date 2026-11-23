@@ -1,0 +1,18 @@
+PROMPT:
+What features were added in SNMPv4, and what is the RFC number for it?
+
+ANSWER:
+There is no standardized SNMPv4, so there are no officially defined SNMPv4 features and no RFC number for it. The standardized SNMP versions are v1, v2c, and v3; SNMPv3 remains the current standard version.
+cisco
++1
+The likely intended version: SNMPv3
+SNMPv3 added security and administrative capabilities, notably:
+Authentication to verify the source of messages.
+Message integrity to detect tampering in transit.
+Encryption to protect message contents.
+Security and remote-configuration enhancements for managing SNMP access.
+cisco
++1
+SNMPv3 is specified by a suite of RFCs, RFC 3411–3418, rather than one RFC. RFC 3411 describes the management-framework architecture; the suite is also designated STD 62.
+wikipedia
++1

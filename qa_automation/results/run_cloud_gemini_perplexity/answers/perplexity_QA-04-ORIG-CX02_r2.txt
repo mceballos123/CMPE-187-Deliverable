@@ -1,0 +1,27 @@
+PROMPT:
+Why does SNMP normally run over UDP instead of TCP?
+
+ANSWER:
+SNMP normally uses UDP because network monitoring usually involves small, occasional messages, and UDP lets devices exchange them without the connection setup and ongoing connection state that TCP requires. This keeps management traffic and resource use low. UDP is also SNMP’s standard preferred transport mapping.
+rfc-editor
++1
+Why UDP fits SNMP
+Low overhead: A monitoring system can send a request and receive a response without first establishing a TCP connection. TCP connection setup, teardown, and acknowledgments add traffic.
+rfc-editor
+Lower resource usage: A device does not need to maintain TCP connections for its monitoring exchanges. That matters when managing many devices or when the monitored device has limited resources.
+rfc-editor
+Application-controlled retries: SNMP request/response implementations can use timeouts and retries when a response does not arrive. TCP’s reliable byte stream is therefore not essential for every monitoring exchange.
+rfc-editor
++1
+For example, a manager asking a router for an interface counter can use a straightforward request → response exchange rather than establishing a connection for that small transaction.
+rfc-editor
++1
+What’s the trade-off?
+UDP does not guarantee delivery. A request or response can be lost, and an ordinary SNMP trap—an unsolicited event notification—is not acknowledged. So using UDP favors simplicity and low overhead, not guaranteed receipt. Request/response retries can help, but they do not make every SNMP message reliable.
+stackoverflow
+Can SNMP use TCP?
+Yes. RFC 3430 defines an optional, experimental SNMP-over-TCP mapping. TCP can be useful for transferring large amounts of management data because it provides flow control and efficient segmentation. However, it consumes more resources, and UDP remains the baseline transport.
+rfc-editor
++1
+In short: SNMP normally uses UDP because its lightweight message exchanges generally do not need the cost of a persistent, reliable connection—not because reliability is unimportant.
+rfc-editor

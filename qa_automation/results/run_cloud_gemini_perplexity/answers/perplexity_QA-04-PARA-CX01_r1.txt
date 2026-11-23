@@ -1,0 +1,28 @@
+PROMPT:
+What are the reasons SNMP usually uses UDP and not TCP as its transport?
+
+ANSWER:
+SNMP usually uses UDP because its typical workload—small, intermittent management requests and responses—benefits more from a simple, connectionless transport than from TCP’s reliable byte stream. The choice also keeps managed devices lightweight and helps management traffic operate when the network is having problems.
+rfc-editor
+Main reasons
+Lower communication overhead
+UDP requires no connection-establishment handshake, connection teardown, or transport-level acknowledgments. A normal SNMP poll can therefore consist of just a request datagram and a response datagram. TCP introduces connection management and acknowledgment overhead, although keeping a TCP connection open can amortize its setup cost.
+rfc-editor
+Simpler agents and lower resource use
+SNMP agents often run on devices whose main job is forwarding traffic, not managing connections. UDP avoids maintaining TCP connection state for each manager. For ordinary request/response exchanges, the manager can handle timeouts and retries, keeping much of the reliability machinery out of the agent. This reduction in agent complexity was an explicit design consideration.
+rfc-editor
+Operation during network trouble
+A management protocol needs to work, if possible, precisely when a network is congested, losing packets, or recovering from failures. UDP allows a management request to be sent immediately without first establishing or reestablishing a connection. This does not guarantee delivery or make UDP universally better under loss; it removes a prerequisite and lets the management application control its own timeout and retry policy.
+rfc-editor
+TCP reliability does not replace an SNMP response
+A TCP acknowledgment indicates transport-level receipt, not that the SNMP agent processed a request or successfully performed an operation. The manager still needs an application-level response and a timeout policy. SNMP’s designers therefore saw limited benefit in adding TCP’s reliability underneath an already request/response-oriented protocol.
+rfc-editor
+Compatibility and historical standardization
+UDP/IP became SNMP’s standard, widely implemented transport. Supporting it consequently provides broad interoperability between agents and management systems, reinforcing its continued use.
+rfc-editor
+The trade-off—and when TCP makes sense
+UDP does not guarantee delivery, ordering, or duplicate suppression. SNMP applications must tolerate those limitations and implement retries where appropriate; ordinary unacknowledged traps can be lost.
+rfc-editor
++1
+SNMP over TCP is nevertheless defined. It can be useful for transferring large amounts of management data because TCP supplies segmentation and flow control, avoiding numerous small UDP request/response exchanges. Thus, UDP is the usual choice because it suits SNMP’s original lightweight management model—not because SNMP cannot use TCP.
+datatracker.ietf

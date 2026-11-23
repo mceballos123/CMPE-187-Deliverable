@@ -1,0 +1,92 @@
+PROMPT:
+What is the difference between an SNMP trap and an SNMP inform?
+
+ANSWER:
+The main difference between an SNMP Trap and an SNMP Inform is that a trap is an unacknowledged notification, whereas an inform is an acknowledged notification.
+Both are used by network devices (routers, switches, firewalls, servers, etc.) to notify an SNMP management system (NMS) about events such as interface failures, high CPU utilization, or device restarts.
+Key differences
+Feature
+SNMP Trap
+SNMP Inform
+Acknowledgment
+No acknowledgment
+Requires acknowledgment
+Reliability
+Best-effort delivery
+More reliable delivery
+Communication
+One-way
+Two-way
+Retransmission
+No automatic retransmission
+Retransmits if acknowledgment isn't received
+Resource usage
+Lower
+Higher
+Network overhead
+Less
+More
+SNMP versions
+v1, v2c, v3
+v2c, v3
+Default UDP port
+162
+162
+1. SNMP Trap
+Unacknowledged
+A trap is sent by an SNMP agent (network device) to an SNMP manager without expecting a response.
+How it works:
+SNMP Agent
+Router / Switch / Firewall
+SNMP Trap (UDP 162)
+SNMP Manager
+Receives notification
+No acknowledgment is sent back.
+For example:
+A switch detects that an interface goes down.
+It sends an SNMP trap to the monitoring server.
+The monitoring server receives the notification.
+The switch does not know whether the monitoring server received it.
+If the trap gets lost due to network congestion or connectivity issues, it is not automatically resent.
+2. SNMP Inform
+Acknowledged
+An inform is similar to a trap, but the receiving SNMP manager must acknowledge receipt.
+How it works:
+SNMP Agent
+Router / Switch / Firewall
+SNMP Inform (UDP 162)
+SNMP Manager
+Receives notification
+SNMP Response (ACK)
+SNMP Agent
+Stops retransmitting
+For example:
+A router detects that its WAN interface goes down.
+It sends an SNMP inform to the monitoring server.
+The monitoring server receives it and sends an acknowledgment.
+The router receives the acknowledgment and stops retransmitting.
+If the acknowledgment isn't received, the agent can retransmit the inform.
+3. Real-world example
+Imagine you manage 500 network switches.
+Using traps: A switch sends an alert when an uplink goes down. If the notification gets lost, your monitoring system might never know about the event.
+Using informs: The switch sends an alert and waits for acknowledgment. If the acknowledgment doesn't arrive, it retries according to its configured retry policy.
+4. Which one should you use?
+Scenario
+Recommendation
+General network monitoring
+Traps
+Critical infrastructure alerts
+Informs
+Networks with unreliable connectivity
+Informs
+Large-scale monitoring with minimal overhead
+Traps
+When notification delivery confirmation matters
+Informs
+One important point: An SNMP Inform provides confirmation that the SNMP manager received the notification, not necessarily that the alert was successfully processed, stored, or acted upon.
+Interview-ready answer
+If someone asks you in a networking interview:
+"An SNMP Trap is an unacknowledged notification sent from an SNMP agent to an SNMP manager. It uses UDP and does not retransmit if the notification is lost. An SNMP Inform is an acknowledged notification. The manager sends a response to confirm receipt, and if the agent doesn't receive that response, it can retransmit the inform. Traps consume fewer resources, while informs provide more reliable notification delivery."
+The easiest way to remember:
+Trap = Send and forget.
+Inform = Send and confirm.

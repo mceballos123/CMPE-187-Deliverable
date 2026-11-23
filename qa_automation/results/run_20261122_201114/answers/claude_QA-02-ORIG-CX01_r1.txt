@@ -1,0 +1,5 @@
+PROMPT:
+What is the OID of sysUpTime, and what unit does its value use?
+
+ANSWER:
+

@@ -1,0 +1,4 @@
+group,executed,pass,partial,fail,review,not_run,pass_rate,pass_or_partial
+Gemini,72,70,0,2,0,0,97.2%,97.2%
+Perplexity,72,71,0,1,0,0,98.6%,98.6%
+Total,144,141,0,3,0,0,97.9%,97.9%

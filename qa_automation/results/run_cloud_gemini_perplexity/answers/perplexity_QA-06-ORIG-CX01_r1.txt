@@ -1,0 +1,31 @@
+PROMPT:
+What are the three SNMPv3 security levels, what does each one protect, and which one should a company use for production monitoring?
+
+ANSWER:
+The three SNMPv3 security levels are noAuthNoPriv, authNoPriv, and authPriv. A company should use authPriv for production monitoring because it provides authentication, message integrity, and encryption—not just proof of who sent a message.
+cisco
++1
+What each level protects
+In SNMPv3, “auth” means authentication and integrity protection; “priv” means privacy through encryption.
+cisco
+Security level What it protects What it does not protect
+noAuthNoPriv Neither cryptographic sender authentication nor message integrity or confidentiality. A username may identify the configured user, but it does not cryptographically prove identity. Messages can be read, and there is no cryptographic protection against forgery or tampering.
+cisco
++1
+authNoPriv Authenticates the message origin and detects modification in transit. In the User-based Security Model (USM), authenticated messaging also includes timeliness checks to limit replay attacks. The payload remains unencrypted, so someone observing the traffic can read the monitoring data.
+rfc-editor
++2
+authPriv Provides the authentication, integrity, and replay protections of authNoPriv, plus encryption to protect the message payload from eavesdropping. It does not replace authorization rules that control which management objects a user can read or change.
+rfc-editor
++1
+What to use in production
+Use authPriv as the production standard, including on internal management networks. Merely selecting “SNMPv3” is not enough: the configured security level determines whether authentication and encryption actually apply. Cisco explicitly recommends authPriv for secure deployments and advises against the other two levels for secure production use.
+cisco
++1
+Pair it with:
+SHA-2 authentication and AES encryption where supported by both the monitoring platform and the monitored devices.
+logicmonitor
+Read-only permissions for routine monitoring, with SNMP views limiting which management objects are accessible. Enable write access only for a specific operational requirement.
+cisco
+Access restrictions allowing SNMP traffic only from trusted monitoring systems. Encryption protects the traffic; these restrictions reduce who can reach the service.
+cisco

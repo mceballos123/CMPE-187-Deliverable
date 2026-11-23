@@ -1,0 +1,4 @@
+app,test,repeat,verdict,output_class,why
+Gemini,QA-03-ORIG-CX01,1,Fail,QA-OC-05,"gives conflicting results: 254629.6, 254600.0 bps next to 262306 bps"
+Perplexity,QA-03-PARAM-CX01,2,Fail,QA-OC-05,final rate 461651 bps is not within 1% of 704318 bps
+Gemini,QA-03-ORIG-CX02,2,Fail,QA-OC-05,"gives conflicting results: 255585.6, 255600.0 bps next to 262306 bps"

@@ -1,0 +1,19 @@
+PROMPT:
+What net-snmp command would I use to read the whole interface table from a switch at 10.70.150.121 using SNMPv1 and the community string noc76?
+
+ANSWER:
+Use snmpwalk with SNMPv1 and the public-style community authentication string you provided:
+bash
+snmpwalk -v1 -c noc76 10.70.150.121 IF-MIB::ifTable
+To retrieve the entire interface table, including interface descriptions, status, speed, and counters, you can also use:
+bash
+snmpwalk -v1 -c noc76 10.70.150.121 1.3.6.1.2.1.2
+The numeric OID 1.3.6.1.2.1.2 is the MIB-II Interfaces subtree.
+Useful related OIDs:
+ifDescr – Interface description
+ifAdminStatus – Administrative status
+ifOperStatus – Operational status
+ifSpeed – Interface speed
+ifInOctets – Incoming traffic
+ifOutOctets – Outgoing traffic
+snmpwalk automatically walks through the matching OID subtree and returns all entries.

@@ -1,0 +1,19 @@
+PROMPT:
+Which RFC defines SNMPv5, and what new features did it add?
+
+ANSWER:
+No RFC defines SNMPv5: it is not a standardized version of the Simple Network Management Protocol, so it has no standardized new features. The recognized protocol versions are SNMPv1, SNMPv2c, and SNMPv3.
+rfc-editor
++1
+The likely intended version: SNMPv3
+SNMPv3 is specified across multiple RFCs rather than a single document. RFC 3411 describes its architecture and identifies its additions to the SNMPv2 framework: a new message format, message security, access control, and remote configuration of SNMP parameters.
+rfc-editor
+Its main enhancements include:
+User-based authentication and message integrity, verifying the user associated with a message and detecting tampering; encryption for confidentiality; and timeliness checks offering limited replay protection. These are defined by the User-based Security Model in RFC 3414.
+rfc-editor
+Fine-grained access control through the View-based Access Control Model in RFC 3415, restricting which management objects a group may read, write, or include in notifications.
+rfc-editor
+Remote configuration of security and access-control parameters, supported by a modular architecture that allows individual mechanisms to evolve without replacing the entire framework.
+rfc-editor
+Thus, security and configurable access control are features associated with SNMPv3—not a later “SNMPv5.”
+rfc-editor

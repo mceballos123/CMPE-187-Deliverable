@@ -1,0 +1,9 @@
+PROMPT:
+Which RFC defines SNMPv4, and what new features did it add?
+
+ANSWER:
+There is no SNMPv4—and therefore no RFC defining it.
+The IETF standardized SNMPv1, SNMPv2 (such as SNMPv2c), and SNMPv3 (the current standard framework, defined across RFCs 3411–3418 and extended by later RFCs such as RFC 5590–5591 and RFC 5953 for Transport Security / TLS/DTLS).
+ Rather than creating a "version 4" wire protocol, the IETF evolved SNMPv3 through modular additions—such as AES encryption (RFC 3826), SHA-2 authentication (RFC 7860), and TLS/DTLS transport security (RFC 6353)—while modern network management increasingly relies on protocols like NETCONF and RESTCONF alongside SNMPv3.
+   SNMP Research
++ 1

@@ -1,0 +1,4 @@
+group,executed,pass,partial,fail,review,not_run,pass_rate,pass_or_partial
+QA-CX-01,147,145,0,2,0,57,98.6%,98.6%
+QA-CX-02,42,41,0,1,0,16,97.6%,97.6%
+Total,189,186,0,3,0,73,98.4%,98.4%

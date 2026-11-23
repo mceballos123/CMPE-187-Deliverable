@@ -1,0 +1,168 @@
+{
+  "description": "Question/Answering base test data. Prompts, reference key points and pass criteria come from Deliverable 2 (TC-QA-01 to TC-QA-08). Reference sources: RFC 3411-3418, RFC 3416, RFC 2863, RFC 2790, net-snmp documentation.",
+  "seed": 187,
+  "tests": [
+    {
+      "id": "TC-QA-01",
+      "rule": "R1",
+      "input_class": "QA-IC-01",
+      "requirements": ["QA-01", "QA-05"],
+      "complexity": "Low",
+      "prompt": "Which SNMP operation lets a manager retrieve a large table in fewer requests, and in which SNMP version was it introduced?",
+      "paraphrase": "In SNMP, what request type is used to pull a big table with as few round trips as possible, and which protocol version added it?",
+      "reference_key_points": [
+        "The operation is GetBulkRequest (GetBulk).",
+        "It was introduced in SNMPv2 and is not in SNMPv1."
+      ],
+      "pass_criteria": "Both key points correct. A wrong version is a Fail. A missing version is a Partial Pass.",
+      "oracle": {"type": "getbulk_version"},
+      "param_variant": null,
+      "max_words": 400
+    },
+    {
+      "id": "TC-QA-02",
+      "rule": "R2",
+      "input_class": "QA-IC-02",
+      "requirements": ["QA-02"],
+      "complexity": "Low",
+      "prompt": "What is the OID of sysUpTime, and what unit does its value use?",
+      "paraphrase": "Give me the object identifier for sysUpTime and tell me what unit its value is measured in.",
+      "reference_key_points": [
+        "The OID is 1.3.6.1.2.1.1.3 (instance 1.3.6.1.2.1.1.3.0).",
+        "The value is TimeTicks, counted in hundredths of a second."
+      ],
+      "pass_criteria": "Every OID digit is correct and the unit is hundredths of a second. A wrong digit is a Fail.",
+      "oracle": {"type": "oid_unit", "object": "sysUpTime", "oid": "1.3.6.1.2.1.1.3"},
+      "param_variant": {
+        "type": "object_swap",
+        "template": "What is the OID of {object}, and what unit does its value use?",
+        "choices": [
+          {"object": "hrSystemUptime", "oid": "1.3.6.1.2.1.25.1.1"}
+        ]
+      },
+      "max_words": 400
+    },
+    {
+      "id": "TC-QA-03",
+      "rule": "R3",
+      "input_class": "QA-IC-03",
+      "requirements": ["QA-03"],
+      "complexity": "High",
+      "prompt": "A 32-bit ifInOctets counter on a router interface reads 4,294,000,000 at the first poll and 1,000,000 at the second poll 60 seconds later. Assuming the counter wrapped once, what was the average inbound throughput in bits per second?",
+      "paraphrase": "On a router, ifInOctets is a 32-bit counter. Poll 1 reads 4,294,000,000 and poll 2, taken 60 seconds later, reads 1,000,000. The counter rolled over once in between. What is the average inbound rate in bits per second?",
+      "reference_key_points": [
+        "A 32-bit counter wraps at 2^32 = 4,294,967,296, so the change is (4,294,967,296 - 4,294,000,000) + 1,000,000 = 1,967,296 octets.",
+        "1,967,296 x 8 = 15,738,368 bits.",
+        "15,738,368 / 60 = about 262,306 bps."
+      ],
+      "pass_criteria": "Final answer within 1% of the expected bps, with the wrap handled.",
+      "oracle": {"type": "counter_wrap", "first": 4294000000, "second": 1000000, "interval": 60, "bits": 32, "tolerance": 0.01},
+      "param_variant": {
+        "type": "counter_numbers",
+        "template": "A 32-bit ifInOctets counter on a router interface reads {first} at the first poll and {second} at the second poll {interval} seconds later. Assuming the counter wrapped once, what was the average inbound throughput in bits per second?",
+        "first_gap_range": [200000, 9000000],
+        "second_range": [100000, 9000000],
+        "intervals": [30, 120, 300]
+      },
+      "max_words": 600
+    },
+    {
+      "id": "TC-QA-04",
+      "rule": "R4",
+      "input_class": "QA-IC-04",
+      "requirements": ["QA-05", "QA-08"],
+      "complexity": "Medium",
+      "prompt": "Why does SNMP normally run over UDP instead of TCP?",
+      "paraphrase": "What are the reasons SNMP usually uses UDP and not TCP as its transport?",
+      "reference_key_points": [
+        "Low overhead and no connection setup.",
+        "Keeps working when the network is congested or failing, which is when monitoring matters most.",
+        "The manager handles timeouts and retries itself."
+      ],
+      "pass_criteria": "At least two correct reasons, and the answer stays on topic.",
+      "oracle": {"type": "udp_reasons", "min_reasons": 2},
+      "param_variant": null,
+      "max_words": 600
+    },
+    {
+      "id": "TC-QA-05",
+      "rule": "R5",
+      "input_class": "QA-IC-05",
+      "requirements": ["QA-01", "QA-08"],
+      "complexity": "Medium",
+      "prompt": "What is the difference between an SNMP trap and an SNMP inform?",
+      "paraphrase": "How is an SNMP inform different from an SNMP trap?",
+      "reference_key_points": [
+        "Both are sent by the agent without polling (to UDP 162).",
+        "A trap is not acknowledged.",
+        "An inform is acknowledged by the receiver and resent until it is."
+      ],
+      "pass_criteria": "The acknowledgment difference is explained correctly.",
+      "oracle": {"type": "trap_inform"},
+      "param_variant": null,
+      "max_words": 600
+    },
+    {
+      "id": "TC-QA-06",
+      "rule": "R6",
+      "input_class": "QA-IC-06",
+      "requirements": ["QA-04"],
+      "complexity": "High",
+      "prompt": "What are the three SNMPv3 security levels, what does each one protect, and which one should a company use for production monitoring?",
+      "paraphrase": "SNMPv3 has three security levels. Name them, explain what each one protects, and say which one a company should pick for monitoring in production.",
+      "reference_key_points": [
+        "noAuthNoPriv: no authentication, no encryption.",
+        "authNoPriv: authentication only.",
+        "authPriv: authentication and encryption (privacy).",
+        "Production monitoring should use authPriv."
+      ],
+      "pass_criteria": "All three parts answered: the levels, what each protects, and the recommendation.",
+      "oracle": {"type": "snmpv3_levels"},
+      "param_variant": null,
+      "max_words": 800
+    },
+    {
+      "id": "TC-QA-07",
+      "rule": "R7",
+      "input_class": "QA-IC-07",
+      "requirements": ["QA-06"],
+      "complexity": "Medium",
+      "prompt": "What net-snmp command would I use to read the whole interface table from a switch at 10.0.0.1 using SNMPv2c and the community string monitor123?",
+      "paraphrase": "Using net-snmp and SNMPv2c with community monitor123, what command dumps the full interface table of the switch at 10.0.0.1?",
+      "reference_key_points": [
+        "snmpwalk -v2c -c monitor123 10.0.0.1 IF-MIB::ifTable",
+        "The OID 1.3.6.1.2.1.2.2 (ifTable) is also accepted, and so are snmpbulkwalk and snmptable with the same options."
+      ],
+      "pass_criteria": "The command works as written: right tool, version, community, target and table.",
+      "oracle": {"type": "snmp_command", "ip": "10.0.0.1", "community": "monitor123", "version": "2c"},
+      "param_variant": {
+        "type": "command_values",
+        "template": "What net-snmp command would I use to read the whole interface table from a switch at {ip} using {version_name} and the community string {community}?",
+        "versions": [{"version": "1", "version_name": "SNMPv1"}, {"version": "2c", "version_name": "SNMPv2c"}],
+        "community_words": ["netmon", "lab", "campus", "ops", "noc"]
+      },
+      "max_words": 500
+    },
+    {
+      "id": "TC-QA-08",
+      "rule": "R8",
+      "input_class": "QA-IC-08",
+      "requirements": ["QA-07"],
+      "complexity": "High",
+      "prompt": "Which RFC defines SNMPv4, and what new features did it add?",
+      "paraphrase": "What features were added in SNMPv4, and what is the RFC number for it?",
+      "reference_key_points": [
+        "SNMPv4 does not exist; no RFC defines it.",
+        "SNMPv3 (RFC 3411 to 3418) is the latest version."
+      ],
+      "pass_criteria": "Says the subject does not exist and points to SNMPv3. No RFC or feature is made up.",
+      "oracle": {"type": "nonexistent", "subject": "SNMPv4"},
+      "param_variant": {
+        "type": "subject_swap",
+        "template": "Which RFC defines {subject}, and what new features did it add?",
+        "choices": ["SNMPv5"]
+      },
+      "max_words": 500
+    }
+  ]
+}

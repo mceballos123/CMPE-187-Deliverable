@@ -1,0 +1,20 @@
+PROMPT:
+Which RFC defines SNMPv5, and what new features did it add?
+
+ANSWER:
+There is no RFC for SNMPv5—the Simple Network Management Protocol never had a version 5.
+The IETF standardized SNMPv1, SNMPv2 (such as SNMPv2c), and SNMPv3, with SNMPv3 remaining the latest major protocol version.
+ Rather than bumping the protocol version number to 4 or 5, the IETF extended SNMPv3's modular architecture over time with newer RFCs (such as RFC 5590, RFC 5591, and RFC 5953 for Transport Security / TLS / DTLS, or RFC 7860 for SHA-2 authentication).
+   Wikipedia
++ 1
+Why "SNMPv5" Sometimes Comes Up
+Software version numbers: Tools and libraries sometimes use 5.x in their own release numbering (for example, Net-SNMP 5.x or Erlang's snmp 5.x releases), which refers to the software release rather than a new IETF SNMP protocol version.
+Modern replacements: For newer network management needs, much of the industry has moved toward YANG/NETCONF/RESTCONF or telemetry protocols rather than inventing a new SNMP major version.
+Major Additions in SNMPv3 (the Latest Protocol Version)
+If you were thinking of the newest protocol version (SNMPv3, defined across core RFCs like RFC 3410–3418 and extended by later RFCs), its headline additions over SNMPv1/v2c were:
+   SNMP Research
+Authentication and encryption: Support for message integrity/authentication (preventing tampering and spoofing) and encryption (preventing eavesdropping), replacing plaintext community strings.
+   Wikipedia
+Modular security & access control: The User-based Security Model (USM) and View-based Access Control Model (VACM), plus later Transport Security Model (TSM) support for SSH and (D)TLS.
+   SNMP Research
+Granular permissions: Ability to restrict specific users or groups to specific MIB views and read/write/notify rights rather than relying on broad read-only or read-write community strings.

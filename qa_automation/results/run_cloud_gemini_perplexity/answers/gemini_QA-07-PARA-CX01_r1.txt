@@ -1,0 +1,20 @@
+PROMPT:
+Using net-snmp and SNMPv2c with community monitor123, what command dumps the full interface table of the switch at 10.0.0.1?
+
+ANSWER:
+Use snmpwalk to dump the full interface table (IF-MIB::ifTable) from the switch:
+Bash
+snmpwalk -v2c -c monitor123 10.0.0.1 IF-MIB::ifTable
+Useful Variations
+Numeric OID (no MIB resolution needed):
+Bash
+snmpwalk -v2c -c monitor123 10.0.0.1 .1.3.6.1.2.1.2.2
+Formatted table output (snmptable):
+Bash
+snmptable -v2c -c monitor123 -Ci 10.0.0.1 IF-MIB::ifTable
+(The -Ci flag uses GETNEXT rather than GETBULK, which avoids errors on switches with limited bulk-walk support.)
+64-bit counters & interface names (ifXTable): For gigabit/10G+ ports where 32-bit counters wrap quickly, also walk IF-MIB::ifXTable (.1.3.6.1.2.1.31.1.1):
+Bash
+snmpwalk -v2c -c monitor123 10.0.0.1 IF-MIB::ifXTable
+Quick Tip
+If IF-MIB isn't loaded on your machine and you want symbolic names instead of raw OIDs, pass -m +IF-MIB (or install the snmp-mibs-downloader package on Debian/Ubuntu systems).

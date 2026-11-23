@@ -1,0 +1,22 @@
+PROMPT:
+What are the reasons SNMP usually uses UDP and not TCP as its transport?
+
+ANSWER:
+SNMP (Simple Network Management Protocol) defaults to UDP (typically ports 161 for queries/responses and 162 for traps/informs) rather than TCP primarily because network management needs to stay lightweight, fast, and operational even when the network itself is degraded.
+1. Low Overhead and Minimal Resource Footprint
+No handshake or state tracking: UDP is connectionless, avoiding the 3-way TCP handshake, connection teardown, sequence number tracking, and retransmission timers.
+Lightweight for embedded devices: Routers, switches, printers, UPS units, and IoT hardware often have constrained CPU and memory. Avoiding TCP connection state keeps agent implementations small and predictable.
+2. Operates During Network Congestion or Failure
+Monitoring when things break: Network management traffic is most critical during link flapping, packet loss, congestion, or device reboots.
+Avoiding TCP stalls: TCP's congestion control, backoffs, and head-of-line blocking can delay or stall management messages right when an administrator needs visibility into what is failing.
+3. Scales Better Across Large Fleets
+Many managed nodes: A single Network Management System (NMS) may poll hundreds or thousands of devices periodically.
+No persistent sockets required: With UDP, a manager can send lightweight requests and receive replies or asynchronous traps without maintaining thousands of open TCP connections or paying repeated connection-setup costs.
+4. Fits SNMP's Request–Response and Trap Model
+Short, discrete exchanges: Most SNMP operations are small, self-contained messages (GetRequest, GetNextRequest, GetBulkRequest, Response, Trap).
+Application-level handling: SNMP handles retries, timeouts, and request IDs at the application layer—allowing the manager to decide whether to retry a timed-out poll or move on without waiting on TCP's transport-layer retransmission logic.
+When TCP Is Used Instead
+While UDP is the standard default, SNMP over TCP (also on ports 161/162) is supported in newer versions (such as SNMPv2c and SNMPv3) and can be useful when:
+Large payloads (such as big GetBulk tables) are transferred over lossy links and reliable delivery without app-layer re-polling is desired.
+Firewalls or NAT gateways filter UDP management traffic more strictly than TCP.
+(Note: Because UDP does not guarantee delivery on its own, reliability in SNMP is handled through manager timeouts/retries for polls and Inform messages—which require an acknowledgment—rather than via TCP.)

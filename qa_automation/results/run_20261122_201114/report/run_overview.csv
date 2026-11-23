@@ -1,0 +1,2 @@
+runs,plan,apps,repeats,tests_in_plan,executions_planned,executions_recorded,graded,ok,timeout,blocked,error,judge,wall_clock_min
+"run_20261122_201114, run_cloud_gemini_perplexity",3d,"ChatGPT, Claude, Gemini, Perplexity",2,36,288,262,189,189,0,2,71,unavailable,92.6

@@ -1,0 +1,17 @@
+PROMPT:
+Which RFC defines SNMPv4, and what new features did it add?
+
+ANSWER:
+There is no RFC defining SNMPv4. The Simple Network Management Protocol (SNMP) has never had a standardized version 4—the current standard version of the protocol is SNMPv3.
+Instead of creating an "SNMPv4," the IETF extended SNMPv3 over time through modular add-on RFCs while keeping the core protocol version at v3.
+ Here is how the main SNMP versions and major v3 extensions map out:   
+SNMP Monitoring
+SNMPv1: Originally defined in RFCs 1065–1067 (1988) and later updated in RFC 1157 (1990).
+   SNMP Monitoring
+SNMPv2 / SNMPv2c: Introduced protocol improvements like GetBulkRequest and 64-bit counters; key specifications include RFC 1901 (community-based v2c), RFC 3416 (protocol operations), and RFC 3417 (transport mappings).
+   SNMP Monitoring
+SNMPv3: Standardized across the RFC 3410–3418 suite, adding authentication, encryption (confidentiality), integrity checking, and granular access control via the User-based Security Model (USM, RFC 3414) and View-based Access Control Model (VACM, RFC 3415).
+   SNMP Monitoring
+Later SNMPv3 Extensions (often mistaken for a "next" version): Rather than bumping the version number to 4, later RFCs added modern cryptography and transport options to SNMPv3, such as RFC 3826 (AES encryption in USM), RFC 5590 / 5591 / 5953 (Transport Security Model and TLS/DTLS transport), and RFC 7860 (HMAC-SHA-2 authentication).
+   SNMP Research
+(Note: You may occasionally see references to "Version 4" in specific MIBs—such as RFC 6933, which defines Entity MIB (Version 4)—or in third-party software/library versioning, which apply to individual MIB modules or implementations rather than an SNMPv4 protocol standard.)

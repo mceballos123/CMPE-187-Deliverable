@@ -1,0 +1,22 @@
+PROMPT:
+Why does SNMP normally run over UDP instead of TCP?
+
+ANSWER:
+SNMP normally uses UDP because its typical job—small, occasional requests and replies—doesn’t need a persistent, reliable byte stream. UDP keeps both the traffic overhead and the work required of managed devices low, especially when the network is already having problems. That last point was a central reason for the original design choice.
+rfc-editor
+Why UDP fits SNMP
+Low overhead. A manager can send a request and receive a response without first establishing a connection. UDP adds no connection-handshake, acknowledgment, or teardown traffic of its own. That matters when polling many devices or operating over a congested network.
+rfc-editor
+Simpler agents. The SNMP agent running on a router, switch, or other managed device doesn’t need to maintain TCP connections. For ordinary polling, the manager handles timeouts and decides whether to retry or abandon a request, keeping the agent’s resource requirements small.
+rfc-editor
+Useful during network trouble. A management protocol needs to work, if possible, precisely when the network is degraded. Connectionless requests avoid the additional exchanges and connection state associated with TCP. This is a design advantage, not a guarantee that UDP packets will arrive when TCP cannot.
+rfc-editor
+A good match for request–response exchanges. Routine SNMP polling generally needs an individual answer, rather than an ordered stream of bytes. TCP’s stream-oriented services therefore add less value than they do for applications transferring substantial amounts of data.
+rfc-editor
++1
+What about reliability?
+The tradeoff is that UDP does not guarantee delivery. With SNMP over UDP, the requesting application can time out and retry when a response is missing. Importantly, even TCP delivery would not by itself prove that the SNMP application had processed a request, so application-level responses and timeout handling still matter.
+rfc-editor
+Can SNMP use TCP?
+Yes. SNMP over TCP is defined, particularly to support larger transfers: TCP provides flow control and efficient segmentation, which can avoid many small UDP request–response exchanges. But it requires more resources, and the TCP transport specification also requires implementations to support the UDP mapping. Thus UDP remains the normal interoperable baseline—not the only possible transport.
+datatracker.ietf

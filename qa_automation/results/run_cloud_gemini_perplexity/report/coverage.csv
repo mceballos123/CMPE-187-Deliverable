@@ -1,0 +1,12 @@
+item,covered,rate
+Requirements,8 of 8,100.0%
+Decision rules,8 of 8,100.0%
+Input classes,8 of 8,100.0%
+Context classes (session),2 of 2,100.0%
+Apps,2 of 4,50.0%
+Augmentation types,4 of 4,100.0%
+Expected output classes tested,"QA-OC-01, QA-OC-02",-
+Output classes observed,"3 of 7 (QA-OC-01, QA-OC-02, QA-OC-05)",42.9%
+3D cells (app x context x input) in the plan,32 of 32,100.0%
+3D cells of the full model,32 of 64,50.0%
+Executions graded,144 of 144,100.0%

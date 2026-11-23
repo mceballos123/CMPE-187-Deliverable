@@ -1,0 +1,15 @@
+PROMPT:
+Why does SNMP normally run over UDP instead of TCP?
+
+ANSWER:
+SNMP (Simple Network Management Protocol) defaults to UDP (typically UDP 161 for queries/responses and UDP 162 for traps) because network monitoring prioritizes simplicity, low overhead, and reachability during network trouble over connection-oriented delivery.
+Why UDP Fits SNMP So Well
+Minimal Overhead & Low Latency: Polling hundreds or thousands of switches, routers, and servers every few seconds generates frequent, small request/response messages. UDP avoids TCP's three-way handshake, connection state tracking, and teardown overhead—keeping monitoring traffic lightweight and fast.
+No Connection State to Maintain: A central monitoring station (NMS) can poll massive fleets of devices without keeping thousands of persistent TCP sockets open or managing stalled/half-open connections when devices reboot or drop off.
+Works When the Network Is Degraded: SNMP is often used because something is broken or congested. Connectionless UDP doesn't depend on maintaining a fragile session state across flaky links, and if a periodic poll is lost, the monitoring system can simply retry on the next interval or timeout.
+Simpler Agent Implementation: Historically, SNMP was designed to run on resource-constrained network hardware (early routers, switches, printers, and embedded devices) where implementing a lean UDP responder was much easier than a full TCP stack.
+When TCP Is Used Instead
+UDP's "fire-and-forget" nature has trade-offs: large payloads (like bulky MIB walks or large GETBULK responses) can be dropped or fragmented, and some strict firewalls block UDP more aggressively than TCP.
+Because of that, SNMP over TCP (as well as SNMP over TLS/DTLS in SNMPv3 for encryption and authentication) is supported in modern implementations when you need reliable transport across stateful firewalls or WAN links—even though UDP remains the standard default across most monitoring setups.
+Want me to explain how SNMPv1/v2c differ from SNMPv3 in security?
+Yes
