@@ -5,6 +5,9 @@ Claude uses manual collection because Selenium authentication was blocked. All
 valid responses use the same judge. Capture errors bypass semantic grading and
 are excluded from the model-quality denominator. Judge failures require REVIEW;
 they never become a fabricated PASS or a model FAIL. Raw files are read-only.
+
+Run from Domain_Knowledge/: python3 evaluate_domain_results.py --model llama3.1:8b
+Results and reviews are resolved relative to this script, independent of cwd.
 """
 import argparse
 import csv

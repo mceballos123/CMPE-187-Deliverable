@@ -1,4 +1,7 @@
-"""Regression checks for capture/quality separation and raw-file compatibility."""
+"""Regression checks for capture/quality separation and raw-file compatibility.
+
+Run from Domain_Knowledge/: python3 -m unittest -v test_domain_evaluation.py
+"""
 import copy
 import hashlib
 import json

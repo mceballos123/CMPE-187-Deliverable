@@ -3,6 +3,7 @@
 CMPE 187 Deliverable #3 - Domain Knowledge automation.
 
 Usage:
+    cd Domain_Knowledge
     python3 domain_knowledge_test.py --app gemini --test-ids TC-DK-03 TC-DK-08 --ready
     python3 domain_knowledge_test.py --app all
 
@@ -114,7 +115,8 @@ APP_CONFIG = {
 def build_driver():
     options = webdriver.ChromeOptions()
 
-    profile_dir = ROOT / "chrome_profile"
+    # Reuse the existing ignored session directory after moving the scripts.
+    profile_dir = ROOT.parent / "chrome_profile"
     options.add_argument(f"--user-data-dir={profile_dir}")
     options.add_argument("--profile-directory=Default")
 
